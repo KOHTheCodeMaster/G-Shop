@@ -1,13 +1,23 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {NavbarComponent} from "./components/navbar/navbar.component";
+import {HomeComponent} from "./components/home/home.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    imports: [RouterOutlet, NavbarComponent, HomeComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'g-shop';
+
+    title = 'g-shop';
+    textContent: string = 'Welcome To G-Shop..!! ^-^';
+
+    onShoppingCartClickedEvent() {
+        console.log('L0G - [app.component] - onShoppingCartClickedEvent() - Method Invoked.');
+        this.textContent = 'Shopping Cart Clicked.'
+    }
+
 }
