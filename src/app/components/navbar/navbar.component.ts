@@ -1,15 +1,16 @@
-import {Component, EventEmitter, output, Output, OutputEmitterRef} from '@angular/core';
+import {Component, output, OutputEmitterRef} from '@angular/core';
+import {OptionsMenuComponent} from "./options-menu/options-menu.component";
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [],
+    imports: [OptionsMenuComponent],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
 
-    shoppingCartClicked:OutputEmitterRef<void> = output();
+    shoppingCartClicked: OutputEmitterRef<void> = output();
     // @Output() shoppingCartClicked: EventEmitter<void> = new EventEmitter<void>();
 
     handleShoppingCartNavBtnClick() {

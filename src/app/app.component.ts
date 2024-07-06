@@ -16,7 +16,6 @@ export class AppComponent {
     textContent: string = 'Welcome To G-Shop..!! ^-^';
 
     onShoppingCartClickedEvent() {
-        console.log('L0G - [app.component] - onShoppingCartClickedEvent() - Method Invoked.');
         this.textContent = 'Shopping Cart Clicked.'
     }
 
