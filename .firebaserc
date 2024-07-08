@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "g-shop-89c63",
+    "staging-1": "g-shop-89c63"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
