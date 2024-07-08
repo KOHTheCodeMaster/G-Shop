@@ -16,7 +16,11 @@ export class AppComponent {
     textContent: string = 'Welcome To G-Shop..!! ^-^';
 
     onShoppingCartClickedEvent() {
-        this.textContent = 'Shopping Cart Clicked.'
+        this.textContent = 'Shopping Cart Clicked.';
+    }
+
+    onBrandLogoClickedEvent() {
+        this.textContent = 'Welcome To G-Shop..!! ^-^';
     }
 
 }

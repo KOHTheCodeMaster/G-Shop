@@ -1,4 +1,6 @@
 <div>
-  <app-navbar (shoppingCartClicked)="onShoppingCartClickedEvent()"></app-navbar>
+  <app-navbar (shoppingCartClicked)="onShoppingCartClickedEvent()"
+              (brandLogoClicked)="onBrandLogoClickedEvent()">
+  </app-navbar>
   <app-home [textContent]="textContent"></app-home>
 </div>

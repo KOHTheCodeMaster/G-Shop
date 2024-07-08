@@ -11,6 +11,7 @@ import {OptionsMenuComponent} from "./options-menu/options-menu.component";
 export class NavbarComponent {
 
     shoppingCartClicked: OutputEmitterRef<void> = output();
+    brandLogoClicked: OutputEmitterRef<void> = output();
     // @Output() shoppingCartClicked: EventEmitter<void> = new EventEmitter<void>();
 
     handleShoppingCartNavBtnClick() {
@@ -18,4 +19,8 @@ export class NavbarComponent {
         this.shoppingCartClicked.emit();
     }
 
+    handleBrandBtnClick() {
+        console.log('L0G - [navbar.component] - handleBrandBtnClick() - Method Invoked.');
+        this.brandLogoClicked.emit();
+    }
 }
