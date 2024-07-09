@@ -12,15 +12,12 @@ import {HomeComponent} from "./components/home/home.component";
 })
 export class AppComponent {
 
-    title = 'g-shop';
-    textContent: string = 'Welcome To G-Shop..!! ^-^';
-
     onShoppingCartClickedEvent() {
-        this.textContent = 'Shopping Cart Clicked.';
+        console.log('L0G - [app.component] - onShoppingCartClickedEvent() - Method invoked.');
     }
 
     onBrandLogoClickedEvent() {
-        this.textContent = 'Welcome To G-Shop..!! ^-^';
+        console.log('L0G - [app.component] - onBrandLogoClickedEvent() - Method invoked.');
     }
 
 }
