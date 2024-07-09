@@ -11,18 +11,23 @@ import {RouterLink} from "@angular/router";
 })
 export class NavbarComponent {
 
-    shoppingCartClicked: OutputEmitterRef<void> = output();
     brandLogoClicked: OutputEmitterRef<void> = output();
+    shoppingCartClicked: OutputEmitterRef<void> = output();
+    loginClicked: OutputEmitterRef<void> = output();
 
-    // @Output() shoppingCartClicked: EventEmitter<void> = new EventEmitter<void>();
+    handleBrandBtnClick() {
+        console.log('L0G - [navbar.component] - handleBrandBtnClick() - Method Invoked.');
+        this.brandLogoClicked.emit();
+    }
 
     handleShoppingCartNavBtnClick() {
         console.log('L0G - [navbar.component] - handleShoppingCartNavBtnClick() - Method Invoked.');
         this.shoppingCartClicked.emit();
     }
 
-    handleBrandBtnClick() {
-        console.log('L0G - [navbar.component] - handleBrandBtnClick() - Method Invoked.');
-        this.brandLogoClicked.emit();
+    loginNavBtnClicked() {
+        console.log('L0G - [navbar.component] - loginNavBtnClicked() - Method Invoked.');
+        this.loginClicked.emit();
     }
+
 }

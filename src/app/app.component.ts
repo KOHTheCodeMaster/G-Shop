@@ -12,12 +12,16 @@ import {HomeComponent} from "./components/home/home.component";
 })
 export class AppComponent {
 
+    onBrandLogoClickedEvent() {
+        console.log('L0G - [app.component] - onBrandLogoClickedEvent() - Method invoked.');
+    }
+
     onShoppingCartClickedEvent() {
         console.log('L0G - [app.component] - onShoppingCartClickedEvent() - Method invoked.');
     }
 
-    onBrandLogoClickedEvent() {
-        console.log('L0G - [app.component] - onBrandLogoClickedEvent() - Method invoked.');
+    onLoginClickedEvent() {
+        console.log('L0G - [app.component] - onLoginClickedEvent() - Method invoked.');
     }
 
 }

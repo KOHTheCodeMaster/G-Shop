@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div>
+
+  <ng-container *ngIf="!loggedInUser; then showLoginForm else welcomeUser"></ng-container>
+
+  <ng-template #showLoginForm>
+    <div class="flex flex-col space-y-4">
+
+      <label for="idEmail" class="m-4 text-sm font-medium text-white">Email</label>
+      <input id="idEmail" type="text" placeholder="Email" #inputEmail
+             class="w-fit m-4 px-3 py-2 rounded-md border border-gray-300 text-black
+           focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+
+      <label for="idPassword" class="m-4 text-sm font-medium text-white">Password</label>
+      <input id="idPassword" type="password" placeholder="Password" autocomplete="current-password" #inputPassword
+             class="w-fit m-4 px-3 py-2 rounded-md border border-gray-300 text-black
+           focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+
+      <button (click)="login(inputEmail.value, inputPassword.value)"
+              class="w-fit mt-4 px-4 py-2 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700
+            focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+        Login
+      </button>
+
+    </div>
+  </ng-template>
+
+  <ng-template #welcomeUser>
+    <h3 class="text-xl text-red-500 bg-yellow-200">Welcome {{ loggedInUser?.username ?? 'N/A' }}</h3>
+  </ng-template>
+
+
+  <!--
+    <ng-container *ngIf="loggedInUser">
+      <h3 class="text-red-500 bg-yellow-200">Welcome {{ loggedInUser.username }}</h3>
+    </ng-container>
+  -->
+
+</div>
