@@ -1,14 +1,10 @@
-import {Injectable, output, OutputEmitterRef} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {User} from "../interface/User";
 
 @Injectable({
     providedIn: 'root'
 })
 export class LoginService {
-
-    loggedInUser: User | null = null;
-    emitUserLoggedInEvent: OutputEmitterRef<User | null> = output();
-    emitUserLoggedOutEvent: OutputEmitterRef<void> = output();
 
     protected userList: User[] = [
         {
@@ -53,13 +49,7 @@ export class LoginService {
             password: 'admin',
             admin: true,
         },
-
     ];
-
-    constructor() {
-        console.log('LoginService - constructor invoked.');
-        console.log('constructor() - loggedInUser.username: ' + this.loggedInUser?.username);
-    }
 
     getAllUsers(): User[] {
         return this.userList;
@@ -72,18 +62,16 @@ export class LoginService {
     loginUser(strInputEmail: string, strInputPassword: string): User | null {
 
         let allUsers: User[] = this.getAllUsers();
+        let loggedInUser: User | null = null;
 
         for (const user of allUsers) {
             if (user.email.toLowerCase() === strInputEmail && user.password.toLowerCase() === strInputPassword) {
-                this.loggedInUser = user;
+                loggedInUser = user;
                 break;
             }
         }
 
-        console.log('loginUser() - loggedInUser.username: ' + this.loggedInUser?.username);
-        this.emitUserLoggedInEvent.emit(this.loggedInUser);
-
-        return this.loggedInUser;
+        return loggedInUser;
     }
 
 }

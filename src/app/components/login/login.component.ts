@@ -1,7 +1,6 @@
-import {Component, output, OutputEmitterRef} from '@angular/core';
-import {LoginService} from "../../service/login.service";
-import {User} from "../../interface/User";
+import {Component} from '@angular/core';
 import {NgIf} from "@angular/common";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
     selector: 'app-login',
@@ -12,25 +11,11 @@ import {NgIf} from "@angular/common";
 })
 export class LoginComponent {
 
-    loggedInUser: User | null = null;
-    userLoggedInEvent: OutputEmitterRef<User | null> = output();
-
-    constructor(private loginService: LoginService) {
-        this.loggedInUser = loginService.loggedInUser;
-        console.log('loggedInUser.username: ' + (this.loggedInUser?.username ?? 'No User Logged In.'));
-
-        this.loginService.emitUserLoggedOutEvent.subscribe(() => this.loggedInUser = null)
+    constructor(public authService: AuthService) {
     }
 
     login(strInputEmail: string, strInputPassword: string) {
-        console.log('L0G - [login.component] - login() - Method invoked.');
-        console.log('strInputEmail: ' + strInputEmail + ' | strInputPassword: ' + strInputPassword);
-
-        this.loggedInUser = this.loginService.loginUser(strInputEmail, strInputPassword);
-        console.log('login() - loggedInUser.username: ' + this.loggedInUser?.username);
-
-        this.userLoggedInEvent.emit(this.loggedInUser);
-
+        this.authService.login(strInputEmail, strInputPassword);
     }
 
 }

@@ -1,6 +1,6 @@
 <div>
 
-  <ng-container *ngIf="!loggedInUser; then showLoginForm else welcomeUser"></ng-container>
+  <ng-container *ngIf="!authService.loggedInUser; then showLoginForm else welcomeUser"></ng-container>
 
   <ng-template #showLoginForm>
     <div class="flex flex-col space-y-4">
@@ -25,14 +25,7 @@
   </ng-template>
 
   <ng-template #welcomeUser>
-    <h3 class="text-xl text-red-500 bg-yellow-200">Welcome {{ loggedInUser?.username ?? 'N/A' }}</h3>
+    <h3 class="text-xl text-red-500 bg-yellow-200">Welcome {{ authService.loggedInUser?.username ?? 'N/A' }}</h3>
   </ng-template>
-
-
-  <!--
-    <ng-container *ngIf="loggedInUser">
-      <h3 class="text-red-500 bg-yellow-200">Welcome {{ loggedInUser.username }}</h3>
-    </ng-container>
-  -->
 
 </div>
