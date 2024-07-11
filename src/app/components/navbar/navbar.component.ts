@@ -49,4 +49,8 @@ export class NavbarComponent {
         this.loggedInUser = this.loginService.loggedInUser;
     }
 
+    onUserLoggedOutEvent() {
+        this.loggedInUser = null;
+    }
+
 }

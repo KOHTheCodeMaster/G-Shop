@@ -45,6 +45,7 @@
              routerLink="/admin/manage-products" tabindex="-1">Manage Products</a>
           <form action="#" method="POST" role="none">
             <button class="block w-full px-4 py-2 text-left text-sm text-gray-700" id="menu-item-3"
+                    (click)="logoutNavBtnClicked()"
                     role="menuitem" routerLink="/user/logout" tabindex="-1" type="button">Logout
             </button>
           </form>
