@@ -1,10 +1,13 @@
-import {Injectable} from '@angular/core';
+import {Injectable, output, OutputEmitterRef} from '@angular/core';
 import {User} from "../interface/User";
 
 @Injectable({
     providedIn: 'root'
 })
 export class LoginService {
+
+    loggedInUser: User | null = null;
+    emitUserLoggedInEvent: OutputEmitterRef<User | null> = output();
 
     protected userList: User[] = [
         {
@@ -52,41 +55,34 @@ export class LoginService {
 
     ];
 
+    constructor() {
+        console.log('LoginService - constructor invoked.');
+        console.log('constructor() - loggedInUser.username: ' + this.loggedInUser?.username);
+    }
+
     getAllUsers(): User[] {
         return this.userList;
     }
 
-    getUserById(id: number): User | undefined {
-        return this.userList.find(user => user.id === id);
+    getUserById(id: number): User | null {
+        return this.userList.find(user => user.id === id) ?? null;
     }
 
-    submitForm(strEmail: string, strPassword: string) {
-        console.log(`strEmail: ${strEmail}, strPassword: ${strPassword}`);
-    }
+    loginUser(strInputEmail: string, strInputPassword: string): User | null {
 
-    loginUser(strInputEmail: string, strInputPassword: string): User | undefined {
-
-        let loggedInUser: User | undefined = undefined;
         let allUsers: User[] = this.getAllUsers();
 
         for (const user of allUsers) {
-
-            /*
-            console.log('user.email.toLowerCase(): ' + user.email.toLowerCase() + '\n' +
-                'strInputEmail: ' + strInputEmail + '\n' +
-                'user.password.toLowerCase(): ' + user.password.toLowerCase() + '\n' +
-                'strInputPassword: ' + strInputPassword + '\n' +
-                'user.email.toLowerCase() === strInputEmail: ' + (user.email.toLowerCase() === strInputEmail) + '\n' +
-                'user.password.toLowerCase() === strInputEmail: ' + (user.password.toLowerCase() === strInputPassword) + '\n' +
-                '\n\n');
-            */
-
-            if (user.email.toLowerCase() === strInputEmail && user.password.toLowerCase() === strInputPassword)
-                loggedInUser = user;
+            if (user.email.toLowerCase() === strInputEmail && user.password.toLowerCase() === strInputPassword) {
+                this.loggedInUser = user;
+                break;
+            }
         }
 
-        return loggedInUser;
+        console.log('loginUser() - loggedInUser.username: ' + this.loggedInUser?.username);
+        this.emitUserLoggedInEvent.emit(this.loggedInUser);
 
+        return this.loggedInUser;
     }
 
 }

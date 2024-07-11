@@ -1,0 +1,5 @@
+
+To-Do List of Action Items:
+
+1. Passing Custom Event (Output) from Login Component to Navbar Component.
+2. Pre-fill Input fields for Login Component with Admin Credentials during Dev Phase for testing & saving time.

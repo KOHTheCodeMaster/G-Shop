@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, output, OutputEmitterRef} from '@angular/core';
 import {LoginService} from "../../service/login.service";
 import {User} from "../../interface/User";
 import {NgIf} from "@angular/common";
@@ -12,9 +12,12 @@ import {NgIf} from "@angular/common";
 })
 export class LoginComponent {
 
-    loggedInUser: User | undefined = undefined;
+    loggedInUser: User | null = null;
+    userLoggedInEvent: OutputEmitterRef<User | null> = output();
 
     constructor(private loginService: LoginService) {
+        this.loggedInUser = loginService.loggedInUser;
+        console.log('loggedInUser.username: ' + (this.loggedInUser?.username ?? 'No User Logged In.'));
     }
 
     login(strInputEmail: string, strInputPassword: string) {
@@ -22,7 +25,9 @@ export class LoginComponent {
         console.log('strInputEmail: ' + strInputEmail + ' | strInputPassword: ' + strInputPassword);
 
         this.loggedInUser = this.loginService.loginUser(strInputEmail, strInputPassword);
-        console.log('loggedInUser: ' + this.loggedInUser);
+        console.log('login() - loggedInUser.username: ' + this.loggedInUser?.username);
+
+        this.userLoggedInEvent.emit(this.loggedInUser);
 
     }
 
