@@ -1,5 +1,7 @@
 
 To-Do List of Action Items:
 
-1. Passing Custom Event (Output) from Login Component to Navbar Component.
-2. Pre-fill Input fields for Login Component with Admin Credentials during Dev Phase for testing & saving time.
+1. [DONE]   -   Passing Custom Event (Output) from Login Component to Navbar Component.
+2. [DUE]    -   Pre-fill Input fields for Login Component with Admin Credentials during Dev Phase for testing & saving time.
+3. [DUE]    -   Options Menu of Navbar should auto-close the drop-down upon selection of any individual menu item.
+4. [DUE]    -   When User Logs out, redirect to Login page.

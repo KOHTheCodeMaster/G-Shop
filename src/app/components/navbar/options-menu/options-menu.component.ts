@@ -1,6 +1,7 @@
-import {Component, output, OutputEmitterRef} from '@angular/core';
+import {Component, Input, output, OutputEmitterRef} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {User} from "../../../interface/User";
 
 @Component({
     selector: 'app-options-menu',
@@ -10,6 +11,8 @@ import {NgIf} from "@angular/common";
 })
 export class OptionsMenuComponent {
 
+    // @Input() userName: string | null = null;
+    @Input() loggedInUser: User | null = null;
     optionsOpened: boolean = false;
     emitUserLoggedOut: OutputEmitterRef<void> = output();
 

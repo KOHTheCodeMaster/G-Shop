@@ -8,6 +8,7 @@ export class LoginService {
 
     loggedInUser: User | null = null;
     emitUserLoggedInEvent: OutputEmitterRef<User | null> = output();
+    emitUserLoggedOutEvent: OutputEmitterRef<void> = output();
 
     protected userList: User[] = [
         {

@@ -18,6 +18,8 @@ export class LoginComponent {
     constructor(private loginService: LoginService) {
         this.loggedInUser = loginService.loggedInUser;
         console.log('loggedInUser.username: ' + (this.loggedInUser?.username ?? 'No User Logged In.'));
+
+        this.loginService.emitUserLoggedOutEvent.subscribe(() => this.loggedInUser = null)
     }
 
     login(strInputEmail: string, strInputPassword: string) {

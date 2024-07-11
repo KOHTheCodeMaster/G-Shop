@@ -6,6 +6,6 @@
     <a (click)="loginNavBtnClicked()" routerLink="/login">Login</a>
   </ng-container>
 
-  <app-options-menu (emitUserLoggedOut)="onUserLoggedOutEvent()"></app-options-menu>
+  <app-options-menu [loggedInUser]="loggedInUser" (emitUserLoggedOut)="onUserLoggedOutEvent()"></app-options-menu>
 
 </nav>
