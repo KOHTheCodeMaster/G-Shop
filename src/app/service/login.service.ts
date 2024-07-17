@@ -1,10 +1,14 @@
 import {Injectable} from '@angular/core';
 import {User} from "../interface/User";
+import {Observable} from "rxjs";
+import {user} from "@angular/fire/auth";
 
 @Injectable({
     providedIn: 'root'
 })
 export class LoginService {
+
+    // loggedInUser$: Observable<User>;
 
     protected userList: User[] = [
         {
@@ -50,6 +54,10 @@ export class LoginService {
             admin: true,
         },
     ];
+
+    constructor() {
+        // this.loggedInUser$ = new Observable<User>();
+    }
 
     getAllUsers(): User[] {
         return this.userList;

@@ -2,10 +2,13 @@
 
   <a (click)="handleBrandBtnClick()" routerLink="/">G-Shop</a>
   <a (click)="handleShoppingCartNavBtnClick()" routerLink="/shopping-cart">Shopping Cart</a>
-  <ng-container *ngIf="!authService.loggedInUser">
-    <a (click)="loginNavBtnClicked()" routerLink="/login">Login</a>
+  <ng-container *ngIf="authService.loggedInUser$ | async as user; else anonymousUser">
+    <app-options-menu [loggedInUser]="user" (emitUserLoggedOut)="onUserLoggedOutEvent()">
+    </app-options-menu>
   </ng-container>
 
-  <app-options-menu [loggedInUser]="authService.loggedInUser" (emitUserLoggedOut)="onUserLoggedOutEvent()"></app-options-menu>
+  <ng-template #anonymousUser>
+    <a (click)="loginNavBtnClicked()" routerLink="/login">Login</a>
+  </ng-template>
 
 </nav>
