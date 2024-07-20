@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {LoginService} from "./login.service";
 import {User} from "../interface/User";
-import {BehaviorSubject, Observable, Observer} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +9,8 @@ import {BehaviorSubject, Observable, Observer} from "rxjs";
 export class AuthService {
 
     loggedInUser$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+    isAdmin: boolean = false;
+
     // loggedInUser$: Observable<User | null> = this.loggedInUserSubject.asObservable();
 
     constructor(private loginService: LoginService) {
@@ -18,13 +20,16 @@ export class AuthService {
 
         const user: User | null = this.loginService.loginUser(strInputEmail, strInputPassword);
 
-        if (user) this.loggedInUser$.next(user);
-        else console.error('Invalid login credentials'); // ToDo: Handle invalid login
+        if (user) {
+            this.loggedInUser$.next(user);
+            this.isAdmin = user.admin;
+        } else console.error('Invalid login credentials'); // ToDo: Handle invalid login
 
     }
 
     logout() {
         this.loggedInUser$.next(null);
+        this.isAdmin = false;
     }
 
 }

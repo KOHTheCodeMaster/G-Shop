@@ -9,11 +9,12 @@ import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.co
 import {CheckoutComponent} from "./components/checkout/checkout.component";
 import {OrderSuccessComponent} from "./components/order-success/order-success.component";
 import {LoginComponent} from "./components/login/login.component";
+import {canActivateAuth} from "./service/auth-guard.service";
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'products', component: ProductsComponent},
-    {path: 'shopping-cart', component: ShoppingCartComponent},
+    {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [canActivateAuth]},
     {path: 'check-out', component: CheckoutComponent},
     {path: 'order-success', component: OrderSuccessComponent},
     {path: 'login', component: LoginComponent},
@@ -21,7 +22,7 @@ export const routes: Routes = [
     // {path: 'admin/orders', component: AdminOrdersComponent},
 
     {path: 'user/my-orders', component: MyOrdersComponent},
+    {path: 'user/logout', component: LogoutComponent},
     {path: 'admin/manage-orders', component: ManageOrdersComponent},
     {path: 'admin/manage-products', component: ManageProductsComponent},
-    {path: 'user/logout', component: LogoutComponent},
 ];
