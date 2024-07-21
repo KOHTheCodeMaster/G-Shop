@@ -9,12 +9,14 @@ import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.co
 import {CheckoutComponent} from "./components/checkout/checkout.component";
 import {OrderSuccessComponent} from "./components/order-success/order-success.component";
 import {LoginComponent} from "./components/login/login.component";
-import {canActivateAuth} from "./service/auth-guard.service";
+import {AuthGuardService, authUsingCanActivateFnExternally} from "./service/auth-guard.service";
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'products', component: ProductsComponent},
-    {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [canActivateAuth]},
+    // {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [authUsingCanActivateFnExternally]},
+    {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuardService.prototype.canActivateAuth]},
+    // {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuardService.prototype.authUsingCanActivateFnInternally]},
     {path: 'check-out', component: CheckoutComponent},
     {path: 'order-success', component: OrderSuccessComponent},
     {path: 'login', component: LoginComponent},
