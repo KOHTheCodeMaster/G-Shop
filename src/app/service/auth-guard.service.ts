@@ -14,20 +14,20 @@ export class AuthGuardService {
     // Define the canActivate function by injecting the AuthGuardService and calling the checkLogin method
     canActivateAuth(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         const authGuardService: AuthGuardService = inject(AuthGuardService);
-        return authGuardService.checkLogin();
+        return authGuardService.checkLogin(state.url);
     };
 
-/*
-    //  Doesn't Work!
-    // Declare the authUsingCanActivateFnInternally function using the CanActivateFn type
-    authUsingCanActivateFnInternally: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> =>  {
-        const authGuardService: AuthGuardService = inject(AuthGuardService);
-        return authGuardService.checkLogin();
-    };
-*/
+    /*
+        //  ToDo: Understand why the following code is not working
+        // Declare the authUsingCanActivateFnInternally function using the CanActivateFn type
+        authUsingCanActivateFnInternally: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> =>  {
+            const authGuardService: AuthGuardService = inject(AuthGuardService);
+            return authGuardService.checkLogin();
+        };
+    */
 
     // Check if the user is logged in - optimized implementation - Using !!, || & comma operators.
-    checkLogin(): Observable<boolean> {
+    checkLogin(url: string): Observable<boolean> {
         /*
             The loggedInUser$ observable emits the user object when the user logs in.
             Using comma operator, the map operator first checks if the user is logged in, and returns true.
@@ -38,7 +38,9 @@ export class AuthGuardService {
             - The comma operator evaluates each expression from left to right and returns the value of the last expression.
          */
         return this.authService.loggedInUser$.pipe(
-            map(user => !!user || (this.router.navigate(['/login']), false))
+            map(user => !!user ||
+                (this.router.navigate(['/login'], {queryParams: {returnUrl: url}}), false)
+            )
         );
     }
 
@@ -61,5 +63,5 @@ export class AuthGuardService {
 // Define the authUsingCanActivateFnExternally function using the CanActivateFn type
 export const authUsingCanActivateFnExternally: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> => {
     const authGuardService = inject(AuthGuardService);
-    return authGuardService.checkLogin();
+    return authGuardService.checkLogin(state.url);
 };
