@@ -1,5 +1,13 @@
 <div>
-  <h1 class="h-24 flex justify-center items-center text-3xl font-bold underline bg-blue-400 text-yellow-300">
-    {{ textContent }}
-  </h1>
+
+  <ng-container *ngIf="authService.loggedInUser$ | async as user; else userNotLoggedInMsg">
+    <h2 class="h-24 flex justify-center items-center text-3xl font-bold underline bg-blue-400 text-yellow-300">
+      Greetings {{ user.username }}! {{ strWelcomeMsg }}
+    </h2>
+  </ng-container>
+
+  <ng-template #userNotLoggedInMsg>
+    <h2 class="text-center text-2xl text-red-500 bg-yellow-200">{{ strUserNotLoggedInMsg }}</h2>
+  </ng-template>
+
 </div>

@@ -38,23 +38,9 @@ export class AuthGuardService {
             - The comma operator evaluates each expression from left to right and returns the value of the last expression.
          */
         return this.authService.loggedInUser$.pipe(
-            map(user => !!user ||
-                (this.router.navigate(['/login'], {queryParams: {returnUrl: url}}), false)
+            map(user => !!user
+                || (this.router.navigate(['/login'], {queryParams: {returnUrl: url}}), false)
             )
-        );
-    }
-
-    // Check if the user is logged in - alternative implementation (Less readable)
-    checkLogin2(): Observable<boolean> {
-        return this.authService.loggedInUser$.pipe(
-            map(user => {
-                if (user) {
-                    return true;
-                } else {
-                    this.router.navigate(['/login']);
-                    return false;
-                }
-            })
         );
     }
 
