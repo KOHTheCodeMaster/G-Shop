@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {HomeComponent} from "./components/home/home.component";
+import {AuthService} from "./service/auth.service";
+import {User} from "./interface/User";
 
 @Component({
     selector: 'app-root',
@@ -11,6 +13,17 @@ import {HomeComponent} from "./components/home/home.component";
     styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+    constructor(private router: Router, private authService: AuthService) {
+
+        authService.loggedInUser$.subscribe((loggedInUser$: User | null) => {
+            if (loggedInUser$) {
+                let returnUrl: string | null = localStorage.getItem('returnUrl');
+                router.navigateByUrl(returnUrl || '/');
+            }
+        });
+
+    }
 
     onBrandLogoClickedEvent() {
         console.log('L0G - [app.component] - onBrandLogoClickedEvent() - Method invoked.');
