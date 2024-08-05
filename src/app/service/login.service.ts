@@ -1,75 +1,44 @@
 import {Injectable} from '@angular/core';
 import {User} from "../interface/User";
-import {Observable} from "rxjs";
-import {user} from "@angular/fire/auth";
+import {UserService} from "./user.service";
+import {map, Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class LoginService {
 
-    // loggedInUser$: Observable<User>;
-
-    protected userList: User[] = [
-        {
-            id: 0,
-            username: 'Admin',
-            email: 'admin@gmail.com',
-            password: 'admin',
-            admin: true,
-        },
-        {
-            id: 1,
-            username: 'John',
-            email: 'john@gmail.com',
-            password: 'john',
-            admin: false,
-        },
-        {
-            id: 2,
-            username: 'test-user-1',
-            email: 'test-user-1@abc.com',
-            password: 'test',
-            admin: false,
-        },
-        {
-            id: 3,
-            username: 'test-user-2',
-            email: 'test-user-2@abc.com',
-            password: 'test',
-            admin: false,
-        },
-        {
-            id: 4,
-            username: 'test-user-3',
-            email: 'test-user-3@abc.com',
-            password: 'test',
-            admin: false,
-        },
-        {
-            id: 5,
-            username: 'test-admin-1',
-            email: 'test-admin-1@abc.com',
-            password: 'admin',
-            admin: true,
-        },
-    ];
-
-    constructor() {
-        // this.loggedInUser$ = new Observable<User>();
+    constructor(private userService: UserService) {
     }
 
-    getAllUsers(): User[] {
-        return this.userList;
+    /**
+     * Logs in a user by checking the provided email and password against a list of users.
+     * Using Async Call - UserService.getUsers()
+     *
+     * @param {string} strInputEmail - The email address input by the user.
+     * @param {string} strInputPassword - The password input by the user.
+     * @returns {Observable<User | null>} An observable that emits the logged-in user if found, or null if not found.
+     */
+    loginUser(strInputEmail: string, strInputPassword: string): Observable<User | null> {
+        return this.userService.getUsers().pipe(
+            map((allUsers: User[]) => {
+                return allUsers.find(user =>
+                    (user.email.toLowerCase() === strInputEmail && user.password === strInputPassword)) || null;
+            })
+        );
     }
 
-    getUserById(id: number): User | null {
-        return this.userList.find(user => user.id === id) ?? null;
-    }
+    /**
+     * Logs in a user by checking the provided email and password against a list of users.
+     * This method performs a synchronous check against a locally stored list of users.
+     *
+     * @param {string} strInputEmail - The email address input by the user.
+     * @param {string} strInputPassword - The password input by the user.
+     * @returns {User | null} The logged-in user if found, or null if not found.
+     */
+    loginUser2(strInputEmail: string, strInputPassword: string): User | null {
 
-    loginUser(strInputEmail: string, strInputPassword: string): User | null {
-
-        let allUsers: User[] = this.getAllUsers();
+        let allUsers: User[] = this.userService.userList;
         let loggedInUser: User | null = null;
 
         for (const user of allUsers) {

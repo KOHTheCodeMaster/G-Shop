@@ -12,19 +12,35 @@ export class AuthService {
     loggedInUser$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
     isAdmin: boolean = false;
 
-    // loggedInUser$: Observable<User | null> = this.loggedInUserSubject.asObservable();
-
     constructor(private loginService: LoginService, private route: ActivatedRoute) {
+    }
+
+    storeReturnUrlToLocalStorage() {
+        //  Store the return URL for redirection after login
+        let returnUrl: string = this.route.snapshot.queryParams['returnUrl'] || '/';
+        localStorage.setItem('returnUrl', returnUrl);
     }
 
     login(strInputEmail: string, strInputPassword: string) {
 
-        //  Store the return URL for redirection after login
-        let returnUrl: string = this.route.snapshot.queryParams['returnUrl'] || '/';
-        localStorage.setItem('returnUrl', returnUrl);
+        this.storeReturnUrlToLocalStorage();  //  Store the return URL for redirection after login
 
-        const user: User | null = this.loginService.loginUser(strInputEmail, strInputPassword);
+        this.loginService.loginUser(strInputEmail, strInputPassword).subscribe(user => {
+            this.processLogin(user);
+        });
 
+    }
+
+    login2(strInputEmail: string, strInputPassword: string) {
+
+        this.storeReturnUrlToLocalStorage();  //  Store the return URL for redirection after login
+
+        const user: User | null = this.loginService.loginUser2(strInputEmail, strInputPassword);
+        this.processLogin(user)
+
+    }
+
+    processLogin(user: User | null) {
         if (user) {
             this.loggedInUser$.next(user);
             this.isAdmin = user.admin;
