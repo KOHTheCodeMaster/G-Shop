@@ -28,7 +28,19 @@ export const routes: Routes = [
     {path: 'user/my-orders', component: MyOrdersComponent},
     {path: 'user/logout', component: LogoutComponent},
 
-    {path: 'admin/manage-orders', component: ManageOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
-    {path: 'admin/manage-products', component: ManageProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
-    {path: 'admin/manage-products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
+    {
+        path: 'admin/manage-orders',
+        component: ManageOrdersComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
+    },
+    {
+        path: 'admin/manage-products',
+        component: ManageProductsComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
+    },
+    {
+        path: 'admin/manage-products/new',
+        component: ProductFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
+    },
 ];

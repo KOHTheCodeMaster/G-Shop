@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {AuthService} from "./auth.service";
-import {ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {map, Observable} from "rxjs";
 
 @Injectable({
