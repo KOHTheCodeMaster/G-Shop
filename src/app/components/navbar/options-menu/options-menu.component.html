@@ -40,10 +40,20 @@
           <a routerLink="/user/my-orders" class="block px-4 py-2 text-sm text-gray-700"
              id="menu-item-0" role="menuitem" tabindex="-1">My Orders</a>
 
-          <a *ngIf="loggedInUser?.admin" routerLink="/admin/manage-orders" class="block px-4 py-2 text-sm text-gray-700"
+          <!--
+                    //  Commented out just for testing Admin Roles
+                    <a *ngIf="loggedInUser?.admin" routerLink="/admin/manage-orders" class="block px-4 py-2 text-sm text-gray-700"
+                       id="menu-item-1" role="menuitem" tabindex="-1">Manage Orders</a>
+
+                    <a *ngIf="loggedInUser?.admin" routerLink="/admin/manage-products"
+                       class="block px-4 py-2 text-sm text-gray-700"
+                       id="menu-item-2" role="menuitem" tabindex="-1">Manage Products</a>
+          -->
+
+          <a routerLink="/admin/manage-orders" class="block px-4 py-2 text-sm text-gray-700"
              id="menu-item-1" role="menuitem" tabindex="-1">Manage Orders</a>
 
-          <a *ngIf="loggedInUser?.admin" routerLink="/admin/manage-products"
+          <a routerLink="/admin/manage-products"
              class="block px-4 py-2 text-sm text-gray-700"
              id="menu-item-2" role="menuitem" tabindex="-1">Manage Products</a>
 

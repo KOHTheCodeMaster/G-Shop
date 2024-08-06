@@ -1,6 +1,6 @@
-import {inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AuthService} from "./auth.service";
-import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
 import {map, Observable} from "rxjs";
 
 @Injectable({
@@ -12,9 +12,9 @@ export class AuthGuardService {
     }
 
     // Define the canActivate function by injecting the AuthGuardService and calling the checkLogin method
-    canActivateAuth(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-        const authGuardService: AuthGuardService = inject(AuthGuardService);
-        return authGuardService.checkLogin(state.url);
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+        // const authGuardService: AuthGuardService = inject(AuthGuardService);
+        return this.checkLogin(state.url);
     };
 
     /*
@@ -45,9 +45,3 @@ export class AuthGuardService {
     }
 
 }
-
-// Define the authUsingCanActivateFnExternally function using the CanActivateFn type
-export const authUsingCanActivateFnExternally: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> => {
-    const authGuardService = inject(AuthGuardService);
-    return authGuardService.checkLogin(state.url);
-};
