@@ -43,14 +43,12 @@ export class AuthService {
     processLogin(user: User | null) {
         if (user) {
             this.loggedInUser$.next(user);
-            this.isAdmin = user.admin;
         } else console.error('Invalid login credentials'); // ToDo: Handle invalid login
 
     }
 
     logout() {
         this.loggedInUser$.next(null);
-        this.isAdmin = false;
     }
 
 }

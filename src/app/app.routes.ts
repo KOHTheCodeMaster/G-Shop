@@ -11,6 +11,7 @@ import {OrderSuccessComponent} from "./components/order-success/order-success.co
 import {LoginComponent} from "./components/login/login.component";
 import {AuthGuardService} from "./service/auth-guard.service";
 import {AdminAuthGuardService} from "./service/admin-auth-guard.service";
+import {ProductFormComponent} from "./components/admin/product-form/product-form.component";
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -27,6 +28,7 @@ export const routes: Routes = [
     {path: 'user/my-orders', component: MyOrdersComponent},
     {path: 'user/logout', component: LogoutComponent},
 
-    {path: 'admin/manage-orders', component: ManageOrdersComponent, canActivate: [AdminAuthGuardService]},
-    {path: 'admin/manage-products', component: ManageProductsComponent, canActivate: [AdminAuthGuardService]},
+    {path: 'admin/manage-orders', component: ManageOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
+    {path: 'admin/manage-products', component: ManageProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
+    {path: 'admin/manage-products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
 ];

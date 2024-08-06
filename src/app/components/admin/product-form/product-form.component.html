@@ -1,1 +1,56 @@
-<p>product-form works!</p>
+<div class="mt-10 max-w-2xl mx-auto bg-gray-800 p-12 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-8 text-white">Product Form</h2>
+
+  <form>
+    <!-- Title -->
+    <div class="mb-6">
+      <label for="title" class="block text-sm font-medium text-gray-300">Title</label>
+      <input type="text" id="title" name="title"
+             class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
+             focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+             required>
+    </div>
+
+    <!-- Price (INR) -->
+    <div class="mb-6">
+      <label for="price" class="block text-sm font-medium text-gray-300">Price (INR)</label>
+      <input type="number" id="price" name="price"
+             class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
+             focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+             required>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-6">
+      <label for="category" class="block text-sm font-medium text-gray-300">Category</label>
+      <select id="category" name="category"
+              class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
+              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+              required>
+        <option value="">Select a category</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="home">Home</option>
+        <option value="beauty">Beauty</option>
+      </select>
+    </div>
+
+    <!-- Image URL -->
+    <div class="mb-6">
+      <label for="imageUrl" class="block text-sm font-medium text-gray-300">Image URL</label>
+      <input type="url" id="imageUrl" name="imageUrl"
+             class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
+             focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
+             required>
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+      <button type="submit"
+              class="w-full bg-indigo-600 text-white py-3 px-4 border border-transparent rounded-md shadow-sm text-sm
+              font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
