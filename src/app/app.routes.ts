@@ -28,6 +28,7 @@ export const routes: Routes = [
     {path: 'user/my-orders', component: MyOrdersComponent},
     {path: 'user/logout', component: LogoutComponent},
 
+    //  Admin Routes
     {
         path: 'admin/manage-orders',
         component: ManageOrdersComponent,

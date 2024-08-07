@@ -21,6 +21,43 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #32 - Enhanced Product Form with Validations and Navigation
+Time Started: 7th Aug 2K24 - 02:03 PM    |    Time Ended:   7th Aug 2K24 - 02:30 PM    |    Duration:    27 minutes
+
+Changes:
+--------
+
+1. Updated Product Form
+  - File: `product-form.component.html`
+  - Changed form submission to check if the form is valid.
+    - Updated `(ngSubmit)="save(formElement.value)"` to `(ngSubmit)="save(formElement)"`
+  - Added a pointer cursor for the Submit button using `cursor-pointer` Tailwind CSS class.
+  - Added a message to show when the form is invalid. `div` with `ngIf="formSubmitAttempt && formElement.invalid"`
+  - Added currency formatting for the price in the Product Card. (Used `currency:'INR':true` pipe)
+
+2. Updated Product Form Component
+  - File: `product-form.component.ts`
+  - Added a flag to track if the form has been submitted. (`formSubmitAttempt: boolean = false;`)
+  - Added navigation to another page after form submission. (`this.router.navigate(['/admin/manage-products']);`)
+  - Updated the save method to check if the form is valid before submitting. (`if (formElement.invalid) return;`)
+
+
+Technical Elements Involved:
+----------------------------
+
+- `template reference variables`: Used to access form field values in the template.
+- `ngSubmit` event: Used to handle form submission.
+- `cursor-pointer`: A Tailwind CSS class to change the cursor to a pointer on hover.
+- `ngIf` directive: Used to conditionally render elements in the template.
+- `currency` pipe: Used to format numbers as currency.
+- `router.navigate`: Used to navigate to a different route programmatically.
+- `formElement`: A reference to the form element in the template.
+- `formElement.invalid`: A property that returns true if the form is invalid.
+- `formElement.value`: Used to access form field values in the template.
+- `formSubmitAttempt`: A custom boolean flag to track if the form has been submitted.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #31 - Enhanced Product Form by Adding Product Card Design
 Time Started: 7th Aug 2K24 - 12:13 PM    |    Time Ended:   7th Aug 2K24 - 12:31 PM    |    Duration:    18 minutes
 
