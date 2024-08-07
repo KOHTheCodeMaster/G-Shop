@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {CategoryService} from "../../../service/category.service";
-import {NgFor} from "@angular/common";
+import {NgFor, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ProductService} from "../../../service/product.service";
 
 @Component({
     selector: 'app-product-form',
     standalone: true,
-    imports: [RouterLink, NgFor, FormsModule],
+    imports: [RouterLink, NgFor, NgIf, FormsModule],
     templateUrl: './product-form.component.html',
     styleUrl: './product-form.component.css'
 })

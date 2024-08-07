@@ -5,25 +5,31 @@
     <!-- Title -->
     <div class="mb-6">
       <label for="title" class="block text-sm font-medium text-gray-300">Title</label>
-      <input ngModel type="text" id="title" name="title"
+      <input #title="ngModel" ngModel type="text" id="title" name="title"
              class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
              required>
+      <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-red-500 text-sm mt-2">
+        Title is required.
+      </div>
     </div>
 
     <!-- Price (INR) -->
     <div class="mb-6">
       <label for="price" class="block text-sm font-medium text-gray-300">Price (INR)</label>
-      <input ngModel type="number" id="price" name="price"
+      <input #price="ngModel" ngModel type="number" id="price" name="price"
              class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
              required>
+      <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-red-500 text-sm mt-2">
+        Price is required.
+      </div>
     </div>
 
     <!-- Category -->
     <div class="mb-6">
       <label for="category" class="block text-sm font-medium text-gray-300">Category</label>
-      <select ngModel id="category" name="category"
+      <select #category="ngModel"  ngModel id="category" name="category"
               class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
               focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
               required>
@@ -32,15 +38,21 @@
           <option value="{{ category }}">{{ category }}</option>
         </ng-container>
       </select>
+      <div *ngIf="category.invalid && (category.dirty || category.touched)" class="text-red-500 text-sm mt-2">
+        Category is required.
+      </div>
     </div>
 
     <!-- Image URL -->
     <div class="mb-6">
       <label for="imageUrl" class="block text-sm font-medium text-gray-300">Image URL</label>
-      <input ngModel type="url" id="imageUrl" name="imageUrl"
+      <input #imageUrl="ngModel" ngModel type="url" id="imageUrl" name="imageUrl"
              class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
              required>
+      <div *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)" class="text-red-500 text-sm mt-2">
+        Image URL is required.
+      </div>
     </div>
 
     <!-- Submit Button -->

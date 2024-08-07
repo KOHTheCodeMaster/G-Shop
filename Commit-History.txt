@@ -21,7 +21,34 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
-Commit #28 - Automation Testing Feature for Quick User Login - Testing Options Menu Component
+Commit: #29 - Displaying Validation Errors in Product Form
+
+File Changes:
+-------------
+
+1. `product-form.component.html`
+  - Added basic form validations for the product form fields.
+  - Template reference variables (E.g. `#title`) added for each form field to access their values.
+  - Using `invalid`, `dirty`, and `touched` properties to display validation errors for each form field.
+
+2. `product-form.component.ts`
+  - ngIf directive added to display error messages for each form field.
+
+
+Need To Practice:
+-----------------
+
+1. Technical Fundamental Elements:
+  - `invalid`: A property that returns true if the form field is invalid (E.g. null, empty, or not meeting validation criteria).
+  - `dirty`: A property that returns true if the form field has been modified.
+  - `touched`: A property that returns true if the form field has been focused and then blurred.
+  - `blur`: An event that occurs when a form field loses focus.
+  - `ngModel` directive: A directive used to bind form fields to Angular forms.
+  - `ngModel` properties & events: `ngModel.invalid`, `ngModel.dirty`, `ngModel.touched`.
+
+----------------------------------------------------------------------------------------------------
+
+Commit: #28 - Automation Testing Feature for Quick User Login - Testing Options Menu Component
 
 File Changes:
 1. `user.service.ts`
@@ -38,3 +65,4 @@ File Changes:
 3. Updated Navbar Component:
   - Added a new Button to the Testing Menu component in the navbar for easy access.
 
+----------------------------------------------------------------------------------------------------
