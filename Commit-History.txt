@@ -1,0 +1,40 @@
+
+Time Stamp: 7th Aug 2K24 - 09:57 AM..!!
+
+Title: G-Shop - Commit History - Change Log
+
+Category: Documentation -> Commit History -> Change Log
+
+Keywords: Angular, G-Shop, Commit History, Change Log, Version Control, Documentation
+
+Purpose: Track changes and updates of each Commit in the G-Shop project for version control and documentation.
+
+Version: 0.1
+
+Dev: K.O.H..!! (Harshit Gupta)
+
+GitHub: https://github.com/KOHTheCodeMaster/
+
+----------------------------------------------------------------------------------------------------
+
+
+Commit History - Change Log
+---------------------------
+
+Commit #28 - Automation Testing Feature for Quick User Login - Testing Options Menu Component
+
+File Changes:
+1. `user.service.ts`
+  - When fetching user data from nested routes using getUsers() method, `usersUrl` caused issues due to relative paths.
+  - Updated the `usersUrl` variable to start with '/' to avoid issues with relative paths.
+  - Before:   ` usersUrl: string = 'assets/users.json'; `
+  - After:    ` usersUrl: string = '/assets/users.json'; `
+
+2. Created Testing Menu Component:
+  - Added a new component `testing-menu` to the project for testing purposes.
+  - The component includes a menu with various testing options and functionalities.
+  - Testing options include Login Admin & Test User buttons for quick access to admin and test user profiles.
+
+3. Updated Navbar Component:
+  - Added a new Button to the Testing Menu component in the navbar for easy access.
+

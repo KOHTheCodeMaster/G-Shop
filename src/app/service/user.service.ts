@@ -8,7 +8,7 @@ import {User} from "../interface/User";
 })
 export class UserService {
 
-    private usersUrl: string = 'assets/users.json';
+    private usersUrl: string = '/assets/users.json';
     private http: HttpClient;
 
     userList: User[] = [
