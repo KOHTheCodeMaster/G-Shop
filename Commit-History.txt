@@ -21,6 +21,29 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #31 - Enhanced Product Form by Adding Product Card Design
+Time Started: 7th Aug 2K24 - 12:13 PM    |    Time Ended:   7th Aug 2K24 - 12:31 PM    |    Duration:    18 minutes
+
+Changes:
+--------
+
+1. Updated Product Form & Added Product Card Design
+  - File: `product-form.component.html`
+  - Added Product Card section to display product details.
+  - Using template reference variables (`#title`, `#price`, `#imageUrl`) to form fields for binding values to the product card.
+  - Set fixed dimensions for the product image to avoid overflow.
+  - Vertically centered the product card section using flexbox properties.
+
+
+Technical Fundamental Elements:
+-------------------------------
+
+- `template reference variables`: Used to access form field values in the template.
+- `object-cover`: A Tailwind CSS class to ensure the image covers the given dimensions without distortion.
+- flexbox properties: Used to center elements vertically and horizontally.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #30 - Added Minimum Price Validation in Product Form
 Time Stamp: 7th Aug 2K24 - 11:56 AM
 
