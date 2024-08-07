@@ -21,6 +21,27 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #30 - Added Minimum Price Validation in Product Form
+Time Stamp: 7th Aug 2K24 - 11:56 AM
+
+Changes:
+--------
+
+1. Updated Price Validation in Product Form Template
+  - File: `product-form.component.html`
+  - Added `min` attribute to the price input field to ensure the price is at least 0.
+  - Added error message to display when the price is less than 0.
+
+Practice Required:
+------------------
+
+1. Technical Fundamental Elements:
+  - `min`: A property that sets the minimum value for the input field.
+  - `errors`: An object that contains validation errors for the form field.
+  - Bracket notation: Used to access properties from an object when the property name is dynamic or contains special characters.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #29 - Displaying Validation Errors in Product Form
 
 File Changes:
