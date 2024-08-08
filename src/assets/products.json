@@ -4,104 +4,104 @@
     "name": "Apple",
     "price": 200,
     "category": "Fruits",
-    "url": "https://example.com/apple.jpg"
+    "imageUrl": "https://example.com/apple.jpg"
   },
   {
     "id": 2,
     "name": "Banana",
     "price": 100,
     "category": "Fruits",
-    "url": "https://example.com/banana.jpg"
+    "imageUrl": "https://example.com/banana.jpg"
   },
   {
     "id": 3,
     "name": "Orange",
     "price": 150,
     "category": "Fruits",
-    "url": "https://example.com/orange.jpg"
+    "imageUrl": "https://example.com/orange.jpg"
   },
   {
     "id": 4,
     "name": "Carrot",
     "price": 50,
     "category": "Vegetables",
-    "url": "https://example.com/carrot.jpg"
+    "imageUrl": "https://example.com/carrot.jpg"
   },
   {
     "id": 5,
     "name": "Broccoli",
     "price": 80,
     "category": "Vegetables",
-    "url": "https://example.com/broccoli.jpg"
+    "imageUrl": "https://example.com/broccoli.jpg"
   },
   {
     "id": 6,
     "name": "Spinach",
     "price": 60,
     "category": "Vegetables",
-    "url": "https://example.com/spinach.jpg"
+    "imageUrl": "https://example.com/spinach.jpg"
   },
   {
     "id": 7,
     "name": "Milk",
     "price": 40,
     "category": "Dairy",
-    "url": "https://example.com/milk.jpg"
+    "imageUrl": "https://example.com/milk.jpg"
   },
   {
     "id": 8,
     "name": "Cheese",
     "price": 120,
     "category": "Dairy",
-    "url": "https://example.com/cheese.jpg"
+    "imageUrl": "https://example.com/cheese.jpg"
   },
   {
     "id": 9,
     "name": "Yogurt",
     "price": 60,
     "category": "Dairy",
-    "url": "https://example.com/yogurt.jpg"
+    "imageUrl": "https://example.com/yogurt.jpg"
   },
   {
     "id": 10,
     "name": "Coke",
     "price": 30,
     "category": "Beverages",
-    "url": "https://example.com/coke.jpg"
+    "imageUrl": "https://example.com/coke.jpg"
   },
   {
     "id": 11,
     "name": "Pepsi",
     "price": 30,
     "category": "Beverages",
-    "url": "https://example.com/pepsi.jpg"
+    "imageUrl": "https://example.com/pepsi.jpg"
   },
   {
     "id": 12,
     "name": "Orange Juice",
     "price": 50,
     "category": "Beverages",
-    "url": "https://example.com/orange-juice.jpg"
+    "imageUrl": "https://example.com/orange-juice.jpg"
   },
   {
     "id": 13,
     "name": "Chips",
     "price": 20,
     "category": "Snacks",
-    "url": "https://example.com/chips.jpg"
+    "imageUrl": "https://example.com/chips.jpg"
   },
   {
     "id": 14,
     "name": "Cookies",
     "price": 40,
     "category": "Snacks",
-    "url": "https://example.com/cookies.jpg"
+    "imageUrl": "https://example.com/cookies.jpg"
   },
   {
     "id": 15,
     "name": "Popcorn",
     "price": 30,
     "category": "Snacks",
-    "url": "https://example.com/popcorn.jpg"
+    "imageUrl": "https://example.com/popcorn.jpg"
   }
 ]

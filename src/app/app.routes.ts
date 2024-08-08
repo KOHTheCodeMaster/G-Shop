@@ -30,18 +30,19 @@ export const routes: Routes = [
 
     //  Admin Routes
     {
-        path: 'admin/manage-orders',
-        component: ManageOrdersComponent,
+        path: 'admin/manage-orders', component: ManageOrdersComponent,
         canActivate: [AuthGuardService, AdminAuthGuardService]
     },
     {
-        path: 'admin/manage-products',
-        component: ManageProductsComponent,
+        path: 'admin/manage-products/new', component: ProductFormComponent,
         canActivate: [AuthGuardService, AdminAuthGuardService]
     },
     {
-        path: 'admin/manage-products/new',
-        component: ProductFormComponent,
+        path: 'admin/manage-products/:productId', component: ProductFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
+    },
+    {
+        path: 'admin/manage-products', component: ManageProductsComponent,
         canActivate: [AuthGuardService, AdminAuthGuardService]
     },
 ];

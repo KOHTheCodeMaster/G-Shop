@@ -16,6 +16,8 @@ export class AppComponent {
 
     constructor(private router: Router, private authService: AuthService) {
 
+        this.resetLocalStorage();
+
         authService.loggedInUser$.subscribe((loggedInUser$: User | null) => {
             if (loggedInUser$) {
                 let returnUrl: string | null = localStorage.getItem('returnUrl');
@@ -23,6 +25,12 @@ export class AppComponent {
             }
         });
 
+    }
+
+    private resetLocalStorage() {
+        //  Reset Local Storage
+        localStorage.removeItem('returnUrl');
+        localStorage.removeItem('products');
     }
 
     onBrandLogoClickedEvent() {

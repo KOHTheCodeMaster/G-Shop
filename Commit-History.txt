@@ -21,6 +21,72 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #34 - Edit Product Functionality and UI Enhancements
+Time Started: 8th Aug 2K24 - 06:47 AM    |    Time Ended:   8th Aug 2K24 - 08:18 AM    |    Duration:  1 hour 31 minutes
+
+Changes:
+--------
+
+1. Edit Product Functionality
+    File: `app.routes.ts`
+    - Added route `'admin/manage-products/:productId'` to enable product editing.
+
+    File: `product.service.ts`
+    - Introduced `getProductById()` method in `ProductService` to fetch a product by ID.
+
+    File: `product-form.component.ts`
+    - Initialized `product` in `ProductFormComponent` using `ActivatedRoute` and `getProductById()`.
+    - initializeEmptyProduct() method added in Product Form Component to handle undefined product.
+
+2. UI and Form Enhancements
+    File: `product-form.component.html`
+    - Product Form now uses 2-way binding syntax for product fields (E.g. [(ngModel)]="product.name")
+    - Updated Product Card Template to use product properties (E.g. product.name, product.price, product.imageUrl)
+    - Updated Currency Pipe in templates to use 'INR' as the currency code.
+
+    Files: `product.ts`, `assets/products.json`
+    - Refactored `url` to `imageUrl` in product model and `assets/products.json` JSON for consistency.
+
+3. App Initialization
+    File: `app.component.ts`
+    - Reset local storage on app initialization by invoking `this.resetLocalStorage();` in the constructor.
+
+---
+
+Technical Fundamental Elements:
+-------------------------------
+
+- Angular Directives: ngModel
+- Angular Pipes: currency
+- Angular Component Members: product, productId, resetLocalStorage
+
+
+Components and Features:
+------------------------
+
+1. ManageProductsComponent:
+   - Imports: CurrencyPipe
+   - Template:
+     - Currency formatting for product prices to display in INR.
+
+2. ProductFormComponent:
+   - Imports: ActivatedRoute, NgModel
+   - Template:
+     - Form fields with two-way data binding.
+   - Class:
+     - Initializes `product` using `ActivatedRoute` and `ProductService`.
+     - Methods for initializing empty product and handling form submission.
+
+3. ProductService:
+   - Methods:
+     - `getProductById()`: Fetches product details based on ID.
+
+----------------------------------------------------------------------------------------------------
+
+This version should provide a clearer and more professional change log, with the key changes summarized effectively and detailed sections for each component and feature updated based on the recent changes.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #33 - Display Product List in Manage Products Component
 Time Started: 8th Aug 2K24 - 06:02 AM    |    Time Ended:   8th Aug 2K24 - 06:32 AM    |    Duration:    30 minutes
 

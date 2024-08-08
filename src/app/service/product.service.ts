@@ -32,7 +32,12 @@ export class ProductService {
         return of(products);
     }
 
-    // Create a new product
+    // Get a product by ID
+    getProductById(productId: string): Product | undefined {
+        return this.getProductListFromLocalStorage()
+            .find((product: Product) => product.id === Number(productId));
+    }
+
     createProduct(product: Product): Observable<Product> {
         const products: Product[] = this.getProductListFromLocalStorage();
         product.id = products.length ? products[products.length - 1].id + 1 : 1; // Generate new product id
@@ -61,10 +66,8 @@ export class ProductService {
         return of();
     }
 
-    // Save updated products to JSON file
+    // Saving Products is out of scope for this course.  This is a placeholder for a real application.
     private saveProductsToJson(products: Product[]): void {
-        //  ToDo: Save to JSON File not working.  Need to fix this.
-        this.http.post(this.productsUrl, products).subscribe();
     }
 */
 
