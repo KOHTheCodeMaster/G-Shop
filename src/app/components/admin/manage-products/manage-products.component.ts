@@ -16,8 +16,18 @@ export class ManageProductsComponent {
 
     products$: Observable<Product[]> = new Observable<Product[]>();
 
-    constructor(productService: ProductService) {
+    constructor(private productService: ProductService) {
         this.products$ = productService.getProducts();
+    }
+
+    deleteProductBtnClicked(productId: number) {
+        if (!confirm('Are you sure you want to delete this product?')) return;
+        this.productService.deleteProductById(productId);
+        this.refreshProductList();
+    }
+
+    refreshProductList() {
+        this.products$ = this.productService.getProducts();
     }
 
 }

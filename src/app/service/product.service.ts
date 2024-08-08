@@ -13,7 +13,7 @@ export class ProductService {
 
     constructor(private http: HttpClient) {
         // Initialize local storage with products.json data if not already present
-        if (!localStorage.getItem(this.productsKey)) this.loadInitialData();
+        this.loadInitialData();
     }
 
     private getProductListFromLocalStorage(): Product[] {
@@ -21,9 +21,11 @@ export class ProductService {
     }
 
     // Load initial data from JSON file into local storage
-    private loadInitialData() {
-        this.http.get<Product[]>(this.productsUrl).subscribe((productsJsonData: Product[]) =>
-            localStorage.setItem(this.productsKey, JSON.stringify(productsJsonData)));
+    loadInitialData() {
+        // Load products.json data into local storage if not already present
+        if (!localStorage.getItem(this.productsKey))
+            this.http.get<Product[]>(this.productsUrl).subscribe((productsJsonData: Product[]) =>
+                localStorage.setItem(this.productsKey, JSON.stringify(productsJsonData)));
     }
 
     // Get all products
@@ -52,28 +54,16 @@ export class ProductService {
         localStorage.setItem(this.productsKey, JSON.stringify(products));
     }
 
-/*
-    // Update an existing product
-    updateProduct(updatedProduct: Product): Observable<Product> {
-        let products: Product[] = this.getProductListFromLocalStorage();
-        products = products.map((product: Product) => product.id === updatedProduct.id ? updatedProduct : product);
-        localStorage.setItem(this.productsKey, JSON.stringify(products));
-        this.saveProductsToJson(products); // Save updated products to JSON file
-        return of(updatedProduct);
-    }
-
-    // Delete a product by ID
-    deleteProduct(productId: number): Observable<void> {
+    deleteProductById(productId: number) {
         let products: Product[] = this.getProductListFromLocalStorage();
         products = products.filter((product: Product) => product.id !== productId);
         localStorage.setItem(this.productsKey, JSON.stringify(products));
-        this.saveProductsToJson(products); // Save updated products to JSON file
-        return of();
     }
 
-    // Saving Products is out of scope for this course.  This is a placeholder for a real application.
-    private saveProductsToJson(products: Product[]): void {
-    }
-*/
+    /*
+        // Saving Products is out of scope for this course.  This is a placeholder for a real application.
+        private saveProductsToJson(products: Product[]): void {
+        }
+    */
 
 }

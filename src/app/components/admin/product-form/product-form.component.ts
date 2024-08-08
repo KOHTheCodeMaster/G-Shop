@@ -58,4 +58,10 @@ export class ProductFormComponent {
         this.router.navigate(['/admin/manage-products']);
     }
 
+    deleteProductBtnClicked() {
+        if (!confirm('Are you sure you want to delete this product?')) return;
+
+        this.productService.deleteProductById(this.product.id);
+        this.router.navigate(['/admin/manage-products']);
+    }
 }

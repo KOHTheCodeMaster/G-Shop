@@ -21,6 +21,60 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit:
+Time Started: 8th Aug 2K24 - 11:32 AM    |    Time Ended:   8th Aug 2K24 - 11:56 AM    |    Duration:    24 minutes
+
+Manage Products Component:
+- Added `ProductService` in constructor to access `deleteProductById()` & `getProducts()` methods.
+- Added `deleteProductBtnClicked()` method to handle product deletion.
+  - Using `confirm` dialog to confirm product deletion.
+  - On confirmation, calling `deleteProductById()` method of ProductService to delete the product.
+  - Reloading the product list after deletion using `getProducts()` method of ProductService.
+
+Changes:
+--------
+
+1. Updated ProductService
+   - File: `product.service.ts`
+   - Details:
+     - Simplified `loadInitialData()` by moving the conditional check from the constructor to the method body.
+     - Added `deleteProductById()` method to handle product deletion.
+
+2. Updated App Component
+   - File: `app.component.ts`
+   - Details:
+     - Injected `ProductService` in the constructor to access `loadInitialData()` in `resetLocalStorage()` method.
+     - Called `loadInitialData()` in `resetLocalStorage()` after removing the `products` key from local storage to ensure products display correctly on the initial visit to the Manage Products page.
+
+3. Enhanced Product Form Component
+   - File: `product-form.component.ts`
+   - Details:
+     - Added `deleteProductBtnClicked()` click listener on `delete` button in the product form to enable product deletion.
+     - Implemented `deleteProductBtnClicked()` method:
+       - Utilizes a confirmation dialog to confirm deletion.
+       - Calls `deleteProductById()` from `ProductService` to delete the product.
+       - Navigates back to the Manage Products page after deletion.
+
+4. Improved Manage Products Component
+   - File: `manage-products.component.ts`
+   - Details:
+     - Injected `ProductService` in the constructor to access `deleteProductById()` and `getProducts()` methods.
+     - Added `deleteProductBtnClicked()` method to handle product deletion:
+       - Utilizes a confirmation dialog to confirm deletion.
+       - Calls `deleteProductById()` from `ProductService` to delete the product.
+       - Reloads the product list after deletion using `getProducts()` method from `ProductService`.
+
+---
+
+Technical Fundamental Elements:
+-------------------------------
+
+- Angular Services: ProductService, ActivatedRoute
+- Angular Component Properties: product, products$
+- Methods: deleteProductById(), loadInitialData(), resetLocalStorage(), deleteProductBtnClicked(), getProducts()
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #35 - Update Product Details Functionality
 Time Started: 8th Aug 2K24 - 10:01 AM    |    Time Ended:   8th Aug 2K24 - 10:17 AM    |    Duration:    16 minutes (Extra 6 Mins from before)
 

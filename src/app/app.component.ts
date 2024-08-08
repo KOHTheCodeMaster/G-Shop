@@ -4,6 +4,7 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import {HomeComponent} from "./components/home/home.component";
 import {AuthService} from "./service/auth.service";
 import {User} from "./interface/User";
+import {ProductService} from "./service/product.service";
 
 @Component({
     selector: 'app-root',
@@ -14,7 +15,7 @@ import {User} from "./interface/User";
 })
 export class AppComponent {
 
-    constructor(private router: Router, private authService: AuthService) {
+    constructor(router: Router, authService: AuthService, private productService: ProductService) {
 
         this.resetLocalStorage();
 
@@ -29,13 +30,10 @@ export class AppComponent {
 
     private resetLocalStorage() {
         //  Reset Local Storage
-        localStorage.removeItem('returnUrl');
         localStorage.removeItem('products');
 
-        //  ToDo: This Resets Manage Products Page Data, Need to find a better way to re-initialize the data on startup
-        //  When Manage Products Page is visited for the first time, it will not show any products due to this reset
-        //  It will show products only after revisiting the page from another page
-        //  This is to make constructor call again for loading products after reset
+        // Initialize local storage with products.json data if not already present
+        this.productService.loadInitialData();
     }
 
     onBrandLogoClickedEvent() {
