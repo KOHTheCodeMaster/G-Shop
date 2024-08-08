@@ -38,13 +38,18 @@ export class ProductService {
             .find((product: Product) => product.id === Number(productId));
     }
 
-    createProduct(product: Product): Observable<Product> {
+    addProduct(product: Product): Observable<Product> {
         const products: Product[] = this.getProductListFromLocalStorage();
         product.id = products.length ? products[products.length - 1].id + 1 : 1; // Generate new product id
         products.push(product);
         localStorage.setItem(this.productsKey, JSON.stringify(products));
-        // this.saveProductsToJson(products); // Save updated products to JSON file
         return of(product);
+    }
+
+    updateProduct(updatedProduct: Product) {
+        let products: Product[] = this.getProductListFromLocalStorage();
+        products = products.map((product: Product) => product.id === updatedProduct.id ? updatedProduct : product);
+        localStorage.setItem(this.productsKey, JSON.stringify(products));
     }
 
 /*

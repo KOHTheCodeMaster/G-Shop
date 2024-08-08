@@ -21,6 +21,49 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #35 - Update Product Details Functionality
+Time Started: 8th Aug 2K24 - 10:01 AM    |    Time Ended:   8th Aug 2K24 - 10:17 AM    |    Duration:    16 minutes (Extra 6 Mins from before)
+
+Changes:
+--------
+
+1. Update Product Details Functionality
+   - Files: `product.service.ts`, `product-form.component.ts`
+   - Details:
+     - Added `updateProduct()` method in `ProductService` to handle updating product details.
+     - Refactored `createProduct()` to `addProduct()` for naming consistency in `ProductService`.
+     - Reset `product` field in `ProductFormComponent` for new product creation using `ActivatedRoute`.
+     - Updated `save()` method to distinguish between updating existing products and adding new products using `updateProduct()` and `addProduct()` methods.
+
+2. Future Enhancements Note
+   - File: `app.component.ts`
+   - Details:
+     - To-Do Note added for future updates.
+     - Need to improve the data re-initialization process on startup to ensure products are displayed correctly on the first visit to the Manage Products page.
+
+
+Technical Fundamental Elements:
+-------------------------------
+
+- Angular Component Properties: product, ActivatedRoute, ProductService
+- Angular Methods: updateProduct(), addProduct()
+
+
+Components and Features:
+------------------------
+
+1. ProductService:
+   - Methods:
+     - `updateProduct(updatedProduct: Product)`: Updates product details in local storage.
+     - `addProduct(product: Product)`: Adds a new product to local storage.
+
+2. ProductFormComponent:
+   - Class:
+     - Resets `product` for new product creation when the route parameter indicates a new product.
+     - `save()`: Handles form submission by either updating an existing product or adding a new product based on the presence of `product.id`.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #34 - Edit Product Functionality and UI Enhancements
 Time Started: 8th Aug 2K24 - 06:47 AM    |    Time Ended:   8th Aug 2K24 - 08:18 AM    |    Duration:  1 hour 31 minutes
 
@@ -80,10 +123,6 @@ Components and Features:
 3. ProductService:
    - Methods:
      - `getProductById()`: Fetches product details based on ID.
-
-----------------------------------------------------------------------------------------------------
-
-This version should provide a clearer and more professional change log, with the key changes summarized effectively and detailed sections for each component and feature updated based on the recent changes.
 
 ----------------------------------------------------------------------------------------------------
 

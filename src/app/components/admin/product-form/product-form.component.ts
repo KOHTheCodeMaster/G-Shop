@@ -26,6 +26,9 @@ export class ProductFormComponent {
 
         this.categoryList = categoryService.getCategoryList();
 
+        //  Reset product for new product creation
+        if (this.activatedRoute.snapshot.paramMap.has('new')) this.product = this.initializeEmptyProduct();
+
         const productId: string | null = this.activatedRoute.snapshot.paramMap.get('productId');
         this.product = productId
             ? this.productService.getProductById(productId) || this.initializeEmptyProduct()
@@ -42,10 +45,15 @@ export class ProductFormComponent {
         this.formSubmitAttempt = true;
         if (formElement.invalid) return;
 
-        this.productService.createProduct(formElement.value).subscribe(response => {
-            console.log('Product created successfully.');
-            console.log(response);
-        });
+        //  Update the product if it already exists, else create a new product
+        if (this.product.id !== 0) this.productService.updateProduct(this.product);
+        else {
+            this.productService.addProduct(formElement.value).subscribe(productCreated => {
+                console.log('Product created successfully.');
+                console.log(productCreated);
+                console.log(JSON.stringify(productCreated));
+            });
+        }
 
         this.router.navigate(['/admin/manage-products']);
     }
