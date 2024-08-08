@@ -29,7 +29,7 @@ export class ProductService {
     }
 
     // Get all products
-    getProducts(): Observable<Product[]> {
+    getAllProducts(): Observable<Product[]> {
         const products: Product[] = this.getProductListFromLocalStorage();
         return of(products);
     }

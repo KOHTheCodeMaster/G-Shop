@@ -50,7 +50,6 @@ export class ProductFormComponent {
         else {
             this.productService.addProduct(formElement.value).subscribe(productCreated => {
                 console.log('Product created successfully.');
-                console.log(productCreated);
                 console.log(JSON.stringify(productCreated));
             });
         }

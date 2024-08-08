@@ -21,15 +21,45 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
-Commit:
-Time Started: 8th Aug 2K24 - 11:32 AM    |    Time Ended:   8th Aug 2K24 - 11:56 AM    |    Duration:    24 minutes
+Commit: #37 - Search Product Functionality Added in Manage Products Component
+Time Started: 8th Aug 2K24 - 01:04 PM    |    Time Ended:   8th Aug 2K24 - 02:07 PM    |    Duration:   1 hour 3 minutes
 
-Manage Products Component:
-- Added `ProductService` in constructor to access `deleteProductById()` & `getProducts()` methods.
-- Added `deleteProductBtnClicked()` method to handle product deletion.
-  - Using `confirm` dialog to confirm product deletion.
-  - On confirmation, calling `deleteProductById()` method of ProductService to delete the product.
-  - Reloading the product list after deletion using `getProducts()` method of ProductService.
+Changes:
+--------
+
+1. Refactored ProductService
+   - File: `product.service.ts`
+   - Details:
+     - Renamed `getProducts()` method to `getAllProducts()` for improved clarity and consistency.
+
+2. Enhanced Manage Products Component
+   - File: `manage-products.component.ts`
+   - Details:
+     - Search Functionality:
+       - Introduced search functionality to filter products by name.
+       - Replaced `products$` Observable with two lists: `allProductsList` for storing the complete product list and `filteredProductsList` for storing the search-filtered list.
+       - Implemented `searchProductsInputChangeListener()` method:
+         - Listens for changes in the search input field.
+         - Filters `allProductsList` based on the query string and updates `filteredProductsList`.
+         - Resets `filteredProductsList` when the search input is cleared.
+     - Code Optimization:
+       - Removed `refreshProductList()` method as it became redundant with the introduction of individual list updates, leading to performance improvements.
+       - Subscription to `getAllProducts()` Observable now initializes both `allProductsList` and `filteredProductsList`, with proper subscription management using `ngOnDestroy()` to avoid memory leaks.
+       - Updated template to bind with `filteredProductsList` instead of `products$` for real-time display of search results.
+
+---
+
+Technical Fundamental Elements:
+-------------------------------
+
+- Angular Services: ProductService, ActivatedRoute
+- Angular Component Properties: allProductsList, filteredProductsList, eventTarget, HTMLInputElement
+- Methods: getAllProducts(), searchProductsInputChangeListener(), ngOnDestroy()
+
+----------------------------------------------------------------------------------------------------
+
+Commit: #36 - Delete Product Functionality Added
+Time Started: 8th Aug 2K24 - 11:32 AM    |    Time Ended:   8th Aug 2K24 - 11:56 AM    |    Duration:    24 minutes
 
 Changes:
 --------
