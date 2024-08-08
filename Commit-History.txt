@@ -21,6 +21,57 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #33 - Display Product List in Manage Products Component
+Time Started: 8th Aug 2K24 - 06:02 AM    |    Time Ended:   8th Aug 2K24 - 06:32 AM    |    Duration:    30 minutes
+
+Changes:
+--------
+
+1. Displayed Product List in Manage Products Component
+  - File: `manage-products.component.html`
+  - Designed the layout to display a list of products in a table-like structure
+  - Includes buttons for adding, editing, and deleting products
+  - Used the async pipe to subscribe to the products$ Observable and display the list of products
+
+2. Added products$ Observable in Manage Products Component
+  - File: `manage-products.component.ts`
+  - Created a products$ Observable to store the list of products.
+  - Initialized the products$ using the getProducts() method from the ProductService.
+
+3. Refactored Product 'Title' to 'Name' in Product Form, JSON, and Product Card
+  - File: `product-form.component.html`   - Updated the form field from 'Title' to 'Name' for consistency.
+  - File: `assets/products.json`          - Updated the 'title' property to 'name' for all products.
+  - File: `product-card.component.html`   - Updated the product card to display the 'name' instead of 'title'.
+
+4. Removed `original-products.json` file
+  - File: `assets/original-products.json`
+  - Removed the original-products.json file as it was redundant and not used in the project.
+
+
+Technical Fundamental Elements:
+-------------------------------
+
+- Angular Directives: *ngIf, *ngFor, ng-template
+- Angular Pipes: currency, async
+- Angular Component Properties: products$, ProductService
+- HTML Elements: div, h1, a, button, p
+
+
+Components and Features:
+------------------------
+
+- ManageProductsComponent:
+  - Imports: RouterLink, NgIf, NgFor, CurrencyPipe, AsyncPipe
+  - Template:
+    - Displays a list of products in a table-like structure
+    - Includes buttons for adding, editing, and deleting products
+    - Supports dark mode styling
+  - Class:
+    - Fetches products using ProductService
+    - Uses an Observable to manage the product list
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #32 - Enhanced Product Form with Validations and Navigation
 Time Started: 7th Aug 2K24 - 02:03 PM    |    Time Ended:   7th Aug 2K24 - 02:30 PM    |    Duration:    27 minutes
 

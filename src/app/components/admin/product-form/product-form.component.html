@@ -5,15 +5,15 @@
     <form #formElement="ngForm" (ngSubmit)="save(formElement)">
       <!-- Existing form content goes here -->
 
-      <!-- Title -->
+      <!-- Name -->
       <div class="mb-6">
-        <label for="title" class="block text-sm font-medium text-gray-300">Title</label>
-        <input #title="ngModel" ngModel type="text" id="title" name="title"
+        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+        <input #name="ngModel" ngModel type="text" id="name" name="name"
                class="mt-2 block w-full px-4 py-3 border border-gray-600 rounded-md shadow-sm
              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 text-white"
                required>
-        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-red-500 text-sm mt-2">
-          Title is required.
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-red-500 text-sm mt-2">
+          Name is required.
         </div>
       </div>
 
@@ -80,7 +80,7 @@
   <div class="w-1/2 pl-6 flex items-center">
     <!-- Product card content -->
     <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
-      <h3 class="text-2xl font-bold mb-4 text-white">{{ title.value || 'Product Title' }}</h3>
+      <h3 class="text-2xl font-bold mb-4 text-white">{{ name.value || 'Product Name' }}</h3>
       <p class="text-xl text-gray-300 mb-4">Price: {{ (price.value || '0') | currency:'INR':true }}</p>
       <img [src]="imageUrl.value || 'https://via.placeholder.com/150'" alt="Product Image"
            class="w-72 h-72 object-cover rounded-md">

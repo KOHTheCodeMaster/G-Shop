@@ -1,105 +1,105 @@
 [
   {
     "id": 1,
-    "title": "Apple",
+    "name": "Apple",
     "price": 200,
     "category": "Fruits",
     "url": "https://example.com/apple.jpg"
   },
   {
     "id": 2,
-    "title": "Banana",
+    "name": "Banana",
     "price": 100,
     "category": "Fruits",
     "url": "https://example.com/banana.jpg"
   },
   {
     "id": 3,
-    "title": "Orange",
+    "name": "Orange",
     "price": 150,
     "category": "Fruits",
     "url": "https://example.com/orange.jpg"
   },
   {
     "id": 4,
-    "title": "Carrot",
+    "name": "Carrot",
     "price": 50,
     "category": "Vegetables",
     "url": "https://example.com/carrot.jpg"
   },
   {
     "id": 5,
-    "title": "Broccoli",
+    "name": "Broccoli",
     "price": 80,
     "category": "Vegetables",
     "url": "https://example.com/broccoli.jpg"
   },
   {
     "id": 6,
-    "title": "Spinach",
+    "name": "Spinach",
     "price": 60,
     "category": "Vegetables",
     "url": "https://example.com/spinach.jpg"
   },
   {
     "id": 7,
-    "title": "Milk",
+    "name": "Milk",
     "price": 40,
     "category": "Dairy",
     "url": "https://example.com/milk.jpg"
   },
   {
     "id": 8,
-    "title": "Cheese",
+    "name": "Cheese",
     "price": 120,
     "category": "Dairy",
     "url": "https://example.com/cheese.jpg"
   },
   {
     "id": 9,
-    "title": "Yogurt",
+    "name": "Yogurt",
     "price": 60,
     "category": "Dairy",
     "url": "https://example.com/yogurt.jpg"
   },
   {
     "id": 10,
-    "title": "Coke",
+    "name": "Coke",
     "price": 30,
     "category": "Beverages",
     "url": "https://example.com/coke.jpg"
   },
   {
     "id": 11,
-    "title": "Pepsi",
+    "name": "Pepsi",
     "price": 30,
     "category": "Beverages",
     "url": "https://example.com/pepsi.jpg"
   },
   {
     "id": 12,
-    "title": "Orange Juice",
+    "name": "Orange Juice",
     "price": 50,
     "category": "Beverages",
     "url": "https://example.com/orange-juice.jpg"
   },
   {
     "id": 13,
-    "title": "Chips",
+    "name": "Chips",
     "price": 20,
     "category": "Snacks",
     "url": "https://example.com/chips.jpg"
   },
   {
     "id": 14,
-    "title": "Cookies",
+    "name": "Cookies",
     "price": 40,
     "category": "Snacks",
     "url": "https://example.com/cookies.jpg"
   },
   {
     "id": 15,
-    "title": "Popcorn",
+    "name": "Popcorn",
     "price": 30,
     "category": "Snacks",
     "url": "https://example.com/popcorn.jpg"
