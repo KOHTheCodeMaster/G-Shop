@@ -21,16 +21,16 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
-Commit: #39 - Added Products Component in Home & Updated Products Display
-Time Started: 10th Aug 2K24 - 12:23 PM    |    Time Ended:   10th Aug 2K24 - 01:53 PM    |    Duration:    1 hour 30 minutes
+Commit: #41 - Filtering Products by Category in Products Component
+Time Started: 10th Aug 2K24 - 08:21 PM    |    Time Ended:   10th Aug 2K24 - 08:41 PM    |    Duration:    20 minutes
 
 Changes:
 --------
 
-1. Cleaned up the code by removing the unnecessary `isAdmin` property from the AuthService.
-2. Added ProductsComponent in HomeComponent for product display.
-3. Updated ProductsComponent to display product list using `products$` & Added 1-second delay for data loading.
-4. Updated Products Image Urls in `assets/products.json`.
+1. Updated `category` field values of Product model to lowercase in `assets/products.json` for consistency.
+2. Added filtering products by category functionality in ProductsComponent.
+3. Updated ProductsComponent by adding a `allProductsList` and `filteredProductsList` for category filtering.
+4. Using QueryParams of ActivatedRoute to filter products by category in ProductsComponent.
 
 ----------------------------------------------------------------------------------------------------
 

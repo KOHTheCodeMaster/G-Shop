@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {ProductService} from "../../service/product.service";
-import {Observable} from "rxjs";
 import {Product} from "../../interface/Product";
 import {AsyncPipe, CurrencyPipe, NgFor} from "@angular/common";
 import {CategoryService} from "../../service/category.service";
-import {RouterLink} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 
 @Component({
     selector: 'app-products',
@@ -15,17 +14,27 @@ import {RouterLink} from "@angular/router";
 })
 export class ProductsComponent {
 
-    products$: Observable<Product[]>;
+    allProductsList: Product[];
+    filteredProductsList: Product[];
     categories: string[];
 
-    constructor(productService: ProductService, categoryService: CategoryService) {
-        console.log('L0G - [products.component] - constructor invoked.');
+    constructor(productService: ProductService, categoryService: CategoryService, activatedRoute: ActivatedRoute) {
 
-        this.products$ = new Observable<Product[]>();
+        this.filteredProductsList = this.allProductsList = [];
         this.categories = categoryService.getCategoryList();
 
         //  Wait for 1 second to load the products from json file and then initialize the products$ observable
-        setTimeout(() => this.products$ = productService.getAllProducts(), 1000);
+        setTimeout(() => productService.getAllProducts()
+                .subscribe(products => this.filteredProductsList = this.allProductsList = products),
+            1000);
+
+        activatedRoute.queryParamMap.subscribe(params => {
+            let category = params.get('category');
+            this.filteredProductsList = category
+                ? this.allProductsList.filter(product => category === product.category)
+                : this.allProductsList
+        });
 
     }
+
 }
