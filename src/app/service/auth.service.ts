@@ -10,7 +10,6 @@ import {ActivatedRoute} from "@angular/router";
 export class AuthService {
 
     loggedInUser$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
-    isAdmin: boolean = false;
 
     constructor(private loginService: LoginService, private route: ActivatedRoute) {
     }

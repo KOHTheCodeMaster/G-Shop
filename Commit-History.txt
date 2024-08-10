@@ -21,6 +21,19 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #39 - Added Products Component in Home & Updated Products Display
+Time Started: 10th Aug 2K24 - 12:23 PM    |    Time Ended:   10th Aug 2K24 - 01:53 PM    |    Duration:    1 hour 30 minutes
+
+Changes:
+--------
+
+1. Cleaned up the code by removing the unnecessary `isAdmin` property from the AuthService.
+2. Added ProductsComponent in HomeComponent for product display.
+3. Updated ProductsComponent to display product list using `products$` & Added 1-second delay for data loading.
+4. Updated Products Image Urls in `assets/products.json`.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #38 - Code Cleanup
 Time Started: 9th Aug 2K24    |    Duration:   1 hour 23 minutes
 
