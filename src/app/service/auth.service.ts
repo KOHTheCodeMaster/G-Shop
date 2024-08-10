@@ -31,15 +31,6 @@ export class AuthService {
 
     }
 
-    login2(strInputEmail: string, strInputPassword: string) {
-
-        this.storeReturnUrlToLocalStorage();  //  Store the return URL for redirection after login
-
-        const user: User | null = this.loginService.loginUser2(strInputEmail, strInputPassword);
-        this.processLogin(user)
-
-    }
-
     processLogin(user: User | null) {
         if (user) {
             this.loggedInUser$.next(user);

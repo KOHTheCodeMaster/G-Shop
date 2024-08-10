@@ -16,10 +16,12 @@ import {ProductService} from "./service/product.service";
 export class AppComponent {
 
     constructor(router: Router, authService: AuthService, private productService: ProductService) {
+        console.log('L0G - [app.component] - constructor() - Method invoked.');
 
         this.resetLocalStorage();
 
         authService.loggedInUser$.subscribe((loggedInUser$: User | null) => {
+            console.log('L0G - [app.component] - subscribe - loggedInUser$ - loggedInUser$:', loggedInUser$);
             if (loggedInUser$) {
                 let returnUrl: string | null = localStorage.getItem('returnUrl');
                 router.navigateByUrl(returnUrl || '/');

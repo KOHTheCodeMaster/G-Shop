@@ -1,6 +1,7 @@
 <div>
 
   <ng-container *ngIf="authService.loggedInUser$ | async as user; else showLoginForm">
+    <!--  The code will not reach here if the user is logged in. AuthGuard will redirect to the home page. -->
     <h3 class="text-center text-2xl text-red-500 bg-yellow-200">User Logged In: {{ user?.username ?? 'N/A' }}</h3>
   </ng-container>
 

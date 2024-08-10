@@ -21,6 +21,17 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #38 - Code Cleanup
+Time Started: 9th Aug 2K24    |    Duration:   1 hour 23 minutes
+
+Changes:
+--------
+
+1. Removed `loginUser2()`, `login2()` methods from `LoginComponent` and `UserService` as they were not used in the project.
+2. Removed hard-coded `userList` from `UserService` as it was replaced with `users.json` data.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #37 - Search Product Functionality Added in Manage Products Component
 Time Started: 8th Aug 2K24 - 01:04 PM    |    Time Ended:   8th Aug 2K24 - 02:07 PM    |    Duration:   1 hour 3 minutes
 
