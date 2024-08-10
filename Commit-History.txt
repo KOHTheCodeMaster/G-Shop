@@ -21,6 +21,24 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #43 - Added Sticky behavior to Navbar & Category Components  |  Redesigned Product Card Component
+Time Started: 10th Aug 2K24 - 08:53 PM    |    Time Ended:   10th Aug 2K24 - 09:26 PM    |    Duration:    33 minutes
+
+Changes:
+--------
+
+1. Updated Navbar & Category Components to be Sticky
+   - Updated Navbar Component to be sticky at the top of the page.
+   - Updated Category Component to be sticky on the top of the page right below the Navbar.
+   - Added `sticky`, `top-0` and `z-50` Tailwind CSS classes to the Navbar Component.
+   - Added `sticky` and `top-24` Tailwind CSS classes to the Category Component.
+
+2. Redesigned Product Card Component
+   - Aligned the Price & Add to Cart button to the bottom of the card.
+   - Used Tailwind CSS classes for styling the card layout.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #42 - Extracted Category List to a new Category Component & Added Product Card Component in Products Component
 Time Started: 10th Aug 2K24 - 08:53 PM    |    Time Ended:   10th Aug 2K24 - 09:26 PM    |    Duration:    33 minutes
 
