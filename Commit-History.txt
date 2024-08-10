@@ -34,6 +34,27 @@ Changes:
 
 ----------------------------------------------------------------------------------------------------
 
+Commit: #40 - Added Categories Sidebar in Products Component
+Time Started: 10th Aug 2K24 - 07:45 PM    |    Time Ended:   10th Aug 2K24 - 08:18 PM    |    Duration:    33 minutes
+
+Changes:
+--------
+
+1. Added Categories Sidebar in Products Component
+   - File: `products.component.html`, `products.component.ts`
+   - Added a sidebar to display product categories.
+   - Categories are fetched from the `categories` array using CategoryService.
+
+----------------------------------------------------------------------------------------------------
+
+Commit: #39 - Added Products Component in Home & Updated Products Display
+Time Started:
+
+Changes:
+--------
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #38 - Code Cleanup
 Time Started: 9th Aug 2K24    |    Duration:   1 hour 23 minutes
 
