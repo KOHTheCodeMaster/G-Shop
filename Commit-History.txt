@@ -21,6 +21,27 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #42 - Extracted Category List to a new Category Component & Added Product Card Component in Products Component
+Time Started: 10th Aug 2K24 - 08:53 PM    |    Time Ended:   10th Aug 2K24 - 09:26 PM    |    Duration:    33 minutes
+
+Changes:
+--------
+
+1. Added Product Card Component in Products Component
+   - File: `product-card.component.html`, `product-card.component.ts`, `product-card.component.css`
+   - Using Product Card Component inside the Products Component to display products.
+   - Created a reusable Product Card component to display product details.
+   - Used Input properties to pass product data to the component.
+   - Designed the card layout with product image, name & price.
+
+2. Extracted Category List to a new Category Component
+   - File: `category-list.component.html`, `category-list.component.ts`, `category-list.component.css`
+   - Using Category Component inside the Products Component to display categories.
+   - Extracted the category list from the Products Component to a new Category Component.
+   - Used Input properties to pass category data from the Products Component to the Category Component.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #41 - Filtering Products by Category in Products Component
 Time Started: 10th Aug 2K24 - 08:21 PM    |    Time Ended:   10th Aug 2K24 - 08:41 PM    |    Duration:    20 minutes
 

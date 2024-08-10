@@ -1,0 +1,15 @@
+<div class="h-fit p-4 dark:bg-gray-800 dark:text-white">
+  <h2 class="text-xl font-bold mb-4">Categories</h2>
+  <div>
+    <a href="#" routerLink="/"
+       class="mb-2 block px-4 py-2 rounded-md bg-gray-700 text-white hover:bg-gray-600 hover:text-blue-300
+                  transition-colors duration-200">
+      All Categories
+    </a>
+    <a *ngFor="let category of categories" routerLink="/" [queryParams]="{ category: category.toLowerCase() }"
+       class="mb-2 block px-4 py-2 rounded-md bg-gray-700 text-white hover:bg-gray-600 hover:text-blue-300
+                  transition-colors duration-200">
+      {{ category }}
+    </a>
+  </div>
+</div>
