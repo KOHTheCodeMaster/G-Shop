@@ -21,8 +21,23 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
-Commit: #47 - Added Increment & Decrement Quantity Functionality in Product Cart Component
+Commit: #48 - Updated Navbar Component with Shopping Cart Items Count & Added cartUpdated custom output event
 Time Started: 11th Aug 2K24 - 08:51 PM    |    Time Ended:   11th Aug 2K24 - 09:39 PM    |    Duration:    48 minutes
+
+
+Changes:
+--------
+
+1. Added `cartUpdated` output event in Shopping Cart Service to notify the Navbar Component when the cart is updated.
+
+2. Added `shoppingCartItemsCount` in Navbar Component to display the total number of items in the cart.
+
+----------------------------------------------------------------------------------------------------
+
+Commit: #47 - Added Increment & Decrement Quantity Functionality in Product Cart Component
+Total Time:   1 hour 14 minutes
+- Time Started: 11th Aug 2K24 - 08:51 PM    |    Time Ended:   11th Aug 2K24 - 09:39 PM    |    Duration:    48 minutes
+- Time Started: 11th Aug 2K24 - 04:13 PM    |    Time Ended:   11th Aug 2K24 - 04:39 PM    |    Duration:    26 minutes
 
 
 Changes:

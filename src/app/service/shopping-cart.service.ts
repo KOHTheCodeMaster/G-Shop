@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, output, OutputEmitterRef} from '@angular/core';
 import {Product} from "../interface/Product";
 import {Cart} from "../interface/Cart";
 import {CartProduct} from "../interface/CartProduct";
@@ -11,6 +11,7 @@ export class ShoppingCartService {
     cartList: Cart[] = [];
     cartProductList: CartProduct[];
     private keyShoppingCart: string = 'shopping-cart';
+    cartUpdated: OutputEmitterRef<void> = output();
 
     constructor() {
 
@@ -70,8 +71,9 @@ export class ShoppingCartService {
         this.cartList[0].cartProducts = this.cartProductList;
         this.cartList[0].totalPrice += product.unitPrice;
         this.cartList[0].totalQty += 1;
-
         localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+
+        this.cartUpdated.emit();
 
     }
 
@@ -95,8 +97,10 @@ export class ShoppingCartService {
         this.cartList[0].cartProducts = this.cartProductList;
         this.cartList[0].totalPrice -= product.unitPrice;
         this.cartList[0].totalQty -= 1;
-
         localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+
+        this.cartUpdated.emit();
+
     }
 
     public getCartList(): Cart[] {

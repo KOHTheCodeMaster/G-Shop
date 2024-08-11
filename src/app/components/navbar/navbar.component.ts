@@ -4,6 +4,8 @@ import {RouterLink} from "@angular/router";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {AuthService} from "../../service/auth.service";
 import {TestingMenuComponent} from "./testing-menu/testing-menu.component";
+import {Cart} from "../../interface/Cart";
+import {ShoppingCartService} from "../../service/shopping-cart.service";
 
 @Component({
     selector: 'app-navbar',
@@ -17,22 +19,30 @@ export class NavbarComponent {
     brandLogoClicked: OutputEmitterRef<void> = output();
     shoppingCartClicked: OutputEmitterRef<void> = output();
     loginClicked: OutputEmitterRef<void> = output();
+    shoppingCartItemsCount: number;
+    private keyShoppingCart: string = 'shopping-cart';
 
-    constructor(public authService: AuthService) {
+    constructor(public authService: AuthService, shoppingCartService: ShoppingCartService) {
+
+        this.shoppingCartItemsCount = 0;
+
+        //  Update shopping cart items count on cart update
+        shoppingCartService.cartUpdated.subscribe(() => {
+            let tempCartList: Cart[] = JSON.parse(localStorage.getItem(this.keyShoppingCart) || '');
+            this.shoppingCartItemsCount = tempCartList[0].totalQty;
+        });
+
     }
 
     handleBrandBtnClick() {
-        console.log('L0G - [navbar.component] - handleBrandBtnClick() - Method Invoked.');
         this.brandLogoClicked.emit();
     }
 
     handleShoppingCartNavBtnClick() {
-        console.log('L0G - [navbar.component] - handleShoppingCartNavBtnClick() - Method Invoked.');
         this.shoppingCartClicked.emit();
     }
 
     loginNavBtnClicked() {
-        console.log('L0G - [navbar.component] - loginNavBtnClicked() - Method Invoked.');
         this.loginClicked.emit();
     }
 
