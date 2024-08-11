@@ -21,6 +21,20 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #44 - Added Shopping Cart Service
+Time Started: 11th Aug 2K24 - 08:09 AM    |    Time Ended:   11th Aug 2K24 - 09:10 AM    |    Duration:    1 hour 1 minute
+
+Changes:
+--------
+
+1. Added Shopping Cart Service
+   - File: `shopping-cart.service.ts`
+   - Created a new service to manage the shopping cart functionality.
+   - Initialized the cart as an empty array of products on startup in constructor of the service.
+   - Implemented methods to add products in the cart.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #43 - Added Sticky behavior to Navbar & Category Components  |  Redesigned Product Card Component
 Time Started: 10th Aug 2K24 - 08:53 PM    |    Time Ended:   10th Aug 2K24 - 09:26 PM    |    Duration:    33 minutes
 

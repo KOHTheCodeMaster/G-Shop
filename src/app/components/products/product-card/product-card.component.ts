@@ -1,14 +1,12 @@
 import {Component, Input} from '@angular/core';
-import {CurrencyPipe, NgForOf} from "@angular/common";
+import {CurrencyPipe} from "@angular/common";
 import {Product} from "../../../interface/Product";
+import {ShoppingCartService} from "../../../service/shopping-cart.service";
 
 @Component({
     selector: 'app-product-card',
     standalone: true,
-    imports: [
-        CurrencyPipe,
-        NgForOf
-    ],
+    imports: [CurrencyPipe],
     templateUrl: './product-card.component.html',
     styleUrl: './product-card.component.css'
 })
@@ -16,8 +14,12 @@ export class ProductCardComponent {
 
     @Input({required: true}) product: Product;
 
-    constructor() {
+    constructor(private shoppingCartService: ShoppingCartService) {
         this.product = {id: 0, name: '', price: 0, category: '', imageUrl: ''}; // Initialize an empty product
+    }
+
+    addToCartBtnClick(product: Product) {
+        this.shoppingCartService.addProductToCart(product);
     }
 
 }
