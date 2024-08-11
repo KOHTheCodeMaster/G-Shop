@@ -39,6 +39,12 @@ export class ShoppingCartService {
         }
     }
 
+    getProductQuantity(productId: number): number {
+        const existingCartProduct: CartProduct | undefined = this.cartProductList.find(
+            cartProduct => cartProduct.product.id === productId);
+        return existingCartProduct ? existingCartProduct.quantity : 0;
+    }
+
     addProductToCart(product: Product) {
 
         // Find the existing cart product
@@ -51,17 +57,46 @@ export class ShoppingCartService {
             existingCartProduct.subtotalPrice += product.unitPrice;
         } else {
             // Add the product to the cart products list if it does not already exist in the cart
-            this.cartProductList.push({
+            let tempCartProduct: CartProduct = {
                 id: this.cartProductList.length + 1,
                 product: product,
                 subtotalPrice: product.unitPrice,
                 quantity: 1
-            });
+            };
+            this.cartProductList.push(tempCartProduct);
         }
 
-        //  Update the local storage with the updated cart list
+        //  Update the cart products list, total price and total quantity in the cart list
+        this.cartList[0].cartProducts = this.cartProductList;
+        this.cartList[0].totalPrice += product.unitPrice;
+        this.cartList[0].totalQty += 1;
+
         localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
 
+    }
+
+    removeProductFromCart(product: Product) {
+        const existingCartProduct: CartProduct | undefined = this.cartProductList.find(
+            cartProduct => cartProduct.product.id === product.id);
+
+        if (existingCartProduct) {
+            existingCartProduct.quantity -= 1;  //  Decrement the quantity of the existing cart product
+
+            //  Update the subtotal price of the existing cart product
+            if (existingCartProduct.quantity > 0) existingCartProduct.subtotalPrice -= product.unitPrice;
+            else {
+                //  Remove the product from the cart products list if the quantity is 0
+                this.cartProductList = this.cartProductList
+                    .filter(cartProduct => cartProduct.product.id !== product.id);
+            }
+        }
+
+        //  Update the cart products list, total price and total quantity in the cart list
+        this.cartList[0].cartProducts = this.cartProductList;
+        this.cartList[0].totalPrice -= product.unitPrice;
+        this.cartList[0].totalQty -= 1;
+
+        localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
     }
 
     public getCartList(): Cart[] {

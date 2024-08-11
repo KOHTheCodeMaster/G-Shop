@@ -21,6 +21,28 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #47 - Added Increment & Decrement Quantity Functionality in Product Cart Component
+Time Started: 11th Aug 2K24 - 08:51 PM    |    Time Ended:   11th Aug 2K24 - 09:39 PM    |    Duration:    48 minutes
+
+
+Changes:
+--------
+
+1. Added Increment & Decrement Quantity Functionality in Product Cart Component
+   - File: `product-cart.component.html`, `product-cart.component.ts`
+   - Added increment and decrement buttons to increase or decrease the quantity of products in the cart.
+   - Implemented `incrementQuantity()` and `decrementQuantity()` methods to update the quantity and subtotal price of products in the cart.
+
+2. Added `getProductQuantity()` method in Shopping Cart Service to get the quantity of a product in the cart.
+   - File: `shopping-cart.service.ts`
+   - Using `getProductQuantity()` method to initialize the `productQuantity` of a product in ProductCardComponent.
+
+3. Updated `price` to `unitPrice` in `assets/products.json` for consistency.
+   - File: `assets/products.json`
+   - Changed field `price` to `unitPrice` for consistency.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #46 - Updated Shopping Cart Service with CartProduct List to Avoid Duplicates and Refactored Product & Cart Interface
 Time Started: 11th Aug 2K24 - 12:11 PM    |    Time Ended:   11th Aug 2K24 - 12:43 PM    |    Duration:    1 hour 1 minute
 

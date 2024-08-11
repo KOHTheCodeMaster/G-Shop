@@ -13,7 +13,7 @@ import {Cart} from "../../interface/Cart";
 export class ShoppingCartComponent {
 
     textContent: string = 'Shopping Cart';
-    cartList: Cart[] = [];
+    cartList: Cart[];
 
     constructor(shoppingCartService: ShoppingCartService) {
         this.cartList = shoppingCartService.getCartList();

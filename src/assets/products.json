@@ -2,105 +2,105 @@
   {
     "id": 1,
     "name": "Apple",
-    "price": 200,
+    "unitPrice": 200,
     "category": "fruits",
     "imageUrl": "https://placehold.co/800/red/white?font=roboto&text=Apples"
   },
   {
     "id": 2,
     "name": "Banana",
-    "price": 100,
+    "unitPrice": 100,
     "category": "fruits",
     "imageUrl": "https://placehold.co/800/yellow/black?font=roboto&text=Banana"
   },
   {
     "id": 3,
     "name": "Orange",
-    "price": 150,
+    "unitPrice": 150,
     "category": "fruits",
     "imageUrl": "https://placehold.co/800/orange/black?font=roboto&text=Orange"
   },
   {
     "id": 4,
     "name": "Carrot",
-    "price": 50,
+    "unitPrice": 50,
     "category": "vegetables",
     "imageUrl": "https://placehold.co/800/orange/white?font=roboto&text=Carrot"
   },
   {
     "id": 5,
     "name": "Broccoli",
-    "price": 80,
+    "unitPrice": 80,
     "category": "vegetables",
     "imageUrl": "https://placehold.co/800/green/white?font=roboto&text=Broccoli"
   },
   {
     "id": 6,
     "name": "Spinach",
-    "price": 60,
+    "unitPrice": 60,
     "category": "vegetables",
     "imageUrl": "https://placehold.co/800/green/white?font=roboto&text=Spinach"
   },
   {
     "id": 7,
     "name": "Milk",
-    "price": 40,
+    "unitPrice": 40,
     "category": "dairy",
     "imageUrl": "https://placehold.co/800/white/black?font=roboto&text=Milk"
   },
   {
     "id": 8,
     "name": "Cheese",
-    "price": 120,
+    "unitPrice": 120,
     "category": "dairy",
     "imageUrl": "https://placehold.co/800/yellow/black?font=roboto&text=Cheese"
   },
   {
     "id": 9,
     "name": "Yogurt",
-    "price": 60,
+    "unitPrice": 60,
     "category": "dairy",
     "imageUrl": "https://placehold.co/800/white/black?font=roboto&text=Yogurt"
   },
   {
     "id": 10,
     "name": "Coke",
-    "price": 30,
+    "unitPrice": 30,
     "category": "beverages",
     "imageUrl": "https://placehold.co/800/black/white?font=roboto&text=Coke"
   },
   {
     "id": 11,
     "name": "Pepsi",
-    "price": 30,
+    "unitPrice": 30,
     "category": "beverages",
     "imageUrl": "https://placehold.co/800/blue/white?font=roboto&text=Pepsi"
   },
   {
     "id": 12,
     "name": "Orange Juice",
-    "price": 50,
+    "unitPrice": 50,
     "category": "beverages",
     "imageUrl": "https://placehold.co/800/orange/black?font=roboto&text=Orange+Juice"
   },
   {
     "id": 13,
     "name": "Chips",
-    "price": 20,
+    "unitPrice": 20,
     "category": "snacks",
     "imageUrl": "https://placehold.co/800/brown/white?font=roboto&text=Chips"
   },
   {
     "id": 14,
     "name": "Cookies",
-    "price": 40,
+    "unitPrice": 40,
     "category": "snacks",
     "imageUrl": "https://placehold.co/800/brown/white?font=roboto&text=Cookies"
   },
   {
     "id": 15,
     "name": "Popcorn",
-    "price": 30,
+    "unitPrice": 30,
     "category": "snacks",
     "imageUrl": "https://placehold.co/800/yellow/black?font=roboto&text=Popcorn"
   }
