@@ -21,6 +21,40 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #45 - Updated Shopping Cart Component & Added Cart List in Shopping Cart Service
+Total Time:   1 hour 46 minutes
+Batch Time Entries: 3
+  - Time Started: 11th Aug 2K24 - 10:51 AM    |    Time Ended:   11th Aug 2K24 - 10:56 AM    |    Duration:    5 minutes
+  - Time Started: 11th Aug 2K24 - 11:13 AM    |    Time Ended:   11th Aug 2K24 - 11:35 AM    |    Duration:    22 minutes
+  - Time Started: 11th Aug 2K24 - 11:37 AM    |    Time Ended:   11th Aug 2K24 - 11:56 AM    |    Duration:    19 minutes
+
+Changes:
+--------
+
+1. Updated Shopping Cart Service with Cart List and Add to Cart Functionality
+   - File: `shopping-cart.service.ts`
+   - Added Cart List to store products added to the cart.
+   - Storing 'shopping-cart' key in local storage to persist multiple carts (different users) data including user, products, price, and quantity.
+   - Removed 'shopping-cart-products' key from local storage.
+   - Added `getEmptyCartForGuestUser()` method to create an empty cart for guest users.
+   - Initialize carts list from local storage when the service is created.
+   - Using `cartProductList` to store products in the cart for the first cart (guest user).
+   - Implemented `addToCart()` method to add products to the cart by pushing the product to the `cartProductList` & updating the local storage.
+
+2. Updated Shopping Cart Component
+   - File: `shopping-cart.component.html`, `shopping-cart.component.ts`
+   - Updated the Shopping Cart Component to display the products added to the cart.
+   - Basic Design and layout for the Shopping Cart Component displaying dummy user, price & quantity details in the cart.
+   - Using Cart List from the Shopping Cart Service to display cart items in the template.
+
+3. Added Cart interface in the Shopping Cart Service to define the structure of the cart items.
+
+4. Removed AuthGuard from the Shopping Cart Component to allow access to all users including Guest User.
+
+
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #44 - Added Shopping Cart Service
 Time Started: 11th Aug 2K24 - 08:09 AM    |    Time Ended:   11th Aug 2K24 - 09:10 AM    |    Duration:    1 hour 1 minute
 

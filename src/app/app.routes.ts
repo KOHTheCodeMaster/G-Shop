@@ -19,7 +19,8 @@ export const routes: Routes = [
 
     //  Doesn't Work!
     // {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuardService.prototype.authUsingCanActivateFnInternally]},
-    {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuardService]},
+    // {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuardService]},
+    {path: 'shopping-cart', component: ShoppingCartComponent},
 
     {path: 'check-out', component: CheckoutComponent},
     {path: 'order-success', component: OrderSuccessComponent},
