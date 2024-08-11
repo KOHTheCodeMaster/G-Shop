@@ -21,8 +21,26 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #49 - Re-designed Shopping Cart Component
+Time Started: 11th Aug 2K24 - 10:19 PM    |    Time Ended:   11th Aug 2K24 - 10:39 PM    |    Duration:    20 minutes
+
+
+Changes:
+--------
+
+1. Re-designed Shopping Cart Component
+   - File: `shopping-cart.component.html`, `shopping-cart.component.ts`
+   - Updated the Shopping Cart Component layout to display the products added to the cart.
+   - Designed a card layout for each product in the cart with product image, name, price, and quantity.
+   - Added increment and decrement buttons to update the quantity of products in the cart.
+   - Displayed the total price of each product based on the quantity.
+   - Added a 'Remove' button to remove products from the cart.
+   - Updated the total cart price based on the quantity and price of products in the cart.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #48 - Updated Navbar Component with Shopping Cart Items Count & Added cartUpdated custom output event
-Time Started: 11th Aug 2K24 - 08:51 PM    |    Time Ended:   11th Aug 2K24 - 09:39 PM    |    Duration:    48 minutes
+Time Started: 11th Aug 2K24 - 09:50 PM    |    Time Ended:   11th Aug 2K24 - 10:13 PM    |    Duration:    23 minutes
 
 
 Changes:

@@ -16,7 +16,6 @@ import {ProductService} from "./service/product.service";
 export class AppComponent {
 
     constructor(router: Router, authService: AuthService, private productService: ProductService) {
-        console.log('L0G - [app.component] - constructor() - Method invoked.');
 
         this.resetLocalStorage();
 
@@ -39,15 +38,12 @@ export class AppComponent {
     }
 
     onBrandLogoClickedEvent() {
-        console.log('L0G - [app.component] - onBrandLogoClickedEvent() - Method invoked.');
     }
 
     onShoppingCartClickedEvent() {
-        console.log('L0G - [app.component] - onShoppingCartClickedEvent() - Method invoked.');
     }
 
     onLoginClickedEvent() {
-        console.log('L0G - [app.component] - onLoginClickedEvent() - Method invoked.');
     }
 
 }

@@ -1,22 +1,51 @@
 <div class="container mx-auto p-6 bg-gray-900 text-white">
-  <h1 class="text-4xl font-bold text-center mb-8 text-yellow-300">
-    {{ textContent }}
-  </h1>
+  <header class="text-center mb-8">
+    <h1 class="text-4xl font-bold text-yellow-300">{{ textContent }}</h1>
+    <p class="text-lg mt-2">You have {{ cartList[0].totalQty || 0 }} items in your cart</p>
+    <p class="text-lg">Total: {{ cartList[0].totalPrice | currency:'INR':'symbol' }}</p>
+  </header>
+
   <div *ngIf="cartList.length > 0; else emptyCart" class="space-y-6">
     <div *ngFor="let cart of cartList" class="bg-gray-800 shadow-md rounded-lg p-6">
-      <p class="text-lg mb-2"><span class="font-semibold">User:</span> {{ cart.user.username }} ({{ cart.user.email }})</p>
-      <p class="text-lg mb-2"><span class="font-semibold">Total Price:</span> {{ cart.totalPrice | currency:'INR':'symbol' }}</p>
-      <p class="text-lg mb-2"><span class="font-semibold">Total Quantity:</span> {{ cart.totalQty }}</p>
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <p class="text-lg font-semibold">{{ cart.user.username }} ({{ cart.user.email }})</p>
+          <p class="text-gray-400">Total: {{ cart.totalPrice | currency:'INR':'symbol' }}</p>
+        </div>
+        <button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700">Remove All</button>
+      </div>
       <ul class="space-y-4">
         <li *ngFor="let cartProduct of cart.cartProducts" class="border-b border-gray-700 pb-4">
-          <h3 class="text-xl font-semibold">{{ cartProduct.product.name }}</h3>
-          <p class="text-gray-400"><span class="font-semibold">Price:</span> {{ cartProduct.subtotalPrice | currency:'INR':'symbol' }}</p>
-          <p class="text-gray-400"><span class="font-semibold">Qty:</span> {{ cartProduct.quantity }}</p>
+          <div class="flex justify-between items-center bg-gray-700 p-4 rounded-md shadow-sm">
+            <div class="flex items-center space-x-4">
+              <img [src]="cartProduct.product.imageUrl" alt="{{ cartProduct.product.name }}"
+                   class="w-16 h-16 object-cover rounded-md">
+              <div>
+                <h3 class="text-2xl font-semibold text-white">{{ cartProduct.product.name }}</h3>
+                <p class="text-gray-400"><span
+                  class="text-sm text-white">{{ cartProduct.subtotalPrice | currency:'INR':'symbol' }}</span></p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button (click)="decrementQty(cartProduct.product)"
+                      class="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-700">-
+              </button>
+              <span class="text-lg font-bold text-white">{{ cartProduct.quantity }}</span>
+              <button (click)="incrementQty(cartProduct.product)"
+                      class="px-2 py-1 bg-green-500 text-white rounded-md hover:bg-green-700">+
+              </button>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
   </div>
+
   <ng-template #emptyCart>
     <p class="text-center text-gray-500">Your cart is empty.</p>
   </ng-template>
+
+  <footer class="text-center mt-8">
+    <button class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700">Proceed to Checkout</button>
+  </footer>
 </div>

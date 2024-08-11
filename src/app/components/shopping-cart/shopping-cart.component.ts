@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ShoppingCartService} from "../../service/shopping-cart.service";
 import {CurrencyPipe, NgFor, NgIf} from "@angular/common";
 import {Cart} from "../../interface/Cart";
+import {Product} from "../../interface/Product";
 
 @Component({
     selector: 'app-shopping-cart',
@@ -15,8 +16,16 @@ export class ShoppingCartComponent {
     textContent: string = 'Shopping Cart';
     cartList: Cart[];
 
-    constructor(shoppingCartService: ShoppingCartService) {
+    constructor(private shoppingCartService: ShoppingCartService) {
         this.cartList = shoppingCartService.getCartList();
+    }
+
+    incrementQty(cartProduct: Product) {
+        this.shoppingCartService.addProductToCart(cartProduct);
+    }
+
+    decrementQty(cartProduct: Product) {
+        this.shoppingCartService.removeProductFromCart(cartProduct);
     }
 
 }
