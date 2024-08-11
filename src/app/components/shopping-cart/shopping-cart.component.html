@@ -8,10 +8,10 @@
       <p class="text-lg mb-2"><span class="font-semibold">Total Price:</span> {{ cart.totalPrice | currency:'INR':'symbol' }}</p>
       <p class="text-lg mb-2"><span class="font-semibold">Total Quantity:</span> {{ cart.totalQty }}</p>
       <ul class="space-y-4">
-        <li *ngFor="let product of cart.products" class="border-b border-gray-700 pb-4">
-          <h3 class="text-xl font-semibold">{{ product.name }}</h3>
-          <p class="text-gray-400"><span class="font-semibold">Price:</span> {{ product.price | currency:'INR':'symbol' }}</p>
-          <p class="text-gray-400"><span class="font-semibold">Category:</span> {{ product.category }}</p>
+        <li *ngFor="let cartProduct of cart.cartProducts" class="border-b border-gray-700 pb-4">
+          <h3 class="text-xl font-semibold">{{ cartProduct.product.name }}</h3>
+          <p class="text-gray-400"><span class="font-semibold">Price:</span> {{ cartProduct.subtotalPrice | currency:'INR':'symbol' }}</p>
+          <p class="text-gray-400"><span class="font-semibold">Category:</span> {{ cartProduct.quantity }}</p>
         </li>
       </ul>
     </div>

@@ -21,6 +21,39 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #46 - Updated Shopping Cart Service with CartProduct List to Avoid Duplicates and Refactored Product & Cart Interface
+Time Started: 11th Aug 2K24 - 12:11 PM    |    Time Ended:   11th Aug 2K24 - 12:43 PM    |    Duration:    1 hour 1 minute
+
+
+Changes:
+--------
+
+1. Updated Shopping Cart Service with CartProduct List to avoid duplicates and manage quantity.
+   - File: `shopping-cart.service.ts`
+   - Updated `cartProductList` from Product[] to CartProduct[] to include quantity and subtotal price for each product in the cart.
+   - Updated `addProductToCart()` method to check if the product is already in the cart and update the product to avoid duplicates.
+
+2. Added `CartProduct` Interface to include quantity and subtotal price for each product in the cart.
+   - File: `CartProduct.ts`
+   - Created this interface to add flexibility of quantity and price for each product in the cart.
+   - It stores product details in the cart including id, product, subtotalQuantity, and subtotalPrice.
+   - This helps in avoiding confusion with the product price, subtotal price and total cart price.
+
+2. Refactored `Cart` Interface to include `cartProductList` instead of `products`.
+   - File: `Cart.ts`
+   - Changed field `products` to `cartProductList` in the `Cart` to include quantity and subtotal price for each product in the cart.
+
+3. Refactored `price` to `unitPrice` in Product Interface.
+   - File: `Product.ts`
+   - Changed field `price` to `unitPrice` in the `Product` interface for better clarity and consistency.
+   - List of files that are impacted with Minor 1 Liner Changes due to this refactoring:
+      - `Product.ts`, `manage-products.component.html`, `shopping-cart.component.html`
+      - `product-card.component.html`, `product-card.component.ts`,
+      - `product-form.component.html`, `product-form.component.ts`,
+
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #45 - Updated Shopping Cart Component & Added Cart List in Shopping Cart Service
 Total Time:   1 hour 46 minutes
 Batch Time Entries: 3
@@ -50,8 +83,6 @@ Changes:
 3. Added Cart interface in the Shopping Cart Service to define the structure of the cart items.
 
 4. Removed AuthGuard from the Shopping Cart Component to allow access to all users including Guest User.
-
-
 
 ----------------------------------------------------------------------------------------------------
 

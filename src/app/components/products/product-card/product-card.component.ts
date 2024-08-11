@@ -15,7 +15,7 @@ export class ProductCardComponent {
     @Input({required: true}) product: Product;
 
     constructor(private shoppingCartService: ShoppingCartService) {
-        this.product = {id: 0, name: '', price: 0, category: '', imageUrl: ''}; // Initialize an empty product
+        this.product = {id: 0, name: '', unitPrice: 0, category: '', imageUrl: ''}; // Initialize an empty product
     }
 
     addToCartBtnClick(product: Product) {

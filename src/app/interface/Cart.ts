@@ -1,10 +1,10 @@
-import {Product} from "./Product";
 import {User} from "./User";
+import {CartProduct} from "./CartProduct";
 
 export interface Cart {
     id: number,
     user: User,
-    products: Product[];
+    cartProducts: CartProduct[];
     totalPrice: number;
     totalQty: number;
 }

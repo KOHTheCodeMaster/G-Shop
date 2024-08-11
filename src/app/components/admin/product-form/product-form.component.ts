@@ -37,7 +37,7 @@ export class ProductFormComponent {
     }
 
     initializeEmptyProduct(): Product {
-        return {id: 0, name: '', price: 0, category: '', imageUrl: ''}; // Initialize an empty product
+        return {id: 0, name: '', unitPrice: 0, category: '', imageUrl: ''}; // Initialize an empty product
     }
 
     save(formElement: any) {
