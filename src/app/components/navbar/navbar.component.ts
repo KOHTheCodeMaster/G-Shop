@@ -24,14 +24,18 @@ export class NavbarComponent {
 
     constructor(public authService: AuthService, shoppingCartService: ShoppingCartService) {
 
-        this.shoppingCartItemsCount = 0;
+        this.shoppingCartItemsCount = this.fetchShoppingCartItemsCount();   //  Initialize shopping cart items count
 
-        //  Update shopping cart items count on cart update
+        //  Whenever cart is updated, update the shopping cart items count
         shoppingCartService.cartUpdated.subscribe(() => {
-            let tempCartList: Cart[] = JSON.parse(localStorage.getItem(this.keyShoppingCart) || '');
-            this.shoppingCartItemsCount = tempCartList[0].totalQty;
+            this.shoppingCartItemsCount = this.fetchShoppingCartItemsCount();
         });
 
+    }
+
+    fetchShoppingCartItemsCount(): number {
+        let tempCartList: Cart[] = JSON.parse(localStorage.getItem(this.keyShoppingCart) || '');
+        return tempCartList[0].totalQty;
     }
 
     handleBrandBtnClick() {

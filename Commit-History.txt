@@ -21,6 +21,22 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #50 - Remove All Products from Shopping Cart
+Time Started: 12th Aug 2K24 - 12:17 PM    |    Time Ended:   11th Aug 2K24 - 12:32 PM    |    Duration:    15 minutes
+
+
+Changes:
+--------
+
+1. Remove All Products from Shopping Cart
+   - File: `shopping-cart.component.ts`
+   - Added a 'removeAllBtnClick()' method to remove all products from the cart.
+   - Implemented `removeAllProductsFromCart()` method to clear the cart and reset the total cart price & quantity.
+
+2. Added `fetchShoppingCartItemsCount()` method in Navbar Component to initialize the total quantity of products in the cart.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #49 - Re-designed Shopping Cart Component
 Time Started: 11th Aug 2K24 - 10:19 PM    |    Time Ended:   11th Aug 2K24 - 10:39 PM    |    Duration:    20 minutes
 

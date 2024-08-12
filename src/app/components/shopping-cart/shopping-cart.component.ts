@@ -28,4 +28,8 @@ export class ShoppingCartComponent {
         this.shoppingCartService.removeProductFromCart(cartProduct);
     }
 
+    removeAllBtnClick() {
+        this.shoppingCartService.removeAllProductsFromCart();
+    }
+
 }

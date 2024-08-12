@@ -82,15 +82,11 @@ export class ShoppingCartService {
             cartProduct => cartProduct.product.id === product.id);
 
         if (existingCartProduct) {
-            existingCartProduct.quantity -= 1;  //  Decrement the quantity of the existing cart product
+            existingCartProduct.quantity -= 1;
 
-            //  Update the subtotal price of the existing cart product
             if (existingCartProduct.quantity > 0) existingCartProduct.subtotalPrice -= product.unitPrice;
-            else {
-                //  Remove the product from the cart products list if the quantity is 0
-                this.cartProductList = this.cartProductList
-                    .filter(cartProduct => cartProduct.product.id !== product.id);
-            }
+            else this.cartProductList = this.cartProductList
+                .filter(cartProduct => cartProduct.product.id !== product.id);
         }
 
         //  Update the cart products list, total price and total quantity in the cart list
@@ -101,6 +97,14 @@ export class ShoppingCartService {
 
         this.cartUpdated.emit();
 
+    }
+
+    public removeAllProductsFromCart() {
+        this.cartList[0].cartProducts = [];
+        this.cartList[0].totalPrice = 0;
+        this.cartList[0].totalQty = 0;
+        localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+        this.cartUpdated.emit();
     }
 
     public getCartList(): Cart[] {
