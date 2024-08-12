@@ -28,7 +28,7 @@ export class ShoppingCartComponent {
         this.shoppingCartService.removeProductFromCart(cartProduct);
     }
 
-    removeAllBtnClick() {
+    clearCartBtnClick() {
         this.shoppingCartService.removeAllProductsFromCart();
     }
 

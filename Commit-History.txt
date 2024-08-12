@@ -21,9 +21,25 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #51 - Fixed Minor Bug with 'Remove All' Button in Shopping Cart
+Time Started: 12th Aug 2K24 - 08:12 PM    |    Time Ended:   11th Aug 2K24 - 08:40 PM    |    Duration:    28 minutes
+
+Changes:
+--------
+
+1. Fixed Minor Bug with 'Remove All' Button in Shopping Cart
+   - File: `shopping-cart.service.ts`
+   - When removing all products from the cart, the product quantity for individual Product Cart Component was not being reset.
+   - Updated the `removeAllProductsFromCart()` method to reset `cartProductList` to an empty array after clearing the cart.
+
+2. Refactored `removeAllBtnClick()` method to `clearCartBtnClick()` method in Shopping Cart Component.
+   - File: `shopping-cart.component.ts`
+   - Renamed the method to `clearCartBtnClick()` for better clarity and consistency.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #50 - Remove All Products from Shopping Cart
 Time Started: 12th Aug 2K24 - 12:17 PM    |    Time Ended:   11th Aug 2K24 - 12:32 PM    |    Duration:    15 minutes
-
 
 Changes:
 --------

@@ -100,7 +100,7 @@ export class ShoppingCartService {
     }
 
     public removeAllProductsFromCart() {
-        this.cartList[0].cartProducts = [];
+        this.cartList[0].cartProducts = this.cartProductList = [];
         this.cartList[0].totalPrice = 0;
         this.cartList[0].totalQty = 0;
         localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
