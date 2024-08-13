@@ -21,6 +21,23 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #52 - Updated Checkout Component to Display Order Summary and Delivery Form
+Time Started: 13th Aug 2K24 - 08:59 AM    |    Time Ended:   13th Aug 2K24 - 09:43 AM    |    Duration:    44 minutes
+
+Changes:
+--------
+
+1. Designed the Checkout Component with Order Summary, and Delivery Form
+   - File: `checkout.component.html`, `checkout.component.ts`, `checkout.component.css`
+   - Updated the Checkout Component layout to display the order summary and delivery form.
+   - Added form fields for delivery details including name, address, city, state, and pin code.
+   - Displayed the order summary with product details, quantity, and total price.
+   - Added a 'Place Order' button to complete the checkout process.
+
+2. Refactored `path: 'check-out'` to `path: 'checkout'` in `app.routes.ts`
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #51 - Fixed Minor Bug with 'Remove All' Button in Shopping Cart
 Time Started: 12th Aug 2K24 - 08:12 PM    |    Time Ended:   11th Aug 2K24 - 08:40 PM    |    Duration:    28 minutes
 

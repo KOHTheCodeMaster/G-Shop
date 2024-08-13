@@ -22,7 +22,7 @@ export const routes: Routes = [
     // {path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuardService]},
     {path: 'shopping-cart', component: ShoppingCartComponent},
 
-    {path: 'check-out', component: CheckoutComponent},
+    {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuardService]},
     {path: 'order-success', component: OrderSuccessComponent},
     {path: 'login', component: LoginComponent},
 
