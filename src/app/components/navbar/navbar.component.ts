@@ -1,6 +1,6 @@
 import {Component, output, OutputEmitterRef} from '@angular/core';
 import {OptionsMenuComponent} from "./options-menu/options-menu.component";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {AuthService} from "../../service/auth.service";
 import {TestingMenuComponent} from "./testing-menu/testing-menu.component";
@@ -22,7 +22,7 @@ export class NavbarComponent {
     shoppingCartItemsCount: number;
     private keyShoppingCart: string = 'shopping-cart';
 
-    constructor(public authService: AuthService, shoppingCartService: ShoppingCartService) {
+    constructor(public authService: AuthService, shoppingCartService: ShoppingCartService, private router: Router) {
 
         this.shoppingCartItemsCount = this.fetchShoppingCartItemsCount();   //  Initialize shopping cart items count
 
@@ -52,6 +52,10 @@ export class NavbarComponent {
 
     onUserLoggedOutEvent() {
         this.authService.logout();
+    }
+
+    handleCheckoutNavBtnClick() {
+        this.router.navigate(['/checkout']);
     }
 
 }

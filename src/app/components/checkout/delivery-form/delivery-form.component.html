@@ -3,23 +3,28 @@
   <form>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="name">Name</label>
-      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="name" name="name" required>
+      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="name" name="name" required
+             [(ngModel)]="deliveryFormData.name">
     </div>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="address">Address</label>
-      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="address" name="address" required>
+      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="address" name="address" required
+             [(ngModel)]="deliveryFormData.address">
     </div>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="city">City</label>
-      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="city" name="city" required>
+      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="city" name="city" required
+             [(ngModel)]="deliveryFormData.city">
     </div>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="state">State</label>
-      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="state" name="state" required>
+      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="state" name="state" required
+             [(ngModel)]="deliveryFormData.state">
     </div>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="zip">Zip Code</label>
-      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="zip" name="zip" required>
+      <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="zip" name="zip" required
+             [(ngModel)]="deliveryFormData.zip">
     </div>
   </form>
 </div>

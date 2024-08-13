@@ -1,12 +1,27 @@
 import {Component} from '@angular/core';
+import {DeliveryFormData} from '../../../interface/DeliveryFormData';
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-delivery-form',
     standalone: true,
-    imports: [],
+    imports: [FormsModule],
     templateUrl: './delivery-form.component.html',
-    styleUrl: './delivery-form.component.css'
+    styleUrls: ['./delivery-form.component.css']
 })
 export class DeliveryFormComponent {
 
+    deliveryFormData: DeliveryFormData;
+
+    constructor() {
+
+        //  Initialize the delivery form data with default dummy data
+        this.deliveryFormData = {
+            name: 'Mr. Champak',
+            address: 'Pratap Nagar',
+            city: 'Jaipur',
+            state: 'Rajasthan',
+            zip: '123456'
+        };
+    }
 }
