@@ -21,6 +21,26 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #53 - Added Order Summary & Delivery Form Components in Checkout Component
+Time Started: 13th Aug 2K24 - 03:06 PM    |    Time Ended:   13th Aug 2K24 - 03:23 PM    |    Duration:    17 minutes
+
+Changes:
+--------
+
+1. Extracted Order Summary & Delivery Form into separate components
+   - File: `order-summary.component.html`, `order-summary.component.ts`, `order-summary.component.css`
+   - File: `delivery-form.component.html`, `delivery-form.component.ts`, `delivery-form.component.css`
+   - Created separate components for Order Summary and Delivery Form within the Checkout Component.
+   - Moved the respective HTML and TypeScript code to the new components for better organization and reusability.
+
+2. Updated Checkout Component to include Order Summary & Delivery Form Components
+   - File: `checkout.component.html`, `checkout.component.ts`, `checkout.component.css`
+   - Updated the Checkout Component to include the Order Summary and Delivery Form components.
+   - Imported and added the Order Summary and Delivery Form components to the Checkout Component template.
+   - Passed necessary data to the Order Summary and Delivery Form components using Input properties.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #52 - Updated Checkout Component to Display Order Summary and Delivery Form
 Time Started: 13th Aug 2K24 - 08:59 AM    |    Time Ended:   13th Aug 2K24 - 09:43 AM    |    Duration:    44 minutes
 
