@@ -21,6 +21,23 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #58 - Designed the layout for Options Menu, Testing Menu & Login Components
+
+Time Started: 14th Aug 2K24 - 06:43 PM    |    Time Ended:   14th Aug 2K24 - 07:11 PM    |    Duration:    28 minutes
+
+Changes:
+--------
+
+1. Re-designed the layout for Options Menu & Testing Menu Components
+   - File: `options-menu.component.html`, `testing-menu.component.html`
+   - Designed the layout for the options menu to display the available options for the user.
+
+2. Re-designed the layout for Login Component
+    - File: `login.component.html`, `login.component.ts`, `login.component.css`
+    - Updated login form layout to improve user experience.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #57 - Added View Order Component, Updated route and navigation, Enhanced UX with empty cart message & disabled buttons in Shopping Cart and Checkout components
 
 Time Started: 14th Aug 2K24 - 03:51 PM    |    Time Ended:   14th Aug 2K24 - 04:38 PM    |    Duration:    47 minutes
