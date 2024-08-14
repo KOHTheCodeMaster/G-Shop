@@ -21,6 +21,47 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #55 - Enhance Order Processing, My Orders Layout, Delivery Form Event Handling, and Fix Cart Initialization & undefined NPE issues
+
+Total Time:   1 hour 14 minutes
+- Time Started: 13th Aug 2K24 - 08:50 PM    |    Time Ended:   13th Aug 2K24 - 09:10 PM    |    Duration:    20 minutes
+- Time Started: 13th Aug 2K24 - 04:04 PM    |    Time Ended:   13th Aug 2K24 - 04:44 PM    |    Duration:    40 minutes
+
+Changes:
+--------
+
+1. Updated Checkout Component with Order Details
+   - File: `checkout.component.ts`
+   - Added an `order` field to store order details including order number, date, total price, and status.
+   - Initialized `orderIdCounter` to generate unique order numbers for each order.
+   - `placeOrder()` method to finalize the order and reset the cart after placing the order.
+
+2. Redesigned MyOrders Component
+   - File: `my-orders.component.html`, `my-orders.component.ts`
+   - Updated the MyOrders Component layout to display the list of orders.
+   - Designed the layout for each order with order id, order price, placed on (date), and `view details` button.
+   - Updated order list with correct order details on order placement.
+
+3. Added `formDataChange` output event in Delivery Form Component to emit form data changes.
+  - File: `delivery-form.component.ts`
+  - Added `formDataChange` output event emitter of type `EventEmitter<DeliveryFormData>`.
+  - Added an output event emitter to notify the parent component of form data changes.
+  - Emits the form data when any field in the form is changed using `(ngModelChange)` event binding.
+
+4. Fixed Minor Bug of Cart Initialization in Shopping Cart Service
+  - File: `shopping-cart.service.ts`
+  - When cart is reset, the cartProductList was not being initialized properly.
+  - Initialized the cart products list if the cart list is not empty, otherwise assign an empty array.
+
+5. Updated `fetchShoppingCartItemsCount()` method in Navbar Component to fix NPE issue with total quantity.
+  - File: `navbar.component.ts`
+  - Updated the method to fetch the total quantity of products in the cart.
+  - Avoid undefined NPE by checking if the cartProductList is not null before calculating the total quantity.
+  - Updated the method to return 0 if the cartProductList is null or empty, else return the total quantity.
+
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #54 - Added Checkout Button, Initialized Delivery Form Fields, and Updated MyOrders with Dummy Data
 Time Started: 13th Aug 2K24 - 03:06 PM    |    Time Ended:   13th Aug 2K24 - 03:23 PM    |    Duration:    17 minutes
 
@@ -41,6 +82,26 @@ Changes:
    - File: `my-orders.component.ts`
    - Added dummy order data in the MyOrders Component for testing purposes.
    - Initialized the order list with dummy order details including order number, date, total price, and status.
+
+----------------------------------------------------------------------------------------------------
+
+Commit: #53 - Added Order Summary & Delivery Form Components in Checkout Component
+Time Started: 13th Aug 2K24 - 03:06 PM    |    Time Ended:   13th Aug 2K24 - 03:23 PM    |    Duration:    17 minutes
+
+Changes:
+--------
+
+1. Extracted Order Summary & Delivery Form into separate components
+   - File: `order-summary.component.html`, `order-summary.component.ts`, `order-summary.component.css`
+   - File: `delivery-form.component.html`, `delivery-form.component.ts`, `delivery-form.component.css`
+   - Created separate components for Order Summary and Delivery Form within the Checkout Component.
+   - Moved the respective HTML and TypeScript code to the new components for better organization and reusability.
+
+2. Updated Checkout Component to include Order Summary & Delivery Form Components
+   - File: `checkout.component.html`, `checkout.component.ts`, `checkout.component.css`
+   - Updated the Checkout Component to include the Order Summary and Delivery Form components.
+   - Imported and added the Order Summary and Delivery Form components to the Checkout Component template.
+   - Passed necessary data to the Order Summary and Delivery Form components using Input properties.
 
 ----------------------------------------------------------------------------------------------------
 

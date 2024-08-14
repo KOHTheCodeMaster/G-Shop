@@ -4,27 +4,27 @@
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="name">Name</label>
       <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="name" name="name" required
-             [(ngModel)]="deliveryFormData.name">
+             [(ngModel)]="deliveryFormData.name" (ngModelChange)="formDataChange.emit(deliveryFormData)">
     </div>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="address">Address</label>
       <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="address" name="address" required
-             [(ngModel)]="deliveryFormData.address">
+             [(ngModel)]="deliveryFormData.address" (ngModelChange)="formDataChange.emit(deliveryFormData)">
     </div>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="city">City</label>
       <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="city" name="city" required
-             [(ngModel)]="deliveryFormData.city">
+             [(ngModel)]="deliveryFormData.city" (ngModelChange)="formDataChange.emit(deliveryFormData)">
     </div>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="state">State</label>
       <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="state" name="state" required
-             [(ngModel)]="deliveryFormData.state">
+             [(ngModel)]="deliveryFormData.state" (ngModelChange)="formDataChange.emit(deliveryFormData)">
     </div>
     <div class="mb-4">
       <label class="block text-gray-400 mb-2" for="zip">Zip Code</label>
       <input class="w-full p-2 rounded-md bg-gray-700 text-white" type="text" id="zip" name="zip" required
-             [(ngModel)]="deliveryFormData.zip">
+             [(ngModel)]="deliveryFormData.zip" (ngModelChange)="formDataChange.emit(deliveryFormData)">
     </div>
   </form>
 </div>

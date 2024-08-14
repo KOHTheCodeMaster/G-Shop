@@ -6,7 +6,7 @@
 
   <div class="flex justify-between space-x-6">
     <div class="w-1/2">
-      <app-delivery-form class="h-full"></app-delivery-form>
+      <app-delivery-form class="h-full" (formDataChange)="updateDeliveryFormData($event)"></app-delivery-form>
     </div>
     <div class="w-1/2">
       <app-order-summary [cart]="cart" class="h-full"></app-order-summary>
@@ -15,7 +15,7 @@
 
   <footer class="text-center mt-8">
     <button class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-            (click)="confirmOrder()">Confirm Order
+            (click)="placeOrder()">Place Order
     </button>
   </footer>
 </div>

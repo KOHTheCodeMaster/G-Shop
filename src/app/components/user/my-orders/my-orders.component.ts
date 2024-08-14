@@ -17,4 +17,9 @@ export class MyOrdersComponent {
         this.orders = JSON.parse(localStorage.getItem('orders') || '[]');
     }
 
+    viewOrderDetails(id: number) {
+        console.log('L0G - [my-orders.component] - viewOrderDetails() - Method Invoked.');
+        console.log('L0G - viewOrderDetails() - Order ID: ' + id);
+    }
+
 }

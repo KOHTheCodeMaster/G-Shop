@@ -35,7 +35,10 @@ export class NavbarComponent {
 
     fetchShoppingCartItemsCount(): number {
         let tempCartList: Cart[] = JSON.parse(localStorage.getItem(this.keyShoppingCart) || '');
-        return tempCartList[0].totalQty;
+
+        //  Return 0 if cart is empty, else return total quantity of products in cart
+        if (!tempCartList || tempCartList.length === 0) return 0;
+        else return tempCartList[0].totalQty;
     }
 
     handleBrandBtnClick() {

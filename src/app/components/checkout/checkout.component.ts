@@ -6,28 +6,48 @@ import {DeliveryFormComponent} from "./delivery-form/delivery-form.component";
 import {OrderSummaryComponent} from "./order-summary/order-summary.component";
 import {Order} from "../../interface/Order";
 import {Router} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {DeliveryFormData} from "../../interface/DeliveryFormData";
 
 @Component({
     selector: 'app-checkout',
     standalone: true,
-    imports: [CurrencyPipe, NgIf, NgFor, DeliveryFormComponent, OrderSummaryComponent],
+    imports: [CurrencyPipe, NgIf, NgFor, DeliveryFormComponent, OrderSummaryComponent, FormsModule],
     templateUrl: './checkout.component.html',
     styleUrl: './checkout.component.css'
 })
 export class CheckoutComponent {
 
     cart: Cart;
-    orderIdCounter: number = 1;
+    order: Order;
+    orderIdCounter: number;
 
-    constructor(shoppingCartService: ShoppingCartService, private router: Router) {
+    constructor(private shoppingCartService: ShoppingCartService, private router: Router) {
         this.cart = shoppingCartService.cartList[0];
+        this.orderIdCounter = JSON.parse(localStorage.getItem('orders') || '[]').length + 1;
+        this.order = this.createDummyOrder();
     }
 
-    confirmOrder() {
+    placeOrder() {
+        //  Save order to localStorage
+        let orders: Order[] = JSON.parse(localStorage.getItem('orders') || '[]');
+        orders.push(this.order);
+        localStorage.setItem('orders', JSON.stringify(orders));
 
-        //  Create a Dummy Order
+        //  Clear Cart & reset local storage
+        this.shoppingCartService.removeAllProductsFromCart();
+        this.cart = this.shoppingCartService.getCartList()[0];
 
-        const order: Order = {
+        this.router.navigate(['/user/my-orders']);  //  Redirect to my-orders page
+
+    }
+
+    updateDeliveryFormData(deliveryFormData: DeliveryFormData) {
+        this.order.deliveryFormData = deliveryFormData;
+    }
+
+    createDummyOrder(): Order {
+        return {
             id: this.orderIdCounter++,
             cart: this.cart,
             deliveryFormData: {
@@ -39,15 +59,6 @@ export class CheckoutComponent {
             },
             orderDate: new Date()
         };
-
-        // Save order to localStorage or a service
-        let orders: Order[] = JSON.parse(localStorage.getItem('orders') || '[]');
-        orders.push(order);
-        localStorage.setItem('orders', JSON.stringify(orders));
-
-        // Navigate to My Orders page
-        this.router.navigate(['/user/my-orders']);
-
     }
 
 }

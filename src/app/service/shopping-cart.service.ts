@@ -25,8 +25,9 @@ export class ShoppingCartService {
         //  Update local storage with an empty carts list if not already present
         if (!storedCarts) localStorage.setItem(this.keyShoppingCart, strTempEmptyCartList);
 
-        //  Initialize the cart products list using the first cart in the carts list
-        this.cartProductList = this.cartList[0].cartProducts;
+        //  Initialize the cart products list if the cart list is not empty, otherwise assign an empty array
+        if (this.cartList.length > 0) this.cartProductList = this.cartList[0].cartProducts;
+        else this.cartProductList = [];
 
     }
 

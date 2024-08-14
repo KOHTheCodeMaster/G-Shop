@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {DeliveryFormData} from '../../../interface/DeliveryFormData';
 import {FormsModule} from "@angular/forms";
 
@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 export class DeliveryFormComponent {
 
     deliveryFormData: DeliveryFormData;
+    @Output() formDataChange: EventEmitter<DeliveryFormData> = new EventEmitter<DeliveryFormData>();
 
     constructor() {
 
@@ -23,5 +24,9 @@ export class DeliveryFormComponent {
             state: 'Rajasthan',
             zip: '123456'
         };
+
+        this.formDataChange.emit(this.deliveryFormData);
+
     }
+
 }
