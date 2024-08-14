@@ -1,0 +1,29 @@
+
+Time Stamp: 14th Aug 2K24 - 11:47 AM..!!
+
+Title: G-Shop - Pending Tasks To-Do List
+
+Category: Documentation -> Pending Tasks -> To-Do List
+
+Keywords: Pending Tasks, To-Do List, G-Shop Project, Task Tracking
+
+Purpose: Track To-Do tasks for the G-Shop project and ensure timely completion of pending tasks.
+
+Version: 0.1
+
+Dev: K.O.H..!! (Harshit Gupta)
+
+GitHub: https://github.com/KOHTheCodeMaster/
+
+----------------------------------------------------------------------------------------------------
+
+
+G-Shop - Pending Tasks To-Do List
+---------------------------------
+
+1. Refactor `cartUpdated` of `ShoppingCartService` to use getter and setter methods for better data handling.
+2. Local Storage Manager Service - Implement a service to manage local storage operations for cart data.
+
+
+----------------------------------------------------------------------------------------------------
+

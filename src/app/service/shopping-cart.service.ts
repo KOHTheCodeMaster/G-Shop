@@ -8,28 +8,31 @@ import {CartProduct} from "../interface/CartProduct";
 })
 export class ShoppingCartService {
 
-    cartList: Cart[] = [];
-    cartProductList: CartProduct[];
+    private cartList: Cart[] = [];
+    private cartProductList: CartProduct[];
     private keyShoppingCart: string = 'shopping-cart';
     cartUpdated: OutputEmitterRef<void> = output();
 
     constructor() {
+        this.cartList = this.initCartList();
+        this.cartProductList = this.initCartProductList();
+    }
 
-        //  Create a temporary empty cart list
+    initCartList() {
         let strTempEmptyCartList: string = JSON.stringify([this.getEmptyCartForGuestUser()]);
-
-        //  Initialize carts list
-        //  Get the stored carts from local storage
         let storedCarts: string | null = localStorage.getItem(this.keyShoppingCart);
-        this.cartList = JSON.parse(storedCarts || strTempEmptyCartList); //  Initialize the carts list
-        //  Update local storage with an empty carts list if not already present
+
+        //  If storedCarts is null, initialize the local storage with an empty cart list
         if (!storedCarts) localStorage.setItem(this.keyShoppingCart, strTempEmptyCartList);
 
-        //  Initialize the cart products list if the cart list is not empty, otherwise assign an empty array
-        if (this.cartList.length > 0) this.cartProductList = this.cartList[0].cartProducts;
-        else this.cartProductList = [];
-
+        return JSON.parse(storedCarts || strTempEmptyCartList);
     }
+
+    private initCartProductList() {
+        //  Return the cart products list if cart is not empty, else return an empty list
+        return this.cartList.length > 0 ? this.cartList[0].cartProducts : [];
+    }
+
 
     private getEmptyCartForGuestUser(): Cart {
         return {
@@ -95,7 +98,6 @@ export class ShoppingCartService {
         this.cartList[0].totalPrice -= product.unitPrice;
         this.cartList[0].totalQty -= 1;
         localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
-
         this.cartUpdated.emit();
 
     }
@@ -108,8 +110,8 @@ export class ShoppingCartService {
         this.cartUpdated.emit();
     }
 
-    public getCartList(): Cart[] {
-        return this.cartList;
+    getCart(): Cart {
+        return this.cartList.length > 0 ? this.cartList[0] : this.getEmptyCartForGuestUser();
     }
 
 }

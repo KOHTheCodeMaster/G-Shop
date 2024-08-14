@@ -23,7 +23,7 @@ export class CheckoutComponent {
     orderIdCounter: number;
 
     constructor(private shoppingCartService: ShoppingCartService, private router: Router) {
-        this.cart = shoppingCartService.cartList[0];
+        this.cart = shoppingCartService.getCart();
         this.orderIdCounter = JSON.parse(localStorage.getItem('orders') || '[]').length + 1;
         this.order = this.createDummyOrder();
     }
@@ -36,7 +36,7 @@ export class CheckoutComponent {
 
         //  Clear Cart & reset local storage
         this.shoppingCartService.removeAllProductsFromCart();
-        this.cart = this.shoppingCartService.getCartList()[0];
+        this.cart = this.shoppingCartService.getCart();
 
         this.router.navigate(['/user/my-orders']);  //  Redirect to my-orders page
 

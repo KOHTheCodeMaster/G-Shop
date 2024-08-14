@@ -4,7 +4,6 @@ import {Router, RouterLink} from "@angular/router";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {AuthService} from "../../service/auth.service";
 import {TestingMenuComponent} from "./testing-menu/testing-menu.component";
-import {Cart} from "../../interface/Cart";
 import {ShoppingCartService} from "../../service/shopping-cart.service";
 
 @Component({
@@ -20,25 +19,17 @@ export class NavbarComponent {
     shoppingCartClicked: OutputEmitterRef<void> = output();
     loginClicked: OutputEmitterRef<void> = output();
     shoppingCartItemsCount: number;
-    private keyShoppingCart: string = 'shopping-cart';
 
     constructor(public authService: AuthService, shoppingCartService: ShoppingCartService, private router: Router) {
 
-        this.shoppingCartItemsCount = this.fetchShoppingCartItemsCount();   //  Initialize shopping cart items count
+        //  Get the shopping cart items count
+        this.shoppingCartItemsCount = shoppingCartService.getCart().totalQty;
 
         //  Whenever cart is updated, update the shopping cart items count
         shoppingCartService.cartUpdated.subscribe(() => {
-            this.shoppingCartItemsCount = this.fetchShoppingCartItemsCount();
+            this.shoppingCartItemsCount = shoppingCartService.getCart().totalQty;
         });
 
-    }
-
-    fetchShoppingCartItemsCount(): number {
-        let tempCartList: Cart[] = JSON.parse(localStorage.getItem(this.keyShoppingCart) || '');
-
-        //  Return 0 if cart is empty, else return total quantity of products in cart
-        if (!tempCartList || tempCartList.length === 0) return 0;
-        else return tempCartList[0].totalQty;
     }
 
     handleBrandBtnClick() {

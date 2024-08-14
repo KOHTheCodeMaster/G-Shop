@@ -21,6 +21,37 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #56 - Improved cart data initialization and consistency across shopping cart, checkout, and navbar components
+
+Total Time:   37 minutes
+- Time Started: 14th Aug 2K24 - 12:47 PM    |    Time Ended:   14th Aug 2K24 - 12:50 PM    |    Duration:    3 minutes
+- Time Started: 14th Aug 2K24 - 12:28 PM    |    Time Ended:   14th Aug 2K24 - 12:40 PM    |    Duration:    12 minutes
+- Time Started: 14th Aug 2K24 - 11:42 AM    |    Time Ended:   14th Aug 2K24 - 12:07 PM    |    Duration:    25 minutes
+
+Changes:
+--------
+
+1. Added `initCartList()` & `initCartProductList()` methods in Shopping Cart Service to properly initialize cart data.
+   - File: `shopping-cart.service.ts`
+   - Added `initCartList()` method to initialize the cart list from local storage or create a new cart list.
+   - Added `initCartProductList()` method to initialize the cart products list using `cart` if available, else create an empty array.
+   - Added `getCart()` method to fetch the cart data from local storage or create a new cart if not available.
+
+2. Updated Checkout Component to initialize `cart` correctly using `shoppingCartService.getCart()` method.
+   - File: `checkout.component.ts`
+   - Updated the `cart` initialization in the Checkout Component to use the `getCart()` method from the Shopping Cart Service.
+
+3. Updated Navbar Component to fetch the total quantity of products in the cart using `shoppingCartService`
+   - File: `navbar.component.ts`
+   - Removed `fetchShoppingCartItemsCount()` method from the Navbar Component and updated the total quantity calculation using `getCart()` method.
+
+4. Replaced `cartList` with `cart` in Shopping Cart Component and updated the initialization logic.
+   - File: `shopping-cart.component.ts`
+   - Updated the Shopping Cart Component to use `cart` instead of `cartList` for better consistency.
+   - Updated the initialization logic to use `getCart()` method from the Shopping Cart Service.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #55 - Enhance Order Processing, My Orders Layout, Delivery Form Event Handling, and Fix Cart Initialization & undefined NPE issues
 
 Total Time:   1 hour 14 minutes

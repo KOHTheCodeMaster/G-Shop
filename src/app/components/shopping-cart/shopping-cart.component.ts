@@ -15,10 +15,11 @@ import {Router} from "@angular/router";
 export class ShoppingCartComponent {
 
     textContent: string = 'Shopping Cart';
-    cartList: Cart[];
+    // cartList: Cart[];
+    cart: Cart;
 
     constructor(private shoppingCartService: ShoppingCartService, private router: Router) {
-        this.cartList = shoppingCartService.getCartList();
+        this.cart = shoppingCartService.getCart();
     }
 
     incrementQty(cartProduct: Product) {
