@@ -1,42 +1,45 @@
 <div class="container mx-auto p-6 bg-gray-900 text-white">
   <header class="text-center mb-8">
     <h1 class="text-4xl font-bold text-yellow-300">{{ textContent }}</h1>
-    <p class="text-lg mt-2">You have {{ cart.totalQty || 0 }} items in your cart</p>
-    <p class="text-lg">Total: {{ cart.totalPrice | currency:'INR':'symbol' }}</p>
+    <p *ngIf="cart.totalPrice > 0" class="text-lg mt-2">You have {{ cart.totalQty || 0 }} items in your cart</p>
   </header>
 
   <div *ngIf="cart.cartProducts.length > 0; else emptyCart" class="space-y-6">
-      <div class="flex justify-between items-center mb-4">
-        <div>
-          <p class="text-lg font-semibold">{{ cart.user.username }} ({{ cart.user.email }})</p>
-          <p class="text-gray-400">Total: {{ cart.totalPrice | currency:'INR':'symbol' }}</p>
-        </div>
-        <button (click)="clearCartBtnClick()" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700">Clear</button>
+    <div class="flex justify-between items-center mb-4">
+      <div>
+        <p class="text-lg font-bold bg-gray-900">Total: {{ cart.totalPrice | currency:'INR':'symbol' }}</p>
       </div>
-      <ul class="space-y-4">
-        <li *ngFor="let cartProduct of cart.cartProducts" class="border-b border-gray-700 pb-4">
-          <div class="flex justify-between items-center bg-gray-700 p-4 rounded-md shadow-sm">
-            <div class="flex items-center space-x-4">
-              <img [src]="cartProduct.product.imageUrl" alt="{{ cartProduct.product.name }}"
-                   class="w-16 h-16 object-cover rounded-md">
-              <div>
-                <h3 class="text-2xl font-semibold text-white">{{ cartProduct.product.name }}</h3>
-                <p class="text-gray-400"><span
-                  class="text-sm text-white">{{ cartProduct.subtotalPrice | currency:'INR':'symbol' }}</span></p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <button (click)="decrementQty(cartProduct.product)"
-                      class="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-700">-
-              </button>
-              <span class="text-lg font-bold text-white">{{ cartProduct.quantity }}</span>
-              <button (click)="incrementQty(cartProduct.product)"
-                      class="px-2 py-1 bg-green-500 text-white rounded-md hover:bg-green-700">+
-              </button>
+      <button (click)="clearCartBtnClick()" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700">
+        Clear
+      </button>
+    </div>
+    <ul class="space-y-4">
+      <li *ngFor="let cartProduct of cart.cartProducts" class="border-b border-gray-700 pb-4">
+        <div class="flex justify-between items-center bg-gray-700 p-4 rounded-md shadow-sm">
+          <div class="flex items-center space-x-4">
+            <img [src]="cartProduct.product.imageUrl" alt="{{ cartProduct.product.name }}"
+                 class="w-16 h-16 object-cover rounded-md">
+            <div>
+              <h3 class="text-2xl font-semibold text-white">{{ cartProduct.product.name }}</h3>
+              <p class="text-gray-400">
+                <span class="text-sm text-white">
+                  {{ cartProduct.subtotalPrice | currency:'INR':'symbol' }}
+                </span>
+              </p>
             </div>
           </div>
-        </li>
-      </ul>
+          <div class="flex items-center space-x-2">
+            <button (click)="decrementQty(cartProduct.product)"
+                    class="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-700">-
+            </button>
+            <span class="text-lg font-bold text-white">{{ cartProduct.quantity }}</span>
+            <button (click)="incrementQty(cartProduct.product)"
+                    class="px-2 py-1 bg-green-500 text-white rounded-md hover:bg-green-700">+
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 
   <ng-template #emptyCart>
@@ -45,6 +48,10 @@
 
   <footer class="text-center mt-8">
     <button (click)="checkoutBtnClick()"
-            class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700">Proceed to Checkout</button>
+            [disabled]="cart.cartProducts.length === 0"
+            [title]="cart.cartProducts.length === 0 ? 'Your cart is empty' : ''"
+            class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700
+                    disabled:opacity-50 disabled:cursor-not-allowed">Proceed to Checkout
+    </button>
   </footer>
 </div>

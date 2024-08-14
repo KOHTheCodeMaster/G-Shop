@@ -21,6 +21,38 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #57 - Added View Order Component, Updated route and navigation, Enhanced UX with empty cart message & disabled buttons in Shopping Cart and Checkout components
+
+Time Started: 14th Aug 2K24 - 03:51 PM    |    Time Ended:   14th Aug 2K24 - 04:38 PM    |    Duration:    47 minutes
+
+Changes:
+--------
+
+1. Added View Order Component
+   - File: `view-order.component.html`, `view-order.component.ts`
+   - Created a new component to display the details of a single order.
+   - Designed the layout to show order details including order id, date, total price, and products.
+   - Using ActivatedRoute to fetch the order id from the URL and display the corresponding order details.
+
+2. Added route for View Order Component
+   - File: `app.routes.ts`
+   - Added a new route for the View Order Component with the path `user/my-orders/:orderId`.
+
+3. Navigation to View Order Component
+   - File: `my-orders.component.html`, `my-orders.component.ts`
+   - Updated 'View Details' button in the My Orders Component to navigate to the View Order Component.
+   - Implemented `viewOrderDetails()` method to navigate to the View Order Component with the order id.
+
+4. Enhanced User Experience by displaying "Your Cart is Empty" message in Shopping Cart Component & Checkout Component
+   - File: `shopping-cart.component.html`, `checkout.component.html`
+   - Added a message to display when the cart is empty in the Shopping Cart and Checkout Components.
+   - The message is shown when there are no products in the cart.
+   - Disabled the 'Proceed to Checkout' button in the Shopping Cart Component when the cart is empty.
+   - Disabled the 'Place Order' button in the Checkout Component when the cart is empty.
+
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #56 - Improved cart data initialization and consistency across shopping cart, checkout, and navbar components
 
 Total Time:   37 minutes

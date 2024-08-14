@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Order} from '../../../interface/Order';
 import {CurrencyPipe, DatePipe, NgFor, NgIf} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-my-orders',
@@ -13,13 +14,12 @@ export class MyOrdersComponent {
 
     orders: Order[] = [];
 
-    constructor() {
+    constructor(private router: Router) {
         this.orders = JSON.parse(localStorage.getItem('orders') || '[]');
     }
 
     viewOrderDetails(id: number) {
-        console.log('L0G - [my-orders.component] - viewOrderDetails() - Method Invoked.');
-        console.log('L0G - viewOrderDetails() - Order ID: ' + id);
+        this.router.navigate(['/user/my-orders', id]);
     }
 
 }

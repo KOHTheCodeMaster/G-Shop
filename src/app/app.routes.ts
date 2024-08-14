@@ -12,6 +12,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {AuthGuardService} from "./service/auth-guard.service";
 import {AdminAuthGuardService} from "./service/admin-auth-guard.service";
 import {ProductFormComponent} from "./components/admin/product-form/product-form.component";
+import {ViewOrderComponent} from "./components/view-order/view-order.component";
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -26,6 +27,7 @@ export const routes: Routes = [
     {path: 'order-success', component: OrderSuccessComponent},
     {path: 'login', component: LoginComponent},
 
+    {path: 'user/my-orders/:orderId', component: ViewOrderComponent},
     {path: 'user/my-orders', component: MyOrdersComponent},
     {path: 'user/logout', component: LogoutComponent},
 

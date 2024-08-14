@@ -1,10 +1,10 @@
 <div class="container mx-auto p-6 bg-gray-900 text-white">
   <header class="text-center mb-8">
     <h1 class="text-4xl font-bold text-yellow-300">Order Summary</h1>
-    <p class="text-lg mt-2">Review your items before placing the order</p>
+    <p *ngIf="cart.cartProducts.length > 0" class="text-lg mt-2">Review your items before placing the order</p>
   </header>
 
-  <div class="flex justify-between space-x-6">
+  <div *ngIf="cart.cartProducts.length > 0; else emptyCart" class="flex justify-between space-x-6">
     <div class="w-1/2">
       <app-delivery-form class="h-full" (formDataChange)="updateDeliveryFormData($event)"></app-delivery-form>
     </div>
@@ -14,8 +14,17 @@
   </div>
 
   <footer class="text-center mt-8">
-    <button class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-            (click)="placeOrder()">Place Order
+    <button
+      class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700
+              disabled:opacity-50 disabled:cursor-not-allowed"
+      [disabled]="cart.cartProducts.length === 0"
+      [title]="cart.cartProducts.length === 0 ? 'Your cart is empty' : ''"
+      (click)="placeOrder()">Place Order
     </button>
   </footer>
+
+  <ng-template #emptyCart>
+    <p class="text-center text-gray-500">Your cart is empty.</p>
+  </ng-template>
+
 </div>
