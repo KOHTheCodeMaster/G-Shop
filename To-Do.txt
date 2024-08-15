@@ -18,12 +18,34 @@ GitHub: https://github.com/KOHTheCodeMaster/
 ----------------------------------------------------------------------------------------------------
 
 
-G-Shop - Pending Tasks To-Do List
----------------------------------
+Bugs & Issues:
+--------------
+
+1. When the logged-in User is changed, the Cart's total product qty in Navbar & Product qty at Home Page is not updated
+2. Order Id is not being generated correctly for new orders in the My Orders Component
+3. My Orders Component is not displaying the correct order details for the logged-in user
+4. Trace `orderDate` field of Order in Checkout Component
+  - Need to check when exactly the orderDate is changed for new orders in Checkout Component
+5. Move the below methods from AuthService to UserService for better code organization:
+  - `getGuestUser()`, `getUserById()`, `getCurrentUserId()`
+
+---
+
+G-Shop - Pending Tasks To-Do List:
+----------------------------------
 
 1. Refactor `cartUpdated` of `ShoppingCartService` to use getter and setter methods for better data handling.
 2. Local Storage Manager Service - Implement a service to manage local storage operations for cart data.
 
+---
+
+Out of Scope:
+-------------
+
+1. Managing Orders - Implementing order management functionality is out of scope for the current phase of the project.
+3. User Management - Implementing user management functionality is out of scope for the current phase of the project.
+2. User Registration - User registration feature is not required for the current phase of the project.
+4. Managing User Profile - Implementing user profile management is not required for the current phase of the project.
+
 
 ----------------------------------------------------------------------------------------------------
-

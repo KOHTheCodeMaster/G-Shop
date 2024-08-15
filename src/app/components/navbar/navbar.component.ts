@@ -23,11 +23,11 @@ export class NavbarComponent {
     constructor(public authService: AuthService, shoppingCartService: ShoppingCartService, private router: Router) {
 
         //  Get the shopping cart items count
-        this.shoppingCartItemsCount = shoppingCartService.getCart().totalQty;
+        this.shoppingCartItemsCount = shoppingCartService.getCartForCurrentUser().totalQty;
 
         //  Whenever cart is updated, update the shopping cart items count
         shoppingCartService.cartUpdated.subscribe(() => {
-            this.shoppingCartItemsCount = shoppingCartService.getCart().totalQty;
+            this.shoppingCartItemsCount = shoppingCartService.getCartForCurrentUser().totalQty;
         });
 
     }

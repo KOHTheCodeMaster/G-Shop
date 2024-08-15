@@ -16,11 +16,18 @@
       <div id="testing-options-menu" class="absolute right-0 z-10 mt-2 w-fit origin-top-right rounded-md bg-gray-700
               shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-600">
         <div (click)="toggleOptionsMenu()" class="py-1">
-          <button (click)="loginUserAdminBtnClicked()" class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full">
-            Login as Admin
+          <button (click)="loginAdminUserBtnClicked()" class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full">
+            Login 'Admin'
           </button>
-          <button (click)="loginUserTestBtnClicked()" class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full">
-            Login as Test User
+          <button (click)="loginTestUser1BtnClicked()" class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full">
+            Login 'Test User 1'
+          </button>
+          <button (click)="loginJohnUserBtnClicked()" class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full">
+            Login 'John'
+          </button>
+          <button (click)="clearLocalStorageBtnClicked()"
+                  class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full">
+            Clear Local Storage
           </button>
         </div>
       </div>

@@ -21,7 +21,7 @@ export class TestingMenuComponent {
         this.optionsOpened = !this.optionsOpened;   // Options Btn Click Handler to toggle the dropdown visibility
     }
 
-    loginUserAdminBtnClicked() {
+    loginAdminUserBtnClicked() {
         // console.log('L0G - [testing-menu.component] - loginUserAdminBtnClicked() - Method Invoked.');
 
         let adminUser: User = {
@@ -35,7 +35,7 @@ export class TestingMenuComponent {
         this.handleUserLogin(adminUser);
     }
 
-    loginUserTestBtnClicked() {
+    loginTestUser1BtnClicked() {
         // console.log('L0G - [testing-menu.component] - loginUserTestBtnClicked() - Method Invoked.');
 
         let testUser: User = {
@@ -49,8 +49,36 @@ export class TestingMenuComponent {
         this.handleUserLogin(testUser);
     }
 
+    loginJohnUserBtnClicked() {
+        // console.log('L0G - [testing-menu.component] - loginUserTestBtnClicked() - Method Invoked.');
+
+        let testUser: User = {
+            "id": 1,
+            "username": "John",
+            "email": "john@gmail.com",
+            "password": "john",
+            "admin": false
+        };
+
+        this.handleUserLogin(testUser);
+    }
+
     private handleUserLogin(user: User) {
         this.authService.login(user.email, user.password);
+    }
+
+    clearLocalStorageBtnClicked() {
+
+        console.log('L0G - [testing-menu.component] - clearLocalStorageBtnClicked() - Local Storage Cleared.');
+
+        //  Reset Local Storage to clear all data
+        localStorage.removeItem('products');
+        localStorage.removeItem('orders');
+        localStorage.removeItem('shopping-cart');
+        localStorage.removeItem('returnUrl');
+
+        window.location.reload();   //  Reload the page to reflect the changes
+
     }
 
 }

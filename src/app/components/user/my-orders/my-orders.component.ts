@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Order} from '../../../interface/Order';
 import {CurrencyPipe, DatePipe, NgFor, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
     selector: 'app-my-orders',
@@ -12,10 +13,12 @@ import {Router} from "@angular/router";
 })
 export class MyOrdersComponent {
 
+    allOrders: { [key: number]: Order[] };
     orders: Order[] = [];
 
-    constructor(private router: Router) {
-        this.orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    constructor(private router: Router, authService: AuthService) {
+        this.allOrders = JSON.parse(localStorage.getItem('orders') || '{}');
+        this.orders = this.allOrders[authService.getCurrentUserId()] || []; //  Get orders for the current user
     }
 
     viewOrderDetails(id: number) {

@@ -8,6 +8,7 @@ import {Order} from "../../interface/Order";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {DeliveryFormData} from "../../interface/DeliveryFormData";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
     selector: 'app-checkout',
@@ -22,21 +23,24 @@ export class CheckoutComponent {
     order: Order;
     orderIdCounter: number;
 
-    constructor(private shoppingCartService: ShoppingCartService, private router: Router) {
-        this.cart = shoppingCartService.getCart();
+    constructor(private shoppingCartService: ShoppingCartService, private router: Router, private authService: AuthService) {
+        this.cart = shoppingCartService.getCartForCurrentUser();
         this.orderIdCounter = JSON.parse(localStorage.getItem('orders') || '[]').length + 1;
         this.order = this.createDummyOrder();
     }
 
     placeOrder() {
-        //  Save order to localStorage
-        let orders: Order[] = JSON.parse(localStorage.getItem('orders') || '[]');
-        orders.push(this.order);
-        localStorage.setItem('orders', JSON.stringify(orders));
+        const userId = this.authService.getCurrentUserId();
+        let allOrders: { [key: number]: Order[] } = JSON.parse(localStorage.getItem('orders') || '{}');
 
-        //  Clear Cart & reset local storage
-        this.shoppingCartService.removeAllProductsFromCart();
-        this.cart = this.shoppingCartService.getCart();
+        //  If user doesn't have any orders, create an empty array for the current user
+        if (!allOrders[userId]) allOrders[userId] = [];
+
+        //  Add current order to the allOrders array for the current user & save to local storage
+        allOrders[userId].push({...this.order, cart: this.cart});
+        localStorage.setItem('orders', JSON.stringify(allOrders));
+
+        this.shoppingCartService.removeAllProductsFromCart();   //  Clear Current User Cart
 
         this.router.navigate(['/user/my-orders']);  //  Redirect to my-orders page
 

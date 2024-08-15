@@ -2,6 +2,7 @@ import {Injectable, output, OutputEmitterRef} from '@angular/core';
 import {Product} from "../interface/Product";
 import {Cart} from "../interface/Cart";
 import {CartProduct} from "../interface/CartProduct";
+import {AuthService} from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -9,13 +10,13 @@ import {CartProduct} from "../interface/CartProduct";
 export class ShoppingCartService {
 
     private cartList: Cart[] = [];
-    private cartProductList: CartProduct[];
+    // private cartProductList: CartProduct[];
     private keyShoppingCart: string = 'shopping-cart';
     cartUpdated: OutputEmitterRef<void> = output();
 
-    constructor() {
+    constructor(private authService: AuthService) {
         this.cartList = this.initCartList();
-        this.cartProductList = this.initCartProductList();
+        // this.cartProductList = this.initCartProductList();
     }
 
     initCartList() {
@@ -28,16 +29,15 @@ export class ShoppingCartService {
         return JSON.parse(storedCarts || strTempEmptyCartList);
     }
 
-    private initCartProductList() {
-        //  Return the cart products list if cart is not empty, else return an empty list
-        return this.cartList.length > 0 ? this.cartList[0].cartProducts : [];
-    }
-
+    // private initCartProductList() {
+    //     const userCart = this.cartList.find(cart => cart.user.id === this.authService.getCurrentUserId());
+    //     return userCart ? userCart.cartProducts : [];
+    // }
 
     private getEmptyCartForGuestUser(): Cart {
         return {
             id: 0,
-            user: {id: 101, username: 'guest', email: 'guest@abc.xyz', password: 'guest', admin: false},
+            user: this.authService.getGuestUser(),
             cartProducts: [],
             totalPrice: 0,
             totalQty: 0
@@ -45,15 +45,28 @@ export class ShoppingCartService {
     }
 
     getProductQuantity(productId: number): number {
-        const existingCartProduct: CartProduct | undefined = this.cartProductList.find(
-            cartProduct => cartProduct.product.id === productId);
+
+        //  Get the cart product for the current user with the specified product id
+        let existingCartProduct: CartProduct | undefined = this.getCartForCurrentUser().cartProducts
+            .find(cartProduct => cartProduct.product.id === productId);
+
+        //  If the cart product exists, return the quantity, else return 0
         return existingCartProduct ? existingCartProduct.quantity : 0;
+
     }
 
     addProductToCart(product: Product) {
 
-        // Find the existing cart product
-        const existingCartProduct: CartProduct | undefined = this.cartProductList.find(
+        let userCart = this.getCartForCurrentUser();
+
+        //  If the user cart does not exist, create a new cart for the current user
+        if (!userCart) {
+            userCart = this.getEmptyCartForGuestUser();
+            userCart.user = this.authService.getCurrentUser();
+            this.cartList.push(userCart);
+        }
+
+        const existingCartProduct: CartProduct | undefined = userCart.cartProducts.find(
             cartProduct => cartProduct.product.id === product.id);
 
         if (existingCartProduct) {
@@ -63,55 +76,110 @@ export class ShoppingCartService {
         } else {
             // Add the product to the cart products list if it does not already exist in the cart
             let tempCartProduct: CartProduct = {
-                id: this.cartProductList.length + 1,
+                id: userCart.cartProducts.length + 1,
                 product: product,
                 subtotalPrice: product.unitPrice,
                 quantity: 1
             };
-            this.cartProductList.push(tempCartProduct);
+            userCart.cartProducts.push(tempCartProduct);
         }
 
-        //  Update the cart products list, total price and total quantity in the cart list
-        this.cartList[0].cartProducts = this.cartProductList;
-        this.cartList[0].totalPrice += product.unitPrice;
-        this.cartList[0].totalQty += 1;
+        userCart.totalPrice += product.unitPrice;
+        userCart.totalQty += 1;
         localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
-
         this.cartUpdated.emit();
 
     }
 
     removeProductFromCart(product: Product) {
-        const existingCartProduct: CartProduct | undefined = this.cartProductList.find(
-            cartProduct => cartProduct.product.id === product.id);
 
-        if (existingCartProduct) {
-            existingCartProduct.quantity -= 1;
+        let userCart: Cart = this.getCartForCurrentUser();
 
-            if (existingCartProduct.quantity > 0) existingCartProduct.subtotalPrice -= product.unitPrice;
-            else this.cartProductList = this.cartProductList
-                .filter(cartProduct => cartProduct.product.id !== product.id);
+        if (userCart) {
+            const existingCartProduct: CartProduct | undefined = userCart.cartProducts.find(
+                cartProduct => cartProduct.product.id === product.id);
+
+            if (existingCartProduct) {
+                existingCartProduct.quantity -= 1;
+
+                //  If quantity is greater than 0, decrement the total price, else remove the product from cart
+                if (existingCartProduct.quantity > 0) existingCartProduct.subtotalPrice -= product.unitPrice;
+                else userCart.cartProducts = userCart.cartProducts
+                    .filter(cartProduct => cartProduct.product.id !== product.id);
+            }
+
+            userCart.totalPrice -= product.unitPrice;
+            userCart.totalQty -= 1;
+            localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+            this.cartUpdated.emit();
         }
-
-        //  Update the cart products list, total price and total quantity in the cart list
-        this.cartList[0].cartProducts = this.cartProductList;
-        this.cartList[0].totalPrice -= product.unitPrice;
-        this.cartList[0].totalQty -= 1;
-        localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
-        this.cartUpdated.emit();
 
     }
 
     public removeAllProductsFromCart() {
-        this.cartList[0].cartProducts = this.cartProductList = [];
-        this.cartList[0].totalPrice = 0;
-        this.cartList[0].totalQty = 0;
-        localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
-        this.cartUpdated.emit();
+
+        let userCart = this.getCartForCurrentUser();
+
+        if (userCart) {
+            userCart.cartProducts = [];
+            userCart.totalPrice = 0;
+            userCart.totalQty = 0;
+            localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+            this.cartUpdated.emit();
+        }
+
     }
 
-    getCart(): Cart {
-        return this.cartList.length > 0 ? this.cartList[0] : this.getEmptyCartForGuestUser();
+    updateCartForUserId(userId: number, cart: Cart) {
+
+        let existingCart: Cart | undefined = this.cartList.find(cart => cart.user.id === userId);
+
+        if (existingCart) {
+            existingCart.cartProducts = cart.cartProducts;
+            existingCart.totalPrice = cart.totalPrice;
+            existingCart.totalQty = cart.totalQty;
+        } else {
+            let tempNewCart: Cart = this.getCopyOfCart(cart);
+            tempNewCart.user = this.authService.getUserById(userId);
+            this.cartList.push(tempNewCart);
+        }
+
+        localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+
+    }
+
+    getCopyOfCart(cartToBeCopied: Cart): Cart {
+        //  Return a deep copy of the cartToBeCopied to avoid reference issues.
+        return {
+            id: cartToBeCopied.id,
+            user: cartToBeCopied.user,
+            cartProducts: cartToBeCopied.cartProducts.map(cartProduct => ({...cartProduct})),
+            totalPrice: cartToBeCopied.totalPrice,
+            totalQty: cartToBeCopied.totalQty
+        };
+    }
+
+    getCartByUserId(userId: number): Cart {
+        return this.cartList.find(cart => cart.user.id === userId) || this.getEmptyCartForGuestUser();
+    }
+
+    getCartForCurrentUser(): Cart {
+        return this.getCartByUserId(this.authService.getCurrentUserId());
+    }
+
+    getCartForGuestUser(): Cart {
+        return this.getCartByUserId(0);
+    }
+
+    initializeCurrentUserCart() {
+
+        const userId = this.authService.getCurrentUserId();
+        let userCart = this.getCartByUserId(userId);
+        let guestCart = this.getCartForGuestUser();
+
+        //  If the user cart is empty and the guest cart is not, update the user cart with the guest cart
+        if (userCart.totalQty === 0 && guestCart.totalQty > 0) this.updateCartForUserId(userId, guestCart);
+
     }
 
 }

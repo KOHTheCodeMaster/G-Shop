@@ -21,6 +21,85 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #59 - User-specific Cart Management, Updated Components to handle multi-user cart data, and Enhanced options & test menu for multiple users & clearing local storage
+
+Time Started: 14th Aug 2K24 - 06:43 PM    |    Time Ended:   14th Aug 2K24 - 07:11 PM    |    Duration:    28 minutes
+
+Changes:
+--------
+
+1. MAJOR CHANGES - Updated Shopping Cart Service significantly to handle cart data for multiple users
+   - File: `shopping-cart.service.ts`
+   - Added `initializeUserCart()` method to initialize the cart data for the current user.
+      - When the user is a guest user, initialize the cart data for the guest user.
+      - When the user is an authenticated user, initialize the cart data for the authenticated user.
+      - When the User Cart is empty, and Guest Cart is available, initialize the User Cart with the Guest Cart data.
+      - When the User Cart is already initialized, fetch the cart data from local storage and update the cart data accordingly.
+      - This ensures that the cart data is correctly initialized based on the logged-in user.
+   - Added the below cart utility methods to handle cart data for multiple users:
+      `getCartForGuestUser()`, `getCartForCurrentUser()`, `getCartByUserId()`
+   - Added `getCopyOfCart()` method to create a deep copy of the cart data to avoid reference issues.
+
+   - Removed `cartProductList` field & `initCartProductList()` method as it is not required anymore.
+   - Injected AuthService in the constructor to access the current user id, guest user & specific user data.
+   - Updated `getEmptyCartForGuestUser()` method to use `getGuestUser()` method from AuthService instead of hard-coded data.
+   - Updated `getProductQuantity()` method to initialize the product qty based on the current user's cart data.
+   - Updated the below methods to handle user-specific cart data and initialize the cart data accordingly:
+      `addProductToCart()`, `removeProductFromCart()` & `removeAllProductsFromCart()`, `updateCartForUserId()`
+
+2. Initialize User specific Cart Data Whenever the logged-in User is changed
+   - File: `app.component.ts`
+   - Using `initializeCurrentUserCart()` method from the Shopping Cart Service to initialize the cart data for the current user whenever the logged-in user is changed.
+
+3. Added 'Login John' & 'Clear Local Storage' option in Testing Menu Component
+   - File: `testing-menu.component.html`, `testing-menu.component.ts`
+   - Added 'Login John' button to authenticate the user as John Doe.
+   - Added 'Clear Local Storage' button to clear the local storage including returnUrl, shopping-cart, orders, products
+   - Refactored methods to maintain consistency in naming conventions.
+      `loginUserAdminBtnClicked()`  -->   `loginAdminUserBtnClicked()`
+      `loginUserTestBtnClicked()`   -->   `loginTestUser1BtnClicked()`
+
+4. Updated Options Menu Component - Removed the access to 'My Orders' for Admin User & Removed 'Manage Orders' Feature
+   - File: `my-orders.component.ts`
+   - Updated the Options Menu Component to restrict access to 'My Orders' for Admin User as it will not have any orders.
+   - Admin User will not be able to access the My Orders page.
+   - Removed 'Manage Orders' feature from the Application as it is out of scope for the current project.
+
+5. Navbar Component - Replaced `getCart()` with `getCartForCurrentUser()` to fetch the cart data for the current user
+   - File: `navbar.component.ts`
+   - Updated the constructor to fetch the cart data for the current user using `getCartForCurrentUser()` method of the Shopping Cart Service.
+   - Initialized `shoppingCartItemsCount` with the total quantity of products in the cart for the current user.
+
+6. Shopping Cart Component - Replaced `getCart()` with `getCartForCurrentUser()` to initialize the cart data for the current user
+   - File: `shopping-cart.component.ts`
+   - Initialized `cart` with the cart data for the current user using `getCartForCurrentUser()` method of the Shopping Cart Service.
+
+7. My Orders Component - Added `allOrders` field to store all orders & initialize the orders list for the current user
+   - File: `my-orders.component.ts`
+   - Added `allOrders` field to store all orders for the current user.
+   - Initialized the orders list for the logged-in user by using `allOrders` based on the current user id.
+
+8. Updated `placeOrder()` method in Checkout Component to Save the order local storage for the current user
+   - File: `checkout.component.ts`
+   - Injected `AuthService` in the constructor to access the current user id in `placeOrder()` method.
+   - Initialized `cart` with the cart data for the current user using `getCartForCurrentUser()` method of the Shopping Cart Service.
+   - On placing the order, save it to `allOrders` map of local storage under the current user id.
+   - Initialize `cart` with the current user's cart data using `getCartForCurrentUser()` method.
+
+9. Added `getGuestUser()`, `getUserById()`, `getCurrentUserId()` methods in AuthService
+   - File: `auth.service.ts`
+   - Added `getGuestUser()` method to get the guest user details.
+   - Added `getUserById()` method to fetch the user details by id.
+   - Added `getCurrentUserId()` method to get the current user id based on the logged-in user.
+   - Need to refactor the methods from AuthService to UserService for better code organization.
+
+10. Updated To-Do List with Pending Tasks & Out of Scope items for better task tracking & management
+   - File: `To-Do.txt`
+   - Added Bugs & Out of Scope items to the To-Do List for better task tracking and management.
+   - Updated the bugs & issues list with the latest pending tasks and out of scope items.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #58 - Designed the layout for Options Menu, Testing Menu & Login Components
 
 Time Started: 14th Aug 2K24 - 06:43 PM    |    Time Ended:   14th Aug 2K24 - 07:11 PM    |    Duration:    28 minutes

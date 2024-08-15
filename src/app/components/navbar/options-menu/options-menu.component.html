@@ -24,14 +24,10 @@
            class="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-gray-700 shadow-lg
          ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-600" id="options-menu" role="menu" tabindex="-1">
         <div (click)="toggleOptionsMenu()" class="py-1" role="none">
-          <a routerLink="/user/my-orders" class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full"
+          <a *ngIf="!loggedInUser?.admin" routerLink="/user/my-orders" class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full"
              id="menu-item-0" role="menuitem" tabindex="-1">My Orders</a>
 
           <ng-container *ngIf="loggedInUser?.admin">
-            <a *ngIf="loggedInUser?.admin" routerLink="/admin/manage-orders"
-               class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full"
-               id="menu-item-1" role="menuitem" tabindex="-1">Manage Orders</a>
-
             <a *ngIf="loggedInUser?.admin" routerLink="/admin/manage-products"
                class="block px-4 py-2 text-sm text-white hover:bg-gray-600 w-full"
                id="menu-item-2" role="menuitem" tabindex="-1">Manage Products</a>

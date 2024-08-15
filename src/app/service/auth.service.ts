@@ -41,4 +41,20 @@ export class AuthService {
         this.loggedInUser$.next(null);
     }
 
+    getCurrentUserId(): number {
+        return this.loggedInUser$.value?.id || 0;
+    }
+
+    getUserById(userId: number): User {
+        return this.loggedInUser$.value?.id === userId ? this.loggedInUser$.value : this.getGuestUser();
+    }
+
+    getCurrentUser(): User {
+        return this.getUserById(this.getCurrentUserId());
+    }
+
+    getGuestUser(): User {
+        return {id: 0, username: 'guest', email: 'guest@abc.xyz', password: 'guest', admin: false};
+    }
+
 }
