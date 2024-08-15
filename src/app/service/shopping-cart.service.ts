@@ -110,8 +110,22 @@ export class ShoppingCartService {
 
             userCart.totalPrice -= product.unitPrice;
             userCart.totalQty -= 1;
+
+/*
+            //  ToDo - #10 - Check & Note down the significance of the below code
+            //  Comment Marked For Future Reference
+            //  Do we need to update the cart list with the updated user cart?
+            //  No, as we are updating the userCart object directly
+
+            //  Update the cart list with the updated user cart
+            // this.cartList[this.cartList.findIndex(cart => cart.user.id === userCart.user.id)] = userCart;
+            // this.cartList = this.cartList.map(cart => cart.user.id === userCart.user.id ? userCart : cart);
+*/
+
             localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
-            this.cartUpdated.emit();    //  Product was removed, Notify Navbar & Product Card to update the product quantity
+
+            //  Product was removed, Notify Navbar & Product Card to update the product quantity
+            this.cartUpdated.emit();
         }
 
     }
@@ -135,12 +149,14 @@ export class ShoppingCartService {
         let existingCart: Cart | undefined = this.cartList.find(cart => cart.user.id === userId);
 
         if (existingCart) {
-            existingCart.cartProducts = cart.cartProducts;
+            // existingCart.cartProducts = cart.cartProducts;   //  This will not work as it will create a reference
+            existingCart.cartProducts = JSON.parse(JSON.stringify(cart.cartProducts));  //  Deep copy of cart products
             existingCart.totalPrice = cart.totalPrice;
             existingCart.totalQty = cart.totalQty;
         } else {
             let tempNewCart: Cart = this.getCopyOfCart(cart);
             tempNewCart.user = this.authService.getUserById(userId);
+            tempNewCart.id = tempNewCart.user.id;
             this.cartList.push(tempNewCart);
         }
 
@@ -151,13 +167,7 @@ export class ShoppingCartService {
 
     getCopyOfCart(cartToBeCopied: Cart): Cart {
         //  Return a deep copy of the cartToBeCopied to avoid reference issues.
-        return {
-            id: cartToBeCopied.id,
-            user: cartToBeCopied.user,
-            cartProducts: cartToBeCopied.cartProducts.map(cartProduct => ({...cartProduct})),
-            totalPrice: cartToBeCopied.totalPrice,
-            totalQty: cartToBeCopied.totalQty
-        };
+        return JSON.parse(JSON.stringify(cartToBeCopied));
     }
 
     getCartByUserId(userId: number): Cart {

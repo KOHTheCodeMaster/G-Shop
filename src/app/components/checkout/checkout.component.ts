@@ -23,10 +23,26 @@ export class CheckoutComponent {
     order: Order;
     orderIdCounter: number;
 
-    constructor(private shoppingCartService: ShoppingCartService, private router: Router, private authService: AuthService) {
+    constructor(private shoppingCartService: ShoppingCartService,
+                private router: Router,
+                private authService: AuthService) {
+
         this.cart = shoppingCartService.getCartForCurrentUser();
-        this.orderIdCounter = JSON.parse(localStorage.getItem('orders') || '[]').length + 1;
+        this.orderIdCounter = this.initializeOrderIdCounter();
         this.order = this.createDummyOrder();
+
+    }
+
+    private initializeOrderIdCounter() {
+
+        //  Get order id of the last order for the current user from local storage
+        const orders = JSON.parse(localStorage.getItem('orders') || '{}');
+        const userId = this.authService.getCurrentUserId();
+        const userOrders: Order[] = orders[userId] || [];
+
+        //  If user has orders, return the last order id + 1; else return 1
+        return userOrders.length > 0 ? userOrders[userOrders.length - 1].id + 1 : 1;
+
     }
 
     placeOrder() {

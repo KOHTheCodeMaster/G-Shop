@@ -21,7 +21,36 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
-Commit: #60 - Added user change handling, synchronized cart updates with `cartUpdated` event, and updated product quantities in Product Card
+Commit: #61 - Fixed cart product reference issue using deep copy, resolved order ID generation in Checkout, and noted future investigation on cart list updates
+
+Time Started: 15th Aug 2K24 - 06:41 PM    |    Time Ended:   15th Aug 2K24 - 07:55 PM    |    Duration:    1 hour 14 minutes
+
+Changes:
+--------
+
+1. Important Lesson Learnt - "Always use deep copy while initializing or updating objects to avoid reference issues."
+  - File: `shopping-cart.service.ts`
+  - Minor Issue of wrong initialization of cartProducts using reference instead of deep copy.
+  - When the user cart was updated, due to reference issues, it updated cart products for guest & current user carts.
+  - Fixed the issue by using deep copy of cart products while updating the cart data.
+    ```
+      // existingCart.cartProducts = cart.cartProducts;                           //  This will cause reference issues
+      existingCart.cartProducts = JSON.parse(JSON.stringify(cart.cartProducts));  //  Deep copy of cart products
+    ```
+
+2. Checkout Component - Fixed order Id generation issue
+   - File: `checkout.component.ts`
+   - Added `initializeOrderIdCounter()` method to initialize the `orderIdCounter` for generating unique order ids.
+   - Using current user's last order id + 1 as the new order id for the order being placed.
+   - Incremented the `orderIdCounter` after placing each order to ensure the uniqueness of order ids.
+
+3. To-Do - #10 - Marked For Future Reference - Understand why updating the cart list with the updated user cart is not required
+    - When product is added / removed from the user cart, do we need to update the cart list with the updated user cart?
+    - No, as we are updating the userCart object directly, the cart list will be updated automatically.
+
+----------------------------------------------------------------------------------------------------
+
+#60 - Added user change handling, synchronized cart updates with `cartUpdated` event, and updated product quantities in Product Card
 
 Time Started: 15th Aug 2K24 - 05:45 PM    |    Time Ended:   15th Aug 2K24 - 06:22 PM    |    Duration:    37 minutes
 
