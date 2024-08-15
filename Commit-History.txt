@@ -21,9 +21,38 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #60 - Added user change handling, synchronized cart updates with `cartUpdated` event, and updated product quantities in Product Card
+
+Time Started: 15th Aug 2K24 - 05:45 PM    |    Time Ended:   15th Aug 2K24 - 06:22 PM    |    Duration:    37 minutes
+
+Changes:
+--------
+
+1. Added `loggedInUserChanged()` method in App Component to handle user change events.
+   - File: `app.component.ts`
+   - Implemented `loggedInUserChanged()` method to handle user change events in a separate method.
+   - Whenever the user is changed, `cartUpdated` event is emitted to notify Navbar to update the shopping cart items count & Product Card to update the product quantity.
+   - `initializeUserCart()` method from the Shopping Cart Service is used to copy the guest cart to the user cart if the user cart is empty and the guest cart is not.
+
+2. Updated Shopping Cart Service to use `cartUpdated` event to notify Navbar & Product Card Components.
+   - File: `shopping-cart.service.ts`
+   - `cartUpdated` event is emitted whenever the cart is updated with new products or quantity changes.
+   - Refactored `updateCartForUserId()` to `copyGuestCartToUserCart()` for better clarity.
+
+3. Updated Product Card Component to handle product quantity changes using `cartUpdated` event.
+   - File: `product-card.component.ts`
+   - Subscribed to the `cartUpdated` event to update the product quantity when the cart is updated.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #59 - User-specific Cart Management, Updated Components to handle multi-user cart data, and Enhanced options & test menu for multiple users & clearing local storage
 
-Time Started: 14th Aug 2K24 - 06:43 PM    |    Time Ended:   14th Aug 2K24 - 07:11 PM    |    Duration:    28 minutes
+Total Time:   1 hour 43 minutes
+- Time Started: 15th Aug 2K24 - 12:36 PM    |    Time Ended:   15th Aug 2K24 - 12:56 PM    |    Duration:    20 minutes
+- Time Started: 15th Aug 2K24 - 12:02 PM    |    Time Ended:   15th Aug 2K24 - 12:19 PM    |    Duration:    17 minutes
+- Time Started: 15th Aug 2K24 - 10:48 AM    |    Time Ended:   15th Aug 2K24 - 11:21 AM    |    Duration:    33 minutes
+- Time Started: 14th Aug 2K24 - 08:52 PM    |    Time Ended:   14th Aug 2K24 - 09:25 AM    |    Duration:    33 minutes
+- Time Started: 14th Aug 2K24 - 07:15 PM    |    Time Ended:   14th Aug 2K24 - 08:15 PM    |    Duration:    1 hour
 
 Changes:
 --------

@@ -16,24 +16,30 @@ import {ShoppingCartService} from "./service/shopping-cart.service";
 })
 export class AppComponent {
 
-    constructor(router: Router, authService: AuthService,
+    constructor(private router: Router, authService: AuthService,
                 private productService: ProductService,
-                shoppingCartService: ShoppingCartService) {
+                private shoppingCartService: ShoppingCartService) {
 
         this.resetProductsFromLocalStorage();
 
-        authService.loggedInUser$.subscribe((loggedInUser$: User | null) => {
-            console.log('L0G - [app.component] - subscribe - loggedInUser$ - loggedInUser$:', loggedInUser$);
-            if (loggedInUser$) {
+        authService.loggedInUser$.subscribe((loggedInUser$: User | null) =>
+            this.loggedInUserChanged(loggedInUser$));
 
-                //  If the user cart is empty and the guest cart is not, update the user cart with the guest cart
-                shoppingCartService.initializeCurrentUserCart();
+    }
 
-                let returnUrl: string | null = localStorage.getItem('returnUrl');
-                router.navigateByUrl(returnUrl || '/');
-            }
-        });
+    private loggedInUserChanged(loggedInUser$: User | null) {
+        console.log('L0G - [app.component] - loggedInUserChanged() - Method Invoked.');
 
+        //  Notify Navbar to update the shopping cart items count & Product Card to update the product quantity
+        this.shoppingCartService.cartUpdated.emit();
+
+        if (loggedInUser$) {
+            //  Copy the guest cart to the user cart if the user cart is empty and the guest cart is not
+            this.shoppingCartService.initializeUserCart();
+
+            let returnUrl: string | null = localStorage.getItem('returnUrl');
+            this.router.navigateByUrl(returnUrl || '/');
+        }
     }
 
     private resetProductsFromLocalStorage() {

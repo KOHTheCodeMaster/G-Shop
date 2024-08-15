@@ -87,7 +87,7 @@ export class ShoppingCartService {
         userCart.totalPrice += product.unitPrice;
         userCart.totalQty += 1;
         localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
-        this.cartUpdated.emit();
+        this.cartUpdated.emit();    //  Product added, Notify Navbar & Product Card to update the product quantity
 
     }
 
@@ -111,7 +111,7 @@ export class ShoppingCartService {
             userCart.totalPrice -= product.unitPrice;
             userCart.totalQty -= 1;
             localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
-            this.cartUpdated.emit();
+            this.cartUpdated.emit();    //  Product was removed, Notify Navbar & Product Card to update the product quantity
         }
 
     }
@@ -125,12 +125,12 @@ export class ShoppingCartService {
             userCart.totalPrice = 0;
             userCart.totalQty = 0;
             localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
-            this.cartUpdated.emit();
+            this.cartUpdated.emit();    //  All products removed, Notify Navbar & Product Card to update the product quantity
         }
 
     }
 
-    updateCartForUserId(userId: number, cart: Cart) {
+    copyGuestCartToUserCart(userId: number, cart: Cart) {
 
         let existingCart: Cart | undefined = this.cartList.find(cart => cart.user.id === userId);
 
@@ -144,6 +144,7 @@ export class ShoppingCartService {
             this.cartList.push(tempNewCart);
         }
 
+        this.cartUpdated.emit();    //  Cart updated, Notify Navbar & Product Card to update the product quantity
         localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
 
     }
@@ -171,14 +172,14 @@ export class ShoppingCartService {
         return this.getCartByUserId(0);
     }
 
-    initializeCurrentUserCart() {
+    initializeUserCart() {
 
-        const userId = this.authService.getCurrentUserId();
-        let userCart = this.getCartByUserId(userId);
+        let userCart = this.getCartForCurrentUser();
         let guestCart = this.getCartForGuestUser();
 
-        //  If the user cart is empty and the guest cart is not, update the user cart with the guest cart
-        if (userCart.totalQty === 0 && guestCart.totalQty > 0) this.updateCartForUserId(userId, guestCart);
+        //  Copy the guest cart to the user cart if the user cart is empty and the guest cart is not
+        if (userCart.totalQty === 0 && guestCart.totalQty > 0)
+            this.copyGuestCartToUserCart(this.authService.getCurrentUserId(), guestCart);
 
     }
 

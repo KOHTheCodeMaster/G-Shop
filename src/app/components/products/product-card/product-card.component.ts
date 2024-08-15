@@ -17,6 +17,11 @@ export class ProductCardComponent implements OnInit {
 
     constructor(private shoppingCartService: ShoppingCartService) {
         this.product = {id: 0, name: '', unitPrice: 0, category: '', imageUrl: ''}; // Initialize an empty product
+
+        //  Whenever cart is updated, update the product quantity
+        this.shoppingCartService.cartUpdated.subscribe(() => {
+            this.productQuantity = this.shoppingCartService.getProductQuantity(this.product.id);
+        });
     }
 
     ngOnInit(): void {
