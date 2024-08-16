@@ -9,39 +9,48 @@ import {AuthService} from "./auth.service";
 })
 export class ShoppingCartService {
 
-    private cartList: Cart[] = [];
-    // private cartProductList: CartProduct[];
+    private cartList: Cart[];
     private keyShoppingCart: string = 'shopping-cart';
     cartUpdated: OutputEmitterRef<void> = output();
+    cartIdCounter: number = 1;
 
     constructor(private authService: AuthService) {
-        this.cartList = this.initCartList();
-        // this.cartProductList = this.initCartProductList();
+        this.cartList = this.loadStoredCartsFromLocalStorage();
+        this.cartIdCounter = this.initializeCartIdCounter();
     }
 
-    initCartList() {
-        let strTempEmptyCartList: string = JSON.stringify([this.getEmptyCartForGuestUser()]);
+    loadStoredCartsFromLocalStorage() {
+
+        //  Load the stored carts for all users from local storage
         let storedCarts: string | null = localStorage.getItem(this.keyShoppingCart);
 
-        //  If storedCarts is null, initialize the local storage with an empty cart list
-        if (!storedCarts) localStorage.setItem(this.keyShoppingCart, strTempEmptyCartList);
+        //  If storedCarts is null, initialize the local storage with an empty cart for the guest user
+        if (storedCarts) return JSON.parse(storedCarts);
+        else {
+            //  Create an empty cart for the guest user and store it in local storage
+            let strTempEmptyCartList: string = JSON.stringify([this.createEmptyCartForCurrentUser()]);
+            localStorage.setItem(this.keyShoppingCart, strTempEmptyCartList);
+            return JSON.parse(strTempEmptyCartList);
+        }
 
-        return JSON.parse(storedCarts || strTempEmptyCartList);
     }
 
-    // private initCartProductList() {
-    //     const userCart = this.cartList.find(cart => cart.user.id === this.authService.getCurrentUserId());
-    //     return userCart ? userCart.cartProducts : [];
-    // }
+    private initializeCartIdCounter() {
+        let maxId: number = 0;
+        this.cartList.forEach(cart => {
+            if (cart.id > maxId) maxId = cart.id;
+        });
+        return maxId + 1;
+    }
 
-    private getEmptyCartForGuestUser(): Cart {
+    private createEmptyCartForCurrentUser(): Cart {
         return {
-            id: 0,
-            user: this.authService.getGuestUser(),
+            id: this.cartIdCounter++,
+            user: this.authService.getCurrentUser(),
             cartProducts: [],
             totalPrice: 0,
             totalQty: 0
-        }
+        };
     }
 
     getProductQuantity(productId: number): number {
@@ -61,8 +70,8 @@ export class ShoppingCartService {
 
         //  If the user cart does not exist, create a new cart for the current user
         if (!userCart) {
-            userCart = this.getEmptyCartForGuestUser();
-            userCart.user = this.authService.getCurrentUser();
+            userCart = this.createEmptyCartForCurrentUser();
+            // userCart.user = this.authService.getCurrentUser();
             this.cartList.push(userCart);
         }
 
@@ -111,16 +120,16 @@ export class ShoppingCartService {
             userCart.totalPrice -= product.unitPrice;
             userCart.totalQty -= 1;
 
-/*
-            //  ToDo - #10 - Check & Note down the significance of the below code
-            //  Comment Marked For Future Reference
-            //  Do we need to update the cart list with the updated user cart?
-            //  No, as we are updating the userCart object directly
+            /*
+                //  ToDo - #10 - Check & Note down the significance of the below code
+                //  Comment Marked For Future Reference
+                //  Do we need to update the cart list with the updated user cart?
+                //  No, as we are updating the userCart object directly
 
-            //  Update the cart list with the updated user cart
-            // this.cartList[this.cartList.findIndex(cart => cart.user.id === userCart.user.id)] = userCart;
-            // this.cartList = this.cartList.map(cart => cart.user.id === userCart.user.id ? userCart : cart);
-*/
+                //  Update the cart list with the updated user cart
+                // this.cartList[this.cartList.findIndex(cart => cart.user.id === userCart.user.id)] = userCart;
+                // this.cartList = this.cartList.map(cart => cart.user.id === userCart.user.id ? userCart : cart);
+            */
 
             localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
 
@@ -149,14 +158,18 @@ export class ShoppingCartService {
         let existingCart: Cart | undefined = this.cartList.find(cart => cart.user.id === userId);
 
         if (existingCart) {
+            //  IMPORTANT LESSON - #01
+            //  Concept: "Always use deep copy while initializing or updating objects to avoid reference issues."
             // existingCart.cartProducts = cart.cartProducts;   //  This will not work as it will create a reference
             existingCart.cartProducts = JSON.parse(JSON.stringify(cart.cartProducts));  //  Deep copy of cart products
             existingCart.totalPrice = cart.totalPrice;
             existingCart.totalQty = cart.totalQty;
         } else {
+            //  This should not happen, but if the user cart is not found, create a new cart for the user
+            console.warn('L0G - [shopping-cart.service] - copyGuestCartToUserCart() - User Cart Not Found.');
             let tempNewCart: Cart = this.getCopyOfCart(cart);
             tempNewCart.user = this.authService.getUserById(userId);
-            tempNewCart.id = tempNewCart.user.id;
+            // tempNewCart.id = tempNewCart.user.id;
             this.cartList.push(tempNewCart);
         }
 
@@ -171,7 +184,22 @@ export class ShoppingCartService {
     }
 
     getCartByUserId(userId: number): Cart {
-        return this.cartList.find(cart => cart.user.id === userId) || this.getEmptyCartForGuestUser();
+
+        //  Find the cart for the current user or create a new cart if the user cart is not found
+        let userCart: Cart | undefined = this.cartList.find(cart => cart.user.id === userId);
+        if (userCart) return userCart;
+        else {
+            userCart = this.createEmptyCartForCurrentUser();
+            this.cartList.push(userCart);
+
+            //  IMPORTANT LESSON - #02
+            //  Concept: "Always update the data in local storage manually after making changes to the data object."
+            //  We must update the cart list in local storage manually,
+            //  as changes made to the cart list will not be reflected or updated in local storage automatically.
+            localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+            return userCart;
+        }
+
     }
 
     getCartForCurrentUser(): Cart {

@@ -21,6 +21,60 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #62 - IMPORTANT LESSON - "Always update the data in local storage manually after making changes to the data object."
+
+Time Started: 16th Aug 2K24 - 07:27 AM    |    Time Ended:   16th Aug 2K24 - 09:13 AM    |    Duration:    1 hour 46 minutes
+
+Changes:
+--------
+
+1. IMPORTANT LESSON - "Always update the data in local storage manually after making changes to the data object."
+   - Whenever we make any changes to the data object, we need to update the data in local storage manually.
+   - This is because changes made to the data object will not be reflected or updated in local storage automatically.
+   - We need to manually update the data in local storage to avoid data inconsistency.
+
+   - Example: (Shopping Cart Service - getCartByUserId() method)
+    ```
+      getCartByUserId(userId: number): Cart {
+          //  Find the cart for the current user or create a new cart if the user cart is not found
+          let userCart: Cart | undefined = this.cartList.find(cart => cart.user.id === userId);
+          if (userCart) return userCart;
+          else {
+              userCart = this.createEmptyCartForCurrentUser();
+              this.cartList.push(userCart);
+
+              //  IMPORTANT LESSON - #02
+              //  "Always update the data in local storage manually after making changes to the data object."
+              //  We must update the cart list in local storage manually,
+              //  as changes made to the cart list will not be reflected or updated in local storage automatically.
+              localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+              return userCart;
+          }
+      }
+
+      userCart = this.createEmptyCartForCurrentUser();
+      this.cartList.push(userCart); //  User cart should be added to the cart list
+      localStorage.setItem(this.keyShoppingCart, JSON.stringify(this.cartList));
+    ```
+
+    - Explanation:
+      - When a new user cart is created, it should be added to the cart list.
+      - After adding the user cart to the cart list, the cart list should be updated in local storage manually.
+      - This ensures that the changes made to the cart list are reflected in local storage and persist across sessions.
+      - If the cart list is not updated in local storage, the changes will not be saved, and the cart data will be lost on page reload.
+
+2. Manual Cart List Update in Local Storage, Refactor and Initialize Cart Id Counter for Guest Cart Creation
+   - File: `shopping-cart.service.ts`
+   - [IMPORTANT] Updated `getCartByUserId()` method to manually update the cart list in local storage after adding a new user cart.
+   - Refactor and Initialize Cart Id Counter
+     - Initialize `cartIdCounter` with 1 before loading the carts from local storage for creating guest cart if not available.
+     - Refactored `initCartList()` to `loadStoredCartsFromLocalStorage()` for better clarity.
+     - Once the carts are loaded from local storage, initialize `cartIdCounter` with the maximum cart id + 1.
+     - Refactored `getEmptyCartForGuestUser()` to `createEmptyCartForGuestUser()` for creating a new cart using  `cartIdCounter` & `getCurrentUser()` method.
+
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #61 - Fixed cart product reference issue using deep copy, resolved order ID generation in Checkout, and noted future investigation on cart list updates
 
 Time Started: 15th Aug 2K24 - 06:41 PM    |    Time Ended:   15th Aug 2K24 - 07:55 PM    |    Duration:    1 hour 14 minutes

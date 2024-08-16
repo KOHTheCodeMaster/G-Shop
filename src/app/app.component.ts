@@ -28,10 +28,8 @@ export class AppComponent {
     }
 
     private loggedInUserChanged(loggedInUser$: User | null) {
-        console.log('L0G - [app.component] - loggedInUserChanged() - Method Invoked.');
-
-        //  Notify Navbar to update the shopping cart items count & Product Card to update the product quantity
-        this.shoppingCartService.cartUpdated.emit();
+        console.log('L0G - [app.component] - loggedInUserChanged() - Method Invoked.' +
+            '\nloggedInUser$: ', loggedInUser$);
 
         if (loggedInUser$) {
             //  Copy the guest cart to the user cart if the user cart is empty and the guest cart is not
@@ -40,6 +38,11 @@ export class AppComponent {
             let returnUrl: string | null = localStorage.getItem('returnUrl');
             this.router.navigateByUrl(returnUrl || '/');
         }
+
+        //  ToDO: Check the difference between placing this code at the start of the method and at the end, What difference does it make?
+        //  Notify Navbar to update the shopping cart items count & Product Card to update the product quantity
+        this.shoppingCartService.cartUpdated.emit();
+
     }
 
     private resetProductsFromLocalStorage() {

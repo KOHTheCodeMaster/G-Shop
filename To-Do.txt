@@ -28,15 +28,27 @@ Bugs & Issues:
   - Resolved in Commit #61 - Fixed order Id generation issue in My Orders Component
 
 3. My Orders Component is not displaying the correct order details for the logged-in user
+  - Need to check the order details fetching logic in My Orders Component
+
 4. Trace `orderDate` field of Order in Checkout Component
   - Need to check when exactly the orderDate is changed for new orders in Checkout Component
+
 5. Move the below methods from AuthService to UserService for better code organization:
   - `getGuestUser()`, `getUserById()`, `getCurrentUserId()`
 
 ---
 
-G-Shop - Pending Tasks To-Do List:
-----------------------------------
+G-Shop - Pending To-Do List:
+----------------------------
+
+1. ToDo: Document The Case Study of Important Lesson - #01 - "Always use deep copy while initializing or updating objects to avoid reference issues."
+
+2. ToDo: Document The Case Study of Important Lesson - #02 - "Always update the data in local storage manually after making changes to the data object."
+
+---
+
+G-Shop - Pending Tasks List:
+----------------------------
 
 1. Refactor `cartUpdated` of `ShoppingCartService` to use getter and setter methods for better data handling.
 2. Local Storage Manager Service - Implement a service to manage local storage operations for cart data.
