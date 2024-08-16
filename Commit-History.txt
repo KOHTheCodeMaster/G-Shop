@@ -21,6 +21,21 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #63 - Fixed View Order Component to display correct order details
+
+Time Started: 16th Aug 2K24 - 11:53 AM    |    Time Ended:   16th Aug 2K24 - 12:12 PM    |    Duration:    19 minutes
+
+Changes:
+--------
+
+1. Fixed View Order Component to display correct order details
+   - File: `view-order.component.ts`
+   - Updated the View Order Component to fetch the correct order details based on the order id.
+   - Using `allOrders` map & `orderId` parameter from the route to fetch the specific order details for the current user from local storage.
+   - Injected `AuthService` to access the current user id and fetch the order details for the current user.
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #62 - IMPORTANT LESSON - "Always update the data in local storage manually after making changes to the data object."
 
 Time Started: 16th Aug 2K24 - 07:27 AM    |    Time Ended:   16th Aug 2K24 - 09:13 AM    |    Duration:    1 hour 46 minutes

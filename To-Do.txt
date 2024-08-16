@@ -21,6 +21,17 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Bugs & Issues:
 --------------
 
+Pending:
+
+
+4. Trace `orderDate` field of Order in Checkout Component
+  - Need to check when exactly the orderDate is changed for new orders in Checkout Component
+
+5. Move the below methods from AuthService to UserService for better code organization:
+  - `getGuestUser()`, `getUserById()`, `getCurrentUserId()`
+
+Resolved:
+
 1. When the logged-in User is changed, the Cart's total product qty in Navbar & Product qty at Home Page is not updated
   - Resolved in Commit #60 - Added user change handling, synchronized cart updates with `cartUpdated` event, and updated product quantities in Product Card
 
@@ -28,13 +39,7 @@ Bugs & Issues:
   - Resolved in Commit #61 - Fixed order Id generation issue in My Orders Component
 
 3. My Orders Component is not displaying the correct order details for the logged-in user
-  - Need to check the order details fetching logic in My Orders Component
-
-4. Trace `orderDate` field of Order in Checkout Component
-  - Need to check when exactly the orderDate is changed for new orders in Checkout Component
-
-5. Move the below methods from AuthService to UserService for better code organization:
-  - `getGuestUser()`, `getUserById()`, `getCurrentUserId()`
+  - Resolved in Commit #63 - Fixed View Order Component to display correct order details
 
 ---
 
