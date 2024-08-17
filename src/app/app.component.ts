@@ -20,7 +20,7 @@ export class AppComponent {
                 private productService: ProductService,
                 private shoppingCartService: ShoppingCartService) {
 
-        this.resetProductsFromLocalStorage();
+        // this.resetProductsFromLocalStorage();
 
         authService.loggedInUser$.subscribe((loggedInUser$: User | null) =>
             this.loggedInUserChanged(loggedInUser$));

@@ -16,6 +16,10 @@ export class ProductService {
         this.loadInitialData();
     }
 
+    initializeEmptyProduct(): Product {
+        return {id: 0, name: '', unitPrice: 0, category: '', imageUrl: ''}; // Initialize an empty product
+    }
+
     private getProductListFromLocalStorage(): Product[] {
         return JSON.parse(localStorage.getItem(this.productsKey) || '[]');
     }
@@ -40,12 +44,11 @@ export class ProductService {
             .find((product: Product) => product.id === Number(productId));
     }
 
-    addProduct(product: Product): Observable<Product> {
+    addProduct(product: Product) {
         const products: Product[] = this.getProductListFromLocalStorage();
         product.id = products.length ? products[products.length - 1].id + 1 : 1; // Generate new product id
         products.push(product);
         localStorage.setItem(this.productsKey, JSON.stringify(products));
-        return of(product);
     }
 
     updateProduct(updatedProduct: Product) {

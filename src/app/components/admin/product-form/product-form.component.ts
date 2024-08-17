@@ -26,18 +26,15 @@ export class ProductFormComponent {
 
         this.categoryList = categoryService.getCategoryList();
 
-        //  Reset product for new product creation
-        if (this.activatedRoute.snapshot.paramMap.has('new')) this.product = this.initializeEmptyProduct();
+        //  If the route has a 'new' parameter, initialize an empty product
+        if (this.activatedRoute.snapshot.paramMap.has('new')) this.product = productService.initializeEmptyProduct();
 
+        //  If the route has a productId parameter, initialize the product by the id, else initialize an empty product
         const productId: string | null = this.activatedRoute.snapshot.paramMap.get('productId');
         this.product = productId
-            ? this.productService.getProductById(productId) || this.initializeEmptyProduct()
-            : this.initializeEmptyProduct();
+            ? this.productService.getProductById(productId) || productService.initializeEmptyProduct()
+            : productService.initializeEmptyProduct();
 
-    }
-
-    initializeEmptyProduct(): Product {
-        return {id: 0, name: '', unitPrice: 0, category: '', imageUrl: ''}; // Initialize an empty product
     }
 
     save(formElement: any) {
@@ -47,12 +44,7 @@ export class ProductFormComponent {
 
         //  Update the product if it already exists, else create a new product
         if (this.product.id !== 0) this.productService.updateProduct(this.product);
-        else {
-            this.productService.addProduct(formElement.value).subscribe(productCreated => {
-                console.log('Product created successfully.');
-                console.log(JSON.stringify(productCreated));
-            });
-        }
+        else this.productService.addProduct(formElement.value);
 
         this.router.navigate(['/admin/manage-products']);
     }

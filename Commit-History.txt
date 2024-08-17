@@ -21,9 +21,28 @@ GitHub: https://github.com/KOHTheCodeMaster/
 Commit History - Change Log
 ---------------------------
 
+Commit: #64 - Refactored Product Form Component, Updated Product Service, and Fixed Empty Category Issue
+
+Time Started: 17th Aug 2K24 - 07:42 PM    |    Time Ended:   17th Aug 2K24 - 08:11 PM    |    Duration:    29 minutes
+
+Changes:
+--------
+
+1. Comment Reset Products in App Component
+
+2. Moved `initializeEmptyProduct()` method from Product Form Component to Product Service
+
+3. Updated `addProduct()` method in Product Service to not return the product
+
+4. Updated Category values to start with a capital letter for consistency & fixed the issue of Empty Category in Product Form Component
+
+----------------------------------------------------------------------------------------------------
+
 Commit: #63 - Fixed View Order Component to display correct order details
 
-Time Started: 16th Aug 2K24 - 11:53 AM    |    Time Ended:   16th Aug 2K24 - 12:12 PM    |    Duration:    19 minutes
+Total Time:   32 minutes
+- Time Started: 16th Aug 2K24 - 11:53 AM    |    Time Ended:   16th Aug 2K24 - 12:12 PM    |    Duration:    19 minutes
+- Time Started: 16th Aug 2K24 - 11:14 AM    |    Time Ended:   16th Aug 2K24 - 11:27 AM    |    Duration:    13 minutes
 
 Changes:
 --------

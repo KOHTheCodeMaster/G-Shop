@@ -23,12 +23,14 @@ Bugs & Issues:
 
 Pending:
 
+4. Product Images are not synced when Admin changes the product image in the Manage Products Component
+  - When the Admin changes the product image in the Manage Products Component, the product images are not updated in the Product Card Component & Shopping Cart Component for the same product.
+  - Need to synchronize the product images in the Product Card Component & Shopping Cart Component
 
-4. Trace `orderDate` field of Order in Checkout Component
-  - Need to check when exactly the orderDate is changed for new orders in Checkout Component
-
-5. Move the below methods from AuthService to UserService for better code organization:
-  - `getGuestUser()`, `getUserById()`, `getCurrentUserId()`
+5. Restrict Checkout for 'Admin' user
+  - Admin is able to place orders from the Checkout Component
+  - Need to restrict the Checkout functionality for 'Admin' user
+  - Need to decide what to do about the guest cart when the user logs in as 'Admin'
 
 Resolved:
 
@@ -56,7 +58,17 @@ G-Shop - Pending Tasks List:
 ----------------------------
 
 1. Refactor `cartUpdated` of `ShoppingCartService` to use getter and setter methods for better data handling.
+
 2. Local Storage Manager Service - Implement a service to manage local storage operations for cart data.
+
+3. Trace `orderDate` field of Order in Checkout Component
+  - Need to check when exactly the orderDate is changed for new orders in Checkout Component
+
+4. Move the below methods from AuthService to UserService for better code organization:
+  - `getGuestUser()`, `getUserById()`, `getCurrentUserId()`
+
+5. Update Category Validation Error Msg not displayed in Manage Products Component
+  - When the Admin tries to add a product without selecting a category, the validation error message under the category dropdown is not displayed.
 
 ---
 
@@ -64,9 +76,10 @@ Out of Scope:
 -------------
 
 1. Managing Orders - Implementing order management functionality is out of scope for the current phase of the project.
-3. User Management - Implementing user management functionality is out of scope for the current phase of the project.
-2. User Registration - User registration feature is not required for the current phase of the project.
-4. Managing User Profile - Implementing user profile management is not required for the current phase of the project.
+
+2. User Registration & Management - Implementing user registration and management features are out of scope for the current phase of the project.
+
+3. Managing User Profile - Implementing user profile management is not required for the current phase of the project.
 
 
 ----------------------------------------------------------------------------------------------------
